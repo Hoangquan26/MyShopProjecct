@@ -1,0 +1,11 @@
+﻿@model  List<testAjax.Models.SanPham>
+
+@{ 
+    var products = Model;
+}
+
+@foreach(var item in products)
+            {
+                <div>@item.tenSanPham</div>
+                <img src="@item.hinhAnhSanPham" />
+            }
