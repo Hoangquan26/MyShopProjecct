@@ -1,0 +1,227 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chivo Mono', monospace;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+
+:root {
+    --primary-color: #0E4BF1;
+    --panel--color: #fff;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --danger-color : #cd5555;
+}
+body {
+    min-height: 100vh;
+    /*    background-color: var(--primary-color);*/
+    background-color: var(--panel--color);
+}
+body.dark {
+    --primary-color: #3A3B3C;
+    --panel--color: #242526;
+    --text-color: #CCC;
+    --black-light-color: #CCC;
+    --border-color: #4D4D4D;
+    --toggle-color: #FFF;
+    --box1-color: #3A3B3C;
+    --box2-color: #3A3B3C;
+    --box3-color: #3A3B3C;
+}
+#body.closeNav {
+    left: 70px;
+    width: calc(100% - 70px);
+}
+
+#body {
+    position: relative;
+    height: 100vh;
+    width: calc(100% - 250px);
+    padding-top: 50px;
+    padding-left: 40px;
+    top: 50px;
+    left: 250px;
+    background-color: var(--panel--color);
+    color: var(--text-color);
+    transition: all ease 0.5s;
+}
+
+#sidebar {
+    position: fixed;
+    left: 250px;
+    top: 0;
+    right: 0;
+    color: var(--black-light-color);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+.site-title {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.site-title i {
+    font-size: 28px;
+    line-height: 50px;
+    width: 50px;
+}
+.site-title h1 {
+    font-weight: 500;
+}
+
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: var(--panel--color);
+    border-right: 2px solid var(--border-color);
+}
+.menu-item {
+    display : flex;
+    height: 98%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo-img {
+    display: flex;
+    align-items: start;
+}
+
+nav .logo-name {
+    margin-left: 14px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-top: 40px;
+}
+
+.nav-links .nav-item {
+    list-style: none;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    width: 170px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    cursor : pointer;
+    color: var(--black-light-color);
+    font-weight: 400;
+    position: relative;
+}
+.nav-item a:hover {
+    color: var(--primary-color);
+}
+.nav-item a:hover::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    left: -15px;
+
+}
+
+.nav-links .nav-item i {
+    font-size : 20px;
+    padding-right: 16px;
+}
+
+.nav-links .nav-item .link-name {
+    font-size: 18px;
+}
+/*startCloseNavAnimation*/
+    nav.closeNav {
+        width: 70px;
+    }
+    .closeNav .menu-item {
+        align-items: center;
+    }
+    .closeNav .link-name {
+        display: none;
+    }
+    .closeNav .nav-links {
+        margin: 20px 0;
+    }
+    .closeNav .nav-links .nav-item {
+        width: auto;
+    }
+    .closeNav .nav-links .nav-item i {
+        padding: 5px;
+    }
+    .closeNav .mode-box{
+        display: none;
+    }
+    .toogle-nav {
+        cursor: pointer;
+    }
+    #sidebar {
+        transition : all ease 0.5s;
+        z-index: 1000;
+    }
+    #sidebar.closeNav {
+        left: 70px;
+    }
+    nav, .nav-links, .closeNav .nav-links .nav-item i {
+        transition: all ease 0.5s;
+    }
+/*endCloseNavAnimation*/
+.mode-box {
+    min-width: 40px;
+    height: 30px;
+    position: absolute;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+}
+.toggle{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background-color: var(--toggle-color);
+    height: 22px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.toggle::before {
+    content: "";
+    background-color: var(--panel--color);
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+}
+
+body.dark .toggle::before{
+    left: 21px;
+}

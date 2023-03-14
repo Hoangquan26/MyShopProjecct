@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e401ebc7c1a242ddad943653bcded205" Name="Diagram1">
+        <EntityTypeShape EntityType="NewsTestModel.guest" Width="1.5" PointX="3.375" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsTestModel.listfunction" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsTestModel.tacgia" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsTestModel.tintuc" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="NewsTestModel.FK__tintuc__IDTacGia__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsTestModel.functionguest" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

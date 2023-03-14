@@ -1,0 +1,661 @@
+﻿@{
+    testAjax.Models.WebUser db = (testAjax.Models.WebUser)Session["user"];
+    var myName = "";
+    bool isAdmin = false;
+    int myID = 0;
+    string myAvatarPath = "/images/avatars/UnknownAvatar.png";
+    if (db != null)
+    {
+        myName = db.UserName;
+        if (db.isAdmin == true)
+        {
+            isAdmin = true;
+        }
+    }
+    if (db != null)
+    {
+        myID = db.id;
+        myName = db.UserName;
+    }
+    if (db != null && db.avatarPath.Length > 0)
+    {
+        myAvatarPath = db.avatarPath.ToString();
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/icons/boxicons-2.1.4/css/boxicons.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;300;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="~/fonts/fontawesome-free-6.3.0-web/css/all.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("link", false)
+    <style>
+        :root {
+            --secondary-color: #254753;
+            --primary-color: #0E4BF1;
+            --panel--color: #fff;
+            --text-color: #000;
+            --black-light-color: #707070;
+            --border-color: #e6e5e5;
+            --toggle-color: #DDD;
+            --box1-color: #4DA3FF;
+            --box2-color: #FFE6AC;
+            --box3-color: #E7D1FC;
+            --background-color: #eeeeee;
+            --violet-color: #3a10e5;
+            --danger-color: #cd5555;
+            --light-black-color: #fafafa;
+        }
+
+        * {
+            font-family: 'Chivo Mono', monospace;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            color: var(--text-color);
+        }
+        .danger {
+            color: var(--danger-color);
+        }
+        body {
+            padding: 0;
+        }
+
+        ul {
+            margin: 0;
+        }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+        @@media (max-width : 600px) {
+            #side-navbar {
+                right: 0 !important;
+                bottom: 0 !important;
+                top: initial !important;
+                height: initial !important;
+                width: 100% !important;
+                flex-direction: initial !important;
+                border: 0!important;
+                border-top: 2px solid var(--border-color);
+            }
+            .menu-btn {
+                flex-direction: initial !important;
+            }
+            .menu-btn .toogle-nav {
+                display: none !important;
+            }
+
+            .Side-bar-menu {
+                min-width: 100%;
+            }
+
+            .Side-bar-menu .list-menu {
+                flex-direction: initial !important;
+                width: 100%;
+                justify-content: space-between;
+                margin: 0 !important;
+            }
+
+
+            .Side-bar-menu .list-menu .category a{
+                flex-direction: initial !important;
+            }
+
+            .Side-bar-menu .list-menu .category .category-list {
+                left: -200% !important;
+                flex-direction: initial !important;
+                top: calc(-100% - 10px);
+                min-width: 400%;
+                border: 0;
+                border-top: 2px solid var(--border-color);
+                animation: initial !important;
+            }
+
+            .Side-bar-menu .list-menu .category .category-list>li {
+                justify-content: center;
+            }
+
+            .Side-bar-menu .list-menu .category .category-list>li>a {
+                margin: 0 5px;
+            }
+            .Side-bar-menu .list-menu .category .category-list>li>a>span {
+                display: none;
+            }
+
+            .Side-bar-menu .list-menu .category .bx.bxs-chevron-down {
+                transform: rotate(180deg);
+            }
+
+            .Side-bar-menu .list-menu > li {
+                margin: 0;
+            }
+
+            .Side-bar-menu .list-menu > li > a {
+                height: 100%;
+                height: 56px;
+            }
+
+            #navbar {
+                left: 0 !important;
+            }
+            #side-navbar .menu-btn {
+                margin: 0;
+                min-width: 100%;
+            }
+            #side-navbar .User-Option {
+                display: none !important;
+            }
+
+            #navbar .navbar-controller a {
+                font-size: 14px !important;
+            }
+
+            #navbar .navbar-controller span {
+                font-size: 14px !important;
+            }
+        }
+
+
+        #navbar {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 70px;
+            right: 0;
+            z-index: 10;
+            transition : all ease 0.5s;
+            padding : 10px 0;
+        }
+        #navbar.closeNav {
+            left: 255px;
+        }
+        #navbar li {
+            text-decoration: none;
+            list-style: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        #navbar li a {
+            color: black;
+        }
+
+        #navbar i {
+            color: black;
+            font-size: 20px;
+            cursor: pointer;
+            line-height: 56px;
+        }
+
+        #navbar .navbar-controller a {
+            margin-left: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            color: var(--black-light-color);
+            transition: all ease 0.3s;
+        }
+
+        #navbar .navbar-controller span {
+            font-size: 16px;
+            color: var(--box3-color);
+            margin-left: 5px;
+        }
+
+        #navbar .navbar-controller a:hover {
+            color: var(--box3-color);
+        }
+
+        li + li {
+            margin-left: 15px;
+        }
+
+        #navbar li > a:hover, #navbar li:hover > i {
+            color: var(--violet-color);
+        }
+
+        #footer-wrapper {
+            width: 100%;
+            margin-top: 100px;
+            background-color: var(--box2-color);
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #footer-wrapper.closeNav #footer-main {
+            margin: 0 auto;
+        }
+        #footer-main {
+            display: flex;
+            justify-content: space-between;
+            width: 1200px;
+            margin-left: 500px;
+        }
+
+        .footer-section {
+            flex: 1 1 auto;
+        }
+        #footer-main .footer-list {
+            text-decoration: none;
+            color: var(--black-light-color);
+            padding: 10px 0;
+        }
+
+        #footer-main .footer-list li {
+            list-style: none;
+            margin : 5px 0;
+        }
+        #footer-main .footer-list a {
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--black-light-color);
+        }
+
+        .navbar-help .navbar-list-help {
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-list-controller li, .navbar-list-help li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .navbar-list-help>li {
+            padding: 0 10px;
+            margin: 0;
+        }
+
+        .navbar-controller {
+            margin-left : 15px;
+            display: flex;
+            order: 1;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .navbar-controller h2 {
+            margin: 0;
+            text-align:center;
+            font-weight: 400;
+        }
+        .navbar-help {
+            align-items: center;
+            order: 2;
+        }
+        .User-Name{
+            font-size: 16px;
+        }
+        .userIcon > p {
+            margin: 0;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .menu-btn {
+            margin: 15px auto;
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        /*navbar-css*/
+        .menu-btn .toogle-nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            transition: all ease 0.5s;
+        }
+        .menu-btn i {
+            font-size: 22px;
+            transition: all ease 0.5s;
+            cursor: pointer;
+        }
+        #side-navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: var(--panel--color);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-right: 2px solid var(--black-light-color);
+            transition: all ease 0.5s;
+        }
+
+        .User-Option {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: var(--border-color);
+            font-weight: 500;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+        User-Option img {
+            transition : all ease 0.5s;
+        }
+        .User-Option i {
+            font-size: 18px;
+        }
+
+        .User-Avatar {
+            height: 45px;
+            vertical-align: middle;
+            width: 45px;
+            border-radius: 50%;
+            border: 1px solid var(--black-light-color);
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .userIcon {
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .userIcon .userIcon-option {
+            background-color: var(--background-color);
+            position: absolute;
+            left: -110px;
+            right: 0;
+            display: none;
+            padding-left: 10px;
+        }
+
+        .userIcon-option li {
+            margin: 15px 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .userIcon-option li span {
+            padding: 0 10px;
+            transition: all ease 0.5s;
+            display: inline-block;
+        }
+
+        .userIcon-option::after {
+            content: "";
+            position: absolute;
+            width: 170px;
+            top: -20px;
+            height: 30px;
+            right: -20px;
+        }
+
+        .userIcon:hover .userIcon-option {
+            display: block;
+            animation: slideDown ease-in-out 0.4s;
+        }
+
+        @@keyframes slideDown {
+            from {
+                opacity: 0;
+                top: 80%;
+            }
+
+            to {
+                opacity: 1;
+                top: 100%;
+            }
+        }
+
+        .list-menu {
+            margin-top: 30px;
+            color: var(--text-color);
+            align-items: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .list-menu i {
+            padding-right: 5px;
+        }
+        .list-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all ease 0.5s;
+        }
+        .list-menu li {
+            text-decoration: none;
+            list-style: none;
+            font-size: 18px;
+            margin: 15px 0;
+            width: 100%;
+            font-weight: 400;
+            cursor: pointer;
+            transition : all ease 0.5s;
+        }
+        .category>a>i:last-child {
+            justify-self: flex-end;
+            order: 2;
+        }
+        .category {
+            position: relative;
+        }
+        .category:hover .category-list {
+            display: flex;
+        }
+        .category-list {
+            border: 2px solid var(--black-light-color);
+            width: 120%;
+            position: absolute;
+            left: 95%;
+            background-color: var(--panel--color);
+            animation: categoryslide ease 0.5s;
+            top: 0;
+            border-radius: 4px;
+            padding: 5px;
+            display: none;
+            flex-direction: column;
+        }
+        .category-list li {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .list-menu li a {
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+            justify-content: flex-start;
+        }
+        @@keyframes categoryslide {
+            from {
+                opacity: 0;
+                top: -100%;
+            }
+            to {
+                opacity: 1;
+                top: 0;
+            }
+        }
+        #side-navbar.closeNav {
+            width: 75px;
+        }
+        #side-navbar.closeNav .list-menu{
+            margin: 30px 0;
+        }
+        #side-navbar.closeNav .list-menu>li>a>span {
+            display: none;
+        }
+        #side-navbar.closeNav .category-list{
+            width: 220px;
+            left: 100%;
+        }
+
+        #side-navbar.closeNav i {
+            transition: all ease 0.5s;
+        }
+        #side-navbar.closeNav .toogle-nav {
+            justify-content: center;
+        }
+        #side-navbar.closeNav .list-menu>li>a {
+            justify-content: center;
+            flex-direction: column;
+            margin-left: 0;
+        }
+        #side-navbar.closeNav .User-Option {
+            justify-content: center;
+        }
+        #side-navbar.closeNav .User-Option span, #side-navbar.closeNav .User-Option a {
+            display: none;
+        }
+        .body-content {
+            width: 100%;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navbar-controller">
+            <h2>@ViewBag.title</h2>
+            @Html.Raw(ViewBag.HomeLink != null ? $"<a href='/Home/Index'>{@ViewBag.HomeLink}</a>" : "")
+            @Html.Raw(ViewBag.CategoryLink != null ? $"<a href='/Home/Index'> / {@ViewBag.CategoryLink}</a>" : "")
+            @Html.Raw(ViewBag.Name != null ? $"<span> / {@ViewBag.Name}</a>" : "")
+        </div>
+        <div class="navbar-help">
+            <ul class="navbar-list-help">
+                <li><i class='bx bx-bell'></i></li>
+                <li class="userIcon">
+                    <a href="/Account/LoginForm">
+                        <i class='bx bx-user'></i>
+                        <span>@myName</span>
+                    </a>
+                    <ul class="userIcon-option">
+                        <li @Html.Raw(Session["user"] != null ? "onclick= \"userInformation()\"><i class='bx bx-cog'></i><span>Thông tin tài khoản</span>" : "class = \"user-option-login\"><i class='bx bx-user' ></i><span><a href = \"/Account/LoginForm\">Đăng nhập</a></span>")</li>
+                        @Html.Raw(isAdmin == true ? "<li ><i class='bx bxs-user-detail'></i><span><a href=\"/Admin/Admin\">Quản lý</a></span></li>" : "")
+                        @Html.Raw(Session["user"] != null ? "<li class=\"Logout-btn\"><i class='bx bx-user'></i><span>Đăng xuất</span></li>" : "")
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="side-navbar" class="closeNav">
+        <div class="menu-btn">
+            <div class="toogle-nav">
+                <i class='bx bx-menu'></i>
+            </div>
+            <div class="Side-bar-menu">
+                <ul class="list-menu">
+                    <li><a href="/Home/Index"><i class='bx bx-home-alt'></i><span>Trang chủ</span></a></li>
+                    <li><a><i class='bx bx-store'></i><span>Sản phẩm</span></a></li>
+                    <li class="category"><a><i class='bx bx-category-alt'></i><span>Danh mục</span><i class='bx bxs-chevron-down'></i></a>
+                        <ul class="category-list">
+                            <li><a><i class="fa-regular fa-keyboard"></i><span>Bàn phím</span></a></li>
+                            <li><a><i class='bx bx-mouse'></i><span>Chuột</span></a></li>
+                            <li><a><i class="fa-solid fa-compact-disc"></i><span>Decor</span></a></li>
+                            <li><a><i class="fa-solid fa-gamepad"></i><span>Tay cầm</span></a></li>
+                            <li><a><i class="fa-solid fa-headphones-simple"></i><span>Tai nghe</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class='bx bx-info-circle'></i><span>Giới thiệu</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="User-Option">
+            <img class="User-Avatar" src=@myAvatarPath />
+            <span class="User-Name">@myName</span>
+            <a><i class='bx bx-log-out'></i></a>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        @Html.Action("UserDetail", "Partial", new { area = "Admin" })
+    </div>
+    <footer id="footer-wrapper">
+        @*          <div id="footer-main">
+                <div class="footer-section">
+                    <h4>Thông tin</h4>
+                    <ul class="footer-list">
+                        <li><p>22-02-2023 - ASP.NET Application</p></li>
+                        <li><p>Hoàng Quân</p></li>
+                        <li><p>Liên hệ: 0778549065</p></li>
+                        <li><p>Gmail: hquan26122003@gmail.com</p></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <ul class="footer-list">
+                        <li><a>Trang chủ</a></li>
+                        <li><a>Sản phẩm</a></li>
+                        <li><a>Giới thiệu</a></li>
+                        <li><a>Đăng nhập</a></li>
+                        <li><a>Tuyển dụng</a></li>
+                        <li><a>Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <ul class="footer-list">
+                        <li><p>22-02-2023 - ASP.NET Application</p></li>
+                        <li><p>Hoàng Quân</p></li>
+                        <li><p>Liên hệ: 0778549065</p></li>
+                        <li><p>Gmail: hquan26122003@gmail.com</p></li>
+                    </ul>
+                </div>
+            </div> *@
+        </footer>
+
+        @RenderSection("scripts", required: false)
+        @RenderSection("script", false)
+        <script src="~/Areas/Admin/js/ShowUserInfo.js"></script>
+        <script>
+        let userIcon = document.querySelector(".userIcon")
+        let Logout = document.querySelector(".Logout-btn");
+        if (Logout != null) {
+            Logout.addEventListener("click", () => {
+                let url = "/Account/LogoutAjax"
+                let spanValue = userIcon.querySelector("span");
+                if (spanValue.textContent.length != 0) {
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => alert(data.da))
+                    spanValue.textContent = "";
+                    window.location.href = "/Home"
+                }
+            })
+        }
+        function userInformation() {
+            document.getElementById("user-info").classList.add("flex-visible")
+            getUserData(@myID)
+            document.querySelector(".user-infomation-item:first-child").style.display = "none"
+        }
+        let toogle_nav = document.querySelector('.toogle-nav i');
+        toogle_nav.addEventListener('click', () => {
+            document.getElementById('side-navbar').classList.toggle("closeNav")
+            document.getElementById('navbar').classList.toggle("closeNav")
+            document.getElementById("footer-wrapper").classList.toggle("closeNav")
+            document.querySelector(".container").classList.toggle('closeNav')
+        })
+        </script>
+</body>
+</html>
