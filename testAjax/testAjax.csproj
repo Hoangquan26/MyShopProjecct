@@ -1207,6 +1207,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\myProduct.css" />
+    <Content Include="css\AllProducts.css" />
     <Content Include="css\Home.css" />
     <Content Include="css\LoginCss.css" />
     <Content Include="favicon.ico" />
@@ -4932,7 +4934,9 @@
     <Content Include="images\setup\pexels-pew-nguyen-15372897.jpg" />
     <Content Include="images\setup\pexels-polina-tankilevitch-4523021.jpg" />
     <Content Include="images\xbox\xboxCloudyNightSkySeriesX_S.jpg" />
+    <Content Include="js\AllProducts.js" />
     <Content Include="js\Home.js" />
+    <Content Include="js\LoadProductFuntion.js" />
     <Content Include="js\LoginScript.js" />
     <Content Include="Models\Test.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -5094,14 +5098,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\LoginForm.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
-    <Content Include="Views\PartialViewProduct\ProductPage.cshtml" />
+    <Content Include="Views\PartialViewProduct\CategoryList.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Areas\css\" />
-    <Folder Include="Views\ParitalViewProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />

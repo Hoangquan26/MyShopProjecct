@@ -1,0 +1,27 @@
+﻿@model List<testAjax.Models.SanPham>
+@{
+    ViewBag.HomeLink = "Trang chủ";
+    ViewBag.Name = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section link {
+        @Styles.Render("~/css/AllProducts.css")
+        @Styles.Render("~/myProduct.css")
+    }
+
+<div class="products-wrapper">
+    <div class="filter-wrapper">
+        <div class="product-categories">
+            
+        </div>
+        <div class="filter-btn">
+            <i class='bx bx-filter'></i>
+        </div>
+    </div>
+    <div class="listproducts-wrapper">
+
+    </div>
+</div>
+@Scripts.Render("~/LoadProductFuntion")
+@Scripts.Render("~/AllProduct.js")

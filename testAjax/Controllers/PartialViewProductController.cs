@@ -10,14 +10,9 @@ namespace testAjax.Controllers
     public class PartialViewProductController : Controller
     {
         // GET: ParitalViewProduct
-        public PartialViewResult ProductPage(int? maTheLoai = null)
+        public PartialViewResult CategoryList()
         {
-            var products = ProductAction.loadProduct().ToList();
-            if (maTheLoai != null)
-            {
-                var items = products.Where(item => item.theLoaiSanPham == maTheLoai).ToList();
-                products = items.ToList();
-            }
+            var products = CategoryAction.loadCategory().ToList();
             return PartialView(products);
         }
     }

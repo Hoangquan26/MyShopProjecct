@@ -10,9 +10,15 @@ namespace testAjax.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(int? _maTheLoai) 
         {
-            return View();
+            var products = ProductAction.loadProduct().ToList();
+            if(_maTheLoai == null)
+            {
+                return View(products);
+            }
+            var productsByCategory = products.Where(item => item.theLoaiSanPham == _maTheLoai).ToList();
+            return View(productsByCategory);
         }
 
         public ActionResult ProductDetail(string id)
