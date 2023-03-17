@@ -20,15 +20,18 @@ namespace testAjax.Controllers
             try
             {
                 var rs = ProductAction .loadProduct().ToList();
+                List<SanPham> listProducts = new List<SanPham>();
                 List<SanPham> products = new List<SanPham>();
                 if (_maTheLoai == null || _maTheLoai == 0)
                 {
-                    products = rs.Skip(_soLuongSanPham * (_page - 1)).Take(_soLuongSanPham).ToList();
+                    listProducts = rs;
                 }
                 else
                 {
-                    products = rs.Skip((_page - 1) * _soLuongSanPham).Where(item => item.theLoaiSanPham == _maTheLoai).Take(_soLuongSanPham).ToList();
+                    listProducts = rs.Where(item => item.theLoaiSanPham == _maTheLoai).ToList();
                 }
+                products = listProducts.Skip((_page - 1) * _soLuongSanPham).Take(_soLuongSanPham).ToList();
+                double _numberPage  = Math.Ceiling((double) listProducts.Count / _soLuongSanPham);
                 return Json(new {code = 200, listProduct = from p in products
                                                            select new
                                                            {
@@ -36,7 +39,8 @@ namespace testAjax.Controllers
                                                                p.tenSanPham,
                                                                p.giaSanPham,
                                                                p.hinhAnhSanPham
-                                                           }
+                                                           },
+                                                           numberPage = _numberPage
                 }, JsonRequestBehavior.AllowGet);
             }
             catch 

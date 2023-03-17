@@ -37,7 +37,55 @@
     display: flex;
     flex-wrap: wrap;
     transition: all ease 0.5s;
+    padding-bottom: 40px;
 }
 .col4 {
     padding: 20px!important;
+}
+
+
+.page-list-wrapper {
+    display: flex;
+
+}
+.page-list-wrapper .page-list {
+    display: flex;
+    padding: 0;
+}
+.page-list-wrapper .page-list li, .next,.prev {
+    list-style: none;
+    display: inline-block;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: #000;
+    border: 1px solid var(--border-color);
+    margin: 5px;
+    cursor: pointer;
+    flex: 0 1 1;
+    border-radius: 4px;
+}
+
+.page-list-wrapper .page-list li.current-page {
+    border: 2px solid var(--box2-color);
+}
+
+.page-list-wrapper .page-list li.current-page a {
+    color: var(--box2-color);
+    font-weight: 500;
+}
+
+.page-list-wrapper .page-list a {
+    display: block;
+    width: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: var(--black-light-color);
+}
+
+.page-list-wrapper .page-list li:hover {
+    background-color: var(--border-color);
+    color: var(--panel--color);
 }
