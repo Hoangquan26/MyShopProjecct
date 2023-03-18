@@ -12,13 +12,11 @@ namespace testAjax.Controllers
         // GET: Product
         public ActionResult Index(int? _maTheLoai) 
         {
-            var products = ProductAction.loadProduct().ToList();
-            if(_maTheLoai == null)
-            {
-                return View(products);
-            }
-            var productsByCategory = products.Where(item => item.theLoaiSanPham == _maTheLoai).ToList();
-            return View(productsByCategory);
+            var categorys = CategoryAction.loadCategory().ToList();
+            var brands = Brands.getBrands().ToList();
+            ViewBag.Categories = categorys;
+            ViewBag.Brands = brands;
+            return View();
         }
 
         public ActionResult ProductDetail(string id)

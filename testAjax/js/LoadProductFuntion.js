@@ -13,6 +13,7 @@
     })
 }
 let loadPreviewProduct = (category, parentElement, url, number, page = 1) => {
+    function getOut() { }
     fetch(url, {
         method: "POST",
         headers: {
@@ -28,7 +29,7 @@ let loadPreviewProduct = (category, parentElement, url, number, page = 1) => {
         .then(data => {
             if (data.code == 500) {
                 alert(data.errorMessage)
-                return
+                return Promis.reject()
             }
             parentElement.innerHTML = ""
             return data;
@@ -64,7 +65,11 @@ let loadPreviewProduct = (category, parentElement, url, number, page = 1) => {
             let page_list = document.querySelector(".page-list-wrapper .page-list")
             page_list.innerHTML = ""
             if (page_list == null)
-                return;
+                Promise.reject()
+            let prev = document.createElement("li")
+            prev.innerHTML = "<i class='bx bx-chevron-left'></i>"
+            prev.classList.add("prev")
+            page_list.appendChild(prev)
             for (let i = 1; i <= data; i++) {
                 let li = document.createElement("li")
                 if (i == page)
@@ -72,6 +77,10 @@ let loadPreviewProduct = (category, parentElement, url, number, page = 1) => {
                 li.innerHTML = `<a>${i}</a>`;
                 page_list.appendChild(li)
             }
+            let next = document.createElement("li")
+            next.innerHTML = "<i class='bx bx-chevron-right'></i>"
+            next.classList.add("next")
+            page_list.appendChild(next)
             return {
                 pages: page_list,
                 numberPage: data
@@ -80,20 +89,30 @@ let loadPreviewProduct = (category, parentElement, url, number, page = 1) => {
         .then(data => {
             let prev_btn = document.querySelector(".prev")
             let next_btn = document.querySelector(".next")
-            let current_page = document.querySelector(".current-page").textContent
+            let current_page = parseInt(document.querySelector(".current-page a").textContent, 10)
+            console.log(page)
             if (current_page == 1)
                 prev_btn.style.display = "none"
             else
-                prev_btn.style.display = "block"
+                prev_btn.style.display = "flex"
             if (current_page == data.numberPage)
                 next_btn.style.display = "none"
             else
-                next_btn.style.display = "block"
+                next_btn.style.display = "flex"
+            var nextPage = () => {
+                loadPreviewProduct(category, parentElement, url, number, current_page + 1)
+            }
+            var prevPage = () => {
+                loadPreviewProduct(category, parentElement, url, number, current_page - 1)
+            }
+            next_btn.addEventListener("click", nextPage)
+            prev_btn.addEventListener("click", prevPage)
             let children = data.pages.children;
-            for(let item of children) {
-                item.addEventListener("click", e => {
-                    loadPreviewProduct(category, parentElement, url, number, page = item.querySelector("a").textContent)
+            for (let i = 1; i < children.length - 1; i++) {
+                children[i].addEventListener("click", e => {
+                    loadPreviewProduct(category, parentElement, url, number, page = children[i].querySelector("a").textContent)
                 })
             }
         })
+        .catch(() => { })
 }

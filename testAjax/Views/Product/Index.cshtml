@@ -3,6 +3,8 @@
     ViewBag.HomeLink = "Trang chủ";
     ViewBag.Name = "Sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var brands = ViewBag.Brands;
+    var categories = ViewBag.Categories;
 }
 
 @section link {
@@ -11,23 +13,70 @@
     }
 
 <div class="products-wrapper">
-    <div class="filter-wrapper">
-        <div class="product-categories">
-            
-        </div>
-        <div class="filter-btn">
-            <i class='bx bx-filter'></i>
-        </div>
-    </div>
-    <div class="listproducts-wrapper">
+    <div class="product-content">
+        <div class="filter-wrapper">
+            <div class="product-categories">
 
-    </div>
-    <div class="page-list-wrapper">
-        <div class="prev"><i class='bx bx-chevron-left'></i></div>
+            </div>
+            <div class="filter-btn">
+                <i class='bx bx-filter'></i>
+            </div>
+        </div>
+        <div class="listproducts-wrapper">
+        </div>
+        <div class="page-list-wrapper">
             <ul class="page-list">
-
+                <li class="prev"><i class='bx bx-chevron-left'></i></li>
+                <li class="next"><i class='bx bx-chevron-right'></i></li>
             </ul>
-        <div class="next"><i class='bx bx-chevron-right'></i></div>
+        </div>
+    </div>
+    <div class="product-filter-content">
+        <div class="product-filter-content-header">
+            <h4>Lọc Thông Minh</h4>
+            <p>Giúp bạn tìm kiếm sản phẩm nhanh hơn</p>
+        </div>
+        <div class="product-filter-wrapper">
+            <div class="product-filter-session">
+                <h4>Thương Hiệu</h4>
+                @foreach (var item in brands)
+                {
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>@item.tenHangSanXuat</span>
+                    </div>
+                }
+            </div>
+            <div class="product-filter-session">
+                <h4>Danh Mục</h4>
+                @foreach (var item in categories)
+                {
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>@item.tenTheLoai</span>
+                    </div>
+                }
+            </div>
+            <div class="product-filter-session">
+                <h4>Giá Tiền</h4>
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>Dưới 1 triệu</span>
+                    </div>
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>Từ 1 đến 2 triệu</span>
+                    </div>
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>Từ 2 đến 3 triệu</span>
+                    </div>
+                    <div class="filter-items">
+                        <span class="filter-item-toggle"></span>
+                        <span>Từ 3 đến 4 triệu</span>
+                    </div>
+            </div>
+        </div>
     </div>
 </div>
 @Scripts.Render("~/LoadProductFuntion")
