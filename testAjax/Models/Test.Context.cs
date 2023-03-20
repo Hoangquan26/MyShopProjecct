@@ -33,5 +33,6 @@ namespace testAjax.Models
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<HangSanXuat> HangSanXuats { get; set; }
+        public virtual DbSet<SanPham_YeuThich> SanPham_YeuThich { get; set; }
     }
 }

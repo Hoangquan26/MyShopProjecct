@@ -19,6 +19,9 @@
         <AssociationConnector Association="NewAppModel1.FK__SanPham__theLoai__4BAC3F29" />
         <EntityTypeShape EntityType="NewAppModel1.HangSanXuat" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="NewAppModel1.FK__SanPham__maHangS__5AEE82B9" />
+        <EntityTypeShape EntityType="NewAppModel1.SanPham_YeuThich" Width="1.5" PointX="5.25" PointY="3.625" />
+        <AssociationConnector Association="NewAppModel1.FK_SanPham_YeuThich_SanPham" />
+        <AssociationConnector Association="NewAppModel1.FK_SanPham_YeuThich_WebUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

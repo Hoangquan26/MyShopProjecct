@@ -22,7 +22,13 @@ namespace testAjax
             bundles.Add(new ScriptBundle("~/AllProduct.js").Include(
                         "~/js/AllProducts.js"));
             bundles.Add(new ScriptBundle("~/LoadProductFuntion").Include(
-                        "~/js/LoadProductFuntion.js"));
+                        "~/js/LoadProductFuntion.js",
+                        "~/js/AddToCart.js",
+                        "~/js/wishlist.js"));
+            bundles.Add(new ScriptBundle("~/cart.js").Include(
+                        "~/js/cart.js"));
+            bundles.Add(new ScriptBundle("~/wishlist.css").Include(
+                        "~/css/wishList.css"));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -44,6 +50,8 @@ namespace testAjax
                       "~/css/AllProducts.css"));
             bundles.Add(new StyleBundle("~/myProduct.css").Include(
                       "~/css/myProduct.css"));
+            bundles.Add(new StyleBundle("~/cart.css").Include(
+                      "~/css/cart.css"));
         }
     }
 }

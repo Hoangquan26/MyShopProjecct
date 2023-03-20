@@ -1,0 +1,132 @@
+﻿#wishlist {
+    position: fixed;
+    left: 250px;
+    bottom: 0;
+    transition: all ease 0.5s;
+    right: 0;
+    opacity: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+#wishlist.out {
+    bottom: -100%;
+    opacity: 0;
+}
+#side-navbar.closeNav #wishlist{
+    left: 75px;
+}
+
+#wishlist .wishlist-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-color);
+}
+
+#wishlist .wishlist-header h3,#wishlist .wishlist-header i {
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+#wishlist .wishlist-header i:hover {
+    background-color: var(--danger-color);
+}
+
+.wishlist-content {
+    display: flex;
+}
+
+.wishlist-content-wrapper{
+    width: 90%;
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+.wishlist-item {
+    padding: 8px;
+    display: flex;
+    width: 180px;
+    box-shadow: 0 0 5px 1px silver;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.wishlist-item-img{
+    width: 100%;
+    height: 100px;
+    overflow: hidden
+}
+
+.wishlist-item-img img {
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: center;
+    width: 180px;
+    height: 100%;
+}
+
+.wishlist-item-info h4 {
+    font-weight: 300;
+    margin: 5px 0;
+    height: 40px;
+}
+
+
+.wishlist-item-action {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.wishlist-item-action i {
+    font-size : 14px !important;
+}
+.wishlist-plus-btn, .wishlist-minus-btn {
+    border: 1px solid var(--border-color);
+    background: white;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0;
+    text-align: center;
+}
+.wishlist-plus-btn:hover, .wishlist-minus-btn:hover
+{
+    background-color: var(--box2-color);
+}
+.wishlist-item-quantity {
+    display: flex;
+    align-items: center;
+}
+.wishlist-item-quantity span {
+    height: 28px;
+    width: 30px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.wishlist-item-action>i {
+    font-size: 16px !important;
+}
+.wishlist-item-action>i:hover {
+    color: var(--danger-color);
+}
+.wishlist_to_cart {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    cursor: pointer;
+}
+
+.wishlist_to_cart span{
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+}

@@ -1,4 +1,47 @@
-﻿.container .products-wrapper{
+﻿@media (max-width: 1200px) {
+    .col4 {
+        width: calc(99.9%/2) !important;
+    }
+    .product-filter-content {
+        min-width: 50%!important;
+    }
+    .filter-wrapper, .listproducts-wrapper {
+        min-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .products-wrapper {
+        left: 0 !important;
+        min-width: 100%;
+    }
+    .product-categories {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .product-categories .sort-session {
+        margin: 5px 0;
+    }
+    .product-filter-content {
+        min-width: 100%!important;
+    }
+    .filter-btn span, .sort-session span {
+        display: none;
+    }
+    .product-categories {
+        flex-direction: initial; 
+        flex: 1 1 auto;
+    }
+    .filter-input input, .filter-input{
+        flex: 1 1 auto;
+        max-width: initial !important;
+    }
+    .products-wrapper .filter-wrapper {
+        flex-wrap: nowrap !important;
+    }
+}
+
+.container .products-wrapper{
     position: relative;
     left: 75px;
     width: calc(100% - 75px);
@@ -120,34 +163,132 @@
     z-index: 5;
     background: white;
     border-radius: 12px;
-    padding: 20px;
-    border: 2px solid var(--border-color);
+    padding: 15px;
+    border: 1px solid var(--border-color);
     align-items: center;
     width: 75%;
     display: flex;
     flex-wrap: wrap;
     transition: all ease 0.5s;
-    box-shadow: 0px 2px 10px 1px var(--border-color);
+    box-shadow: 0px 0px 10px 1px var(--border-color);
+}
+
+.product-categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-session {
+    margin-left: 10px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sort-session:hover {
+    border: 1px solid #000;
+}
+
+.sort-session.active {
+    border: 1px solid #000;
+}
+
+.sort-session.active .sort-option {
+    display: flex;
+}
+
+.sort-session .sort-option {
+    padding-top: 10px;
+    position: absolute;
+    top: calc(100% - 5px);
+    display: none;
+    background-color: white;
+    flex-direction: column;
+    left: -1px;
+    width: 200%;
+    border: 1px solid #000;
+    z-index: 1;
+}
+
+.sort-session .sort-option::after {
+    content : "";
+    background-color: #fff;
+    width: calc(50% + 1px);
+    height: 1px;
+    position: absolute;
+    top: -1px;
 }
 
 
-.products-wrapper .filter-wrapper i {
+.sort-session .sort-option span {
+    margin: 5px 0;
+    padding: 5px 15px;
+    font-size: 16px;
+    display: block;
+    position: relative;
+}
+
+.sort-session .sort-option span.activeOption::after{
+    content: "";
+    position: absolute;
+    height: 65%;
+    width: 4px;
+    background-color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+}
+
+.products-wrapper .filter-wrapper i,
+.sort-session i{
     font-size: 25px;
     font-weight: 500;
-    cursor: pointer;
-    color : var(--secondary-color);
+    color : #000;
 }
 
-.products-wrapper .filter-wrapper .filter-btn {
+
+.products-wrapper .filter-wrapper .filter-btn,
+.sort-session{
     display: flex;
     align-items: center;
     padding: 5px;
-    border-radius: 5px;
+    cursor: pointer;
 }
 
 
-.products-wrapper .filter-wrapper .filter-btn:active i{
+.products-wrapper .filter-wrapper .filter-btn:active span,
+.products-wrapper .filter-wrapper .filter-btn:active i,
+.sort-session:active>span,
+.sort-session:active>i
+{
     color : var(--box3-color);
+}
+.products-wrapper .filter-wrapper .filter-btn span,
+.sort-session span{
+    font-size: 16px;
+    margin-left: 5px;
+    padding: 0 5px;
+}
+.filter-input {
+    display: flex;
+    align-items: center;
+    background: #eceff1;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.filter-input i {
+    font-size: 10px;
+    padding: 0 5px;
+}
+.filter-input input{
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: transparent;
 }
 
 .container.closeNav .products-wrapper .filter-wrapper,

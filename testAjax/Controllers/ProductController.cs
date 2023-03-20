@@ -10,11 +10,22 @@ namespace testAjax.Controllers
     public class ProductController : Controller
     {
         // GET: Product
+
         public ActionResult Index(int? _maTheLoai) 
         {
             var categorys = CategoryAction.loadCategory().ToList();
             var brands = Brands.getBrands().ToList();
-            ViewBag.Categories = categorys;
+            if (_maTheLoai == null)
+            {
+                ViewBag.Name = "Sản Phẩm";
+                ViewBag.Categories = categorys;
+            }
+            else
+            {
+                var a = categorys.SingleOrDefault(item => item.maTheLoai == _maTheLoai);
+                ViewBag.Name = a.tenTheLoai;
+                ViewBag.MyCategory = a.maTheLoai;
+            }
             ViewBag.Brands = brands;
             return View();
         }

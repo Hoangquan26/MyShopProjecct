@@ -62,13 +62,22 @@
             <PropertyRef Name="maSanPham" />
           </Key>
           <Property Name="maSanPham" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="tenSanPham" Type="nvarchar" MaxLength="30" />
-          <Property Name="moTaSanPham" Type="nvarchar" MaxLength="1000" />
+          <Property Name="tenSanPham" Type="nvarchar" MaxLength="200" />
+          <Property Name="moTaSanPham" Type="nvarchar" MaxLength="3999" />
           <Property Name="giaSanPham" Type="int" />
           <Property Name="soLuongSanPham" Type="int" />
           <Property Name="theLoaiSanPham" Type="int" />
           <Property Name="hinhAnhSanPham" Type="nvarchar" MaxLength="100" />
           <Property Name="maHangSanXuat" Type="int" />
+        </EntityType>
+        <EntityType Name="SanPham_YeuThich">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="SanPham_ID" Type="varchar" MaxLength="100" />
+          <Property Name="Time" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="WebUser">
           <Key>
@@ -158,6 +167,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SanPham_YeuThich_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SanPham_YeuThich" Type="Self.SanPham_YeuThich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="maSanPham" />
+            </Principal>
+            <Dependent Role="SanPham_YeuThich">
+              <PropertyRef Name="SanPham_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_YeuThich_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SanPham_YeuThich" Type="Self.SanPham_YeuThich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SanPham_YeuThich">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NewAppModel1StoreContainer">
           <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
@@ -166,6 +203,7 @@
           <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham_YeuThich" EntityType="Self.SanPham_YeuThich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ChiTietDonHang_DonHang" Association="Self.ChiTietDonHang_DonHang">
             <End Role="DonHang" EntitySet="DonHang" />
@@ -190,6 +228,14 @@
           <AssociationSet Name="FK_PhanQuyen_WebUser" Association="Self.FK_PhanQuyen_WebUser">
             <End Role="WebUser" EntitySet="WebUser" />
             <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_YeuThich_SanPham" Association="Self.FK_SanPham_YeuThich_SanPham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_YeuThich_WebUser" Association="Self.FK_SanPham_YeuThich_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -229,6 +275,15 @@
             <End Role="HangSanXuat" EntitySet="HangSanXuats" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
+          <EntitySet Name="SanPham_YeuThich" EntityType="NewAppModel1.SanPham_YeuThich" />
+          <AssociationSet Name="FK_SanPham_YeuThich_SanPham" Association="NewAppModel1.FK_SanPham_YeuThich_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_YeuThich_WebUser" Association="NewAppModel1.FK_SanPham_YeuThich_WebUser">
+            <End Role="WebUser" EntitySet="WebUsers" />
+            <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ChucNang">
           <Key>
@@ -262,6 +317,7 @@
           <Property Name="avatarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhanQuyens" Relationship="NewAppModel1.FK_PhanQuyen_WebUser" FromRole="WebUser" ToRole="PhanQuyen" />
           <Property Name="isAdmin" Type="Boolean" />
+          <NavigationProperty Name="SanPham_YeuThich" Relationship="NewAppModel1.FK_SanPham_YeuThich_WebUser" FromRole="WebUser" ToRole="SanPham_YeuThich" />
         </EntityType>
         <Association Name="FK_PhanQuyen_ChucNang">
           <End Type="NewAppModel1.ChucNang" Role="ChucNang" Multiplicity="1">
@@ -327,8 +383,8 @@
             <PropertyRef Name="maSanPham" />
           </Key>
           <Property Name="maSanPham" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tenSanPham" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="moTaSanPham" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="tenSanPham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="moTaSanPham" Type="String" MaxLength="3999" FixedLength="false" Unicode="true" />
           <Property Name="giaSanPham" Type="Int32" />
           <Property Name="soLuongSanPham" Type="Int32" />
           <Property Name="theLoaiSanPham" Type="Int32" />
@@ -337,6 +393,7 @@
           <NavigationProperty Name="LoaiSanPham" Relationship="NewAppModel1.FK__SanPham__theLoai__4BAC3F29" FromRole="SanPham" ToRole="LoaiSanPham" />
           <Property Name="maHangSanXuat" Type="Int32" />
           <NavigationProperty Name="HangSanXuat" Relationship="NewAppModel1.FK__SanPham__maHangS__5AEE82B9" FromRole="SanPham" ToRole="HangSanXuat" />
+          <NavigationProperty Name="SanPham_YeuThich" Relationship="NewAppModel1.FK_SanPham_YeuThich_SanPham" FromRole="SanPham" ToRole="SanPham_YeuThich" />
         </EntityType>
         <Association Name="ChiTietDonHang_DonHang">
           <End Type="NewAppModel1.DonHang" Role="DonHang" Multiplicity="1" />
@@ -392,6 +449,45 @@
             </Principal>
             <Dependent Role="SanPham">
               <PropertyRef Name="maHangSanXuat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SanPham_YeuThich">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="SanPham_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SanPham" Relationship="NewAppModel1.FK_SanPham_YeuThich_SanPham" FromRole="SanPham_YeuThich" ToRole="SanPham" />
+          <NavigationProperty Name="WebUser" Relationship="NewAppModel1.FK_SanPham_YeuThich_WebUser" FromRole="SanPham_YeuThich" ToRole="WebUser" />
+        </EntityType>
+        <Association Name="FK_SanPham_YeuThich_SanPham">
+          <End Type="NewAppModel1.SanPham" Role="SanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NewAppModel1.SanPham_YeuThich" Role="SanPham_YeuThich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="maSanPham" />
+            </Principal>
+            <Dependent Role="SanPham_YeuThich">
+              <PropertyRef Name="SanPham_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_YeuThich_WebUser">
+          <End Type="NewAppModel1.WebUser" Role="WebUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NewAppModel1.SanPham_YeuThich" Role="SanPham_YeuThich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SanPham_YeuThich">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,6 +577,16 @@
                 <ScalarProperty Name="logoPath" ColumnName="logoPath" />
                 <ScalarProperty Name="tenHangSanXuat" ColumnName="tenHangSanXuat" />
                 <ScalarProperty Name="maHangSanXuat" ColumnName="maHangSanXuat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPham_YeuThich">
+            <EntityTypeMapping TypeName="NewAppModel1.SanPham_YeuThich">
+              <MappingFragment StoreEntitySet="SanPham_YeuThich">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="SanPham_ID" ColumnName="SanPham_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

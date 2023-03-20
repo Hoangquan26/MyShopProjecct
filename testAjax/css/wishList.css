@@ -1,0 +1,12 @@
+﻿.wishlist-wrapper {
+    width: calc(100% -75px);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 75px;
+    top: 75px;
+}
+
+.wishlist {
+    width: 70%;
+}

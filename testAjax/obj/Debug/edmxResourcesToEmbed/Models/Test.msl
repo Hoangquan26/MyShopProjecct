@@ -84,5 +84,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SanPham_YeuThich">
+      <EntityTypeMapping TypeName="NewAppModel1.SanPham_YeuThich">
+        <MappingFragment StoreEntitySet="SanPham_YeuThich">
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="SanPham_ID" ColumnName="SanPham_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -18,6 +18,7 @@ namespace testAjax.Models
         public WebUser()
         {
             this.PhanQuyens = new HashSet<PhanQuyen>();
+            this.SanPham_YeuThich = new HashSet<SanPham_YeuThich>();
         }
     
         public int id { get; set; }
@@ -30,5 +31,7 @@ namespace testAjax.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SanPham_YeuThich> SanPham_YeuThich { get; set; }
     }
 }

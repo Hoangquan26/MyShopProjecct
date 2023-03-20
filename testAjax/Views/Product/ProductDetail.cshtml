@@ -5,6 +5,7 @@
     var sp = Model;
     ViewBag.HomeLink = "Trang chủ";
     ViewBag.Name = sp.tenSanPham;
+    ViewBag.CategoryID = sp.theLoaiSanPham;
 }
 @section link {
     <style>
@@ -419,13 +420,13 @@
             </h3>
             <div class="produc-ui-number">
                 <button class="number-product-selection sub">-</button>
-                <span class="number-product">1</span>
+                <span data-ID="@sp.maSanPham" class="number-product">1</span>
                 <button class="number-product-selection sum">+</button>
                 <i class='bx bx-heart'></i>
             </div>
             <div class="product-buying">
                 <h4>Mua Ngay</h4>
-                <h4>Thêm Vào Giỏ Hàng</h4>
+                <h4 class="cart-btn">Thêm Vào Giỏ Hàng</h4>
             </div>
             <div class="product-ui-slider">
                 <div class="product-ui-slider-item">
@@ -554,5 +555,8 @@
             })
     }
     getRelateProduct()
-
+    let cart_btn = document.querySelector(".cart-btn")
+    cart_btn.addEventListener("click", () => {
+        MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+    })
 </script>

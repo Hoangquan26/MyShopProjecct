@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.HomeLink = "Trang chủ";
+    ViewBag.Name = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section link {
+        @Styles.Render("~/cart.css")
+    } 
+<div class="cart-wrapper">
+    <div class="cart-session">
+        <div class="cart-header">
+            <div>Thông tin sản phẩm</div>
+            <div>Đơn giá</div>
+            <div>Số lượng</div>
+            <div>Thành tiền</div>
+        </div>
+        <div class="cart-list">
+            <div class="cart-item">
+@*                <div class="cart-item-product">
+                    <div class="cart-item-img">
+                        <img src="~/images/5084d865ecd12263cb611f07b3f7c990.jpg" />
+                    </div>
+                    <div class="cart-item-name">
+                        <p>Zoomwe 65</p>
+                        <span class="danger delete-item-btn">Xóa</span>
+                    </div>
+                </div>
+                <div class="cart-price-wrapper">
+                    <span class="cart-price danger">4.450.000₫</span>
+                </div>
+                <div class="cart-quantity-wrapper">
+                    <button class="sub_quantity"><i class='bx bx-minus'></i></button>
+                    <span class="quantity_display">1</span>
+                    <button class="sum_quantity"><i class='bx bx-plus'></i></button>
+                </div>
+                <div class="cart-price-wrapper">
+                    <span class="cart-price danger">4.450.000₫</span>
+                </div>
+            </div>*@
+        </div>
+    </div>
+    <div class="purchase-session">
+        <div class="sub-total">
+            <span>Tổng tiền:</span>
+            <span class="purchase-money danger">0đ</span>
+        </div>
+        <span class="purchase-btn">Thanh toán</span>
+    </div>
+</div>
+
+@section scripts{
+        @Scripts.Render("~/cart.js")
+    }

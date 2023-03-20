@@ -18,6 +18,7 @@ namespace testAjax.Models
         public SanPham()
         {
             this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
+            this.SanPham_YeuThich = new HashSet<SanPham_YeuThich>();
         }
     
         public string maSanPham { get; set; }
@@ -33,5 +34,7 @@ namespace testAjax.Models
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
         public virtual HangSanXuat HangSanXuat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SanPham_YeuThich> SanPham_YeuThich { get; set; }
     }
 }

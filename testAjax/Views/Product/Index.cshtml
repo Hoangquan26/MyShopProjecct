@@ -1,28 +1,41 @@
 ﻿@model List<testAjax.Models.SanPham>
 @{
     ViewBag.HomeLink = "Trang chủ";
-    ViewBag.Name = "Sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var brands = ViewBag.Brands;
     var categories = ViewBag.Categories;
 }
 
 @section link {
-        @Styles.Render("~/css/AllProducts.css")
-        @Styles.Render("~/myProduct.css")
-    }
+    @Styles.Render("~/css/AllProducts.css")
+    @Styles.Render("~/myProduct.css")
+}
 
 <div class="products-wrapper">
     <div class="product-content">
         <div class="filter-wrapper">
             <div class="product-categories">
-
+                <div class="filter-input">
+                    <input placeholder="Tìm Kiếm" type="text" />
+                    <i class='bx bx-search'></i>
+                </div>
+                <div class="sort-session">
+                    <i class='bx bx-sort-alt-2'></i>
+                    <span>Sắp Xếp</span>
+                    <div class="sort-option">
+                        <span data-sortOrder="1">Giá Tăng Dần</span>
+                        <span data-sortOrder="0">Giá Giảm Dần</span>
+                        <span class="activeOption" data-sortOrder="2">Mới Nhất</span>
+                        <span data-sortOrder="3">Cũ Nhất</span>
+                    </div>
+                </div>
             </div>
             <div class="filter-btn">
                 <i class='bx bx-filter'></i>
+                <span>Lọc Thông Minh</span>
             </div>
         </div>
-        <div class="listproducts-wrapper">
+        <div class="listproducts-wrapper" data-category=@Html.Raw(ViewBag.MyCategory != null ? @ViewBag.MyCategory : "")>
         </div>
         <div class="page-list-wrapper">
             <ul class="page-list">
@@ -41,43 +54,54 @@
                 <h4>Thương Hiệu</h4>
                 @foreach (var item in brands)
                 {
-                    <div class="filter-items">
+                    <div data-brandID="@item.maHangSanXuat" class="filter-items">
                         <span class="filter-item-toggle"></span>
                         <span>@item.tenHangSanXuat</span>
                     </div>
                 }
             </div>
-            <div class="product-filter-session">
-                <h4>Danh Mục</h4>
-                @foreach (var item in categories)
+            @{
+                if (categories == null)
                 {
-                    <div class="filter-items">
-                        <span class="filter-item-toggle"></span>
-                        <span>@item.tenTheLoai</span>
+                }
+                else
+                {
+                    <div class="product-filter-session">
+                        <h4>Danh Mục</h4>
+                        @foreach (var item in categories)
+                        {
+                            <div data-categoryID="@item.maTheLoai" class="filter-items">
+                                <span class="filter-item-toggle"></span>
+                                <span>@item.tenTheLoai</span>
+                            </div>
+                        }
                     </div>
                 }
-            </div>
+            }
+
             <div class="product-filter-session">
                 <h4>Giá Tiền</h4>
-                    <div class="filter-items">
-                        <span class="filter-item-toggle"></span>
-                        <span>Dưới 1 triệu</span>
-                    </div>
-                    <div class="filter-items">
-                        <span class="filter-item-toggle"></span>
-                        <span>Từ 1 đến 2 triệu</span>
-                    </div>
-                    <div class="filter-items">
-                        <span class="filter-item-toggle"></span>
-                        <span>Từ 2 đến 3 triệu</span>
-                    </div>
-                    <div class="filter-items">
-                        <span class="filter-item-toggle"></span>
-                        <span>Từ 3 đến 4 triệu</span>
-                    </div>
+                <div class="filter-items">
+                    <span class="filter-item-toggle"></span>
+                    <span>Dưới 1 triệu</span>
+                </div>
+                <div class="filter-items">
+                    <span class="filter-item-toggle"></span>
+                    <span>Từ 1 đến 2 triệu</span>
+                </div>
+                <div class="filter-items">
+                    <span class="filter-item-toggle"></span>
+                    <span>Từ 2 đến 3 triệu</span>
+                </div>
+                <div class="filter-items">
+                    <span class="filter-item-toggle"></span>
+                    <span>Từ 3 đến 4 triệu</span>
+                </div>
             </div>
         </div>
     </div>
 </div>
-@Scripts.Render("~/LoadProductFuntion")
-@Scripts.Render("~/AllProduct.js")
+
+@section scripts {
+    @Scripts.Render("~/AllProduct.js")
+} 

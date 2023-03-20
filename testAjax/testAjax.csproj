@@ -166,9 +166,11 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PartialViewProductController.cs" />
+    <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +198,9 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>Test.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SanPham_YeuThich.cs">
+      <DependentUpon>Test.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Test.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\css\adminTemplate.css" />
+    <Content Include="css\cart.css" />
     <Content Include="Areas\Admin\css\p.css" />
     <Content Include="Areas\Admin\css\userinfo.css" />
     <Content Include="Areas\Admin\images\avatars\Gearvn_Cyberpunk anime_ %2821%29.jpg" />
@@ -1206,10 +1212,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\main.css" />
     <Content Include="css\myProduct.css" />
     <Content Include="css\AllProducts.css" />
     <Content Include="css\Home.css" />
     <Content Include="css\LoginCss.css" />
+    <Content Include="css\wishList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\Chivo_Mono\OFL.txt" />
     <Content Include="fonts\Chivo_Mono\README.txt" />
@@ -4933,10 +4941,14 @@
     <Content Include="images\setup\pexels-pew-nguyen-15372897.jpg" />
     <Content Include="images\setup\pexels-polina-tankilevitch-4523021.jpg" />
     <Content Include="images\xbox\xboxCloudyNightSkySeriesX_S.jpg" />
+    <Content Include="js\AddToCart.js" />
     <Content Include="js\AllProducts.js" />
+    <Content Include="js\cart.js" />
     <Content Include="js\Home.js" />
     <Content Include="js\LoadProductFuntion.js" />
     <Content Include="js\LoginScript.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\wishlist.js" />
     <Content Include="Models\Test.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Test.edmx</DependentUpon>
@@ -5098,12 +5110,13 @@
     <Content Include="Views\Account\LoginForm.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Partial\UserDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
-    <Folder Include="Areas\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
