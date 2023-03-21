@@ -16,7 +16,6 @@
 
 
 let loadPreviewProduct = (category, parentElement, url, number, page = 1, brands, searchValue, sortIndex) => {
-    function getOut() { }
     fetch(url, {
         method: "POST",
         headers: {

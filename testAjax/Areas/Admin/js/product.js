@@ -1,7 +1,6 @@
 ﻿function loadProduct(Param) {
     let products = document.querySelector(".product-session")
     let url = "/Admin/Brand/loadProduct"
-    console.log(Param)
     fetch(url, {
         method: 'POST',
         headers: {
@@ -161,7 +160,6 @@ let getCategorysCount = () => {
                 yValues.push(item["tenTheLoai"])
                 color.push(`rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`)
             })
-            console.log(xValues, yValues) 
             new Chart("cate_graph", {
                 type: 'doughnut',
                 data: {
@@ -267,6 +265,7 @@ addSubmit_btn.addEventListener("click", () => {
                 loadProduct("");
                 getBrands();
             }
+            loadProduct()
         })
 })
 //searchProduct

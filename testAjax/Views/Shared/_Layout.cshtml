@@ -722,7 +722,7 @@
     @Scripts.Render("~/LoadProductFuntion")
     @RenderSection("scripts", required: false)
     @RenderSection("script", false)
-    <script src="~/js/main.js"></script>
+    @Scripts.Render("~/js/main.js")
     <script src="~/Areas/Admin/js/ShowUserInfo.js"></script>
     <script>
         let userIcon = document.querySelector(".userIcon")

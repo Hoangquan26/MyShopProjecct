@@ -48,9 +48,10 @@
     padding: 8px;
     display: flex;
     width: 180px;
-    box-shadow: 0 0 5px 1px silver;
+    box-shadow: 0 0 10px 2px silver;
     flex-direction: column;
     margin: 20px;
+    border-radius: 5px;
 }
 
 .wishlist-item-img{
