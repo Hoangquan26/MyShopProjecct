@@ -3,13 +3,8 @@
   <EntityContainer Name="MyEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ChucNangs" EntityType="NewAppModel1.ChucNang" />
     <EntitySet Name="PhanQuyens" EntityType="NewAppModel1.PhanQuyen" />
-    <EntitySet Name="WebUsers" EntityType="NewAppModel1.WebUser" />
     <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="NewAppModel1.FK_PhanQuyen_ChucNang">
       <End Role="ChucNang" EntitySet="ChucNangs" />
-      <End Role="PhanQuyen" EntitySet="PhanQuyens" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhanQuyen_WebUser" Association="NewAppModel1.FK_PhanQuyen_WebUser">
-      <End Role="WebUser" EntitySet="WebUsers" />
       <End Role="PhanQuyen" EntitySet="PhanQuyens" />
     </AssociationSet>
     <EntitySet Name="ChiTietDonHangs" EntityType="NewAppModel1.ChiTietDonHang" />
@@ -38,6 +33,11 @@
       <End Role="SanPham" EntitySet="SanPhams" />
       <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
     </AssociationSet>
+    <EntitySet Name="WebUsers" EntityType="NewAppModel1.WebUser" />
+    <AssociationSet Name="FK_PhanQuyen_WebUser" Association="NewAppModel1.FK_PhanQuyen_WebUser">
+      <End Role="WebUser" EntitySet="WebUsers" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+    </AssociationSet>
     <AssociationSet Name="FK_SanPham_YeuThich_WebUser" Association="NewAppModel1.FK_SanPham_YeuThich_WebUser">
       <End Role="WebUser" EntitySet="WebUsers" />
       <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
@@ -63,20 +63,6 @@
     <NavigationProperty Name="ChucNang" Relationship="NewAppModel1.FK_PhanQuyen_ChucNang" FromRole="PhanQuyen" ToRole="ChucNang" />
     <NavigationProperty Name="WebUser" Relationship="NewAppModel1.FK_PhanQuyen_WebUser" FromRole="PhanQuyen" ToRole="WebUser" />
   </EntityType>
-  <EntityType Name="WebUser">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="PassWord" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="gmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="ngayTaoTaiKhoan" Type="DateTime" Precision="0" />
-    <Property Name="avatarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="PhanQuyens" Relationship="NewAppModel1.FK_PhanQuyen_WebUser" FromRole="WebUser" ToRole="PhanQuyen" />
-    <Property Name="isAdmin" Type="Boolean" />
-    <NavigationProperty Name="SanPham_YeuThich" Relationship="NewAppModel1.FK_SanPham_YeuThich_WebUser" FromRole="WebUser" ToRole="SanPham_YeuThich" />
-  </EntityType>
   <Association Name="FK_PhanQuyen_ChucNang">
     <End Type="NewAppModel1.ChucNang" Role="ChucNang" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -88,20 +74,6 @@
       </Principal>
       <Dependent Role="PhanQuyen">
         <PropertyRef Name="MaChucNang" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhanQuyen_WebUser">
-    <End Type="NewAppModel1.WebUser" Role="WebUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="NewAppModel1.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="WebUser">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="PhanQuyen">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -127,6 +99,11 @@
     <Property Name="ngayDat" Type="DateTime" Precision="0" />
     <Property Name="trangThaiDonHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTietDonHangs" Relationship="NewAppModel1.ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
+    <Property Name="diaChi" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ghiChu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="hoTen" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="LoaiSanPham">
     <Key>
@@ -232,6 +209,37 @@
       </Principal>
       <Dependent Role="SanPham_YeuThich">
         <PropertyRef Name="SanPham_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="WebUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="gmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ngayTaoTaiKhoan" Type="DateTime" Precision="0" />
+    <Property Name="avatarPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <NavigationProperty Name="PhanQuyens" Relationship="NewAppModel1.FK_PhanQuyen_WebUser" FromRole="WebUser" ToRole="PhanQuyen" />
+    <NavigationProperty Name="SanPham_YeuThich" Relationship="NewAppModel1.FK_SanPham_YeuThich_WebUser" FromRole="WebUser" ToRole="SanPham_YeuThich" />
+    <Property Name="diaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="hoTen" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_PhanQuyen_WebUser">
+    <End Type="NewAppModel1.WebUser" Role="WebUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="NewAppModel1.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WebUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

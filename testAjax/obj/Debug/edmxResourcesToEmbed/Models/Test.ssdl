@@ -27,6 +27,11 @@
     <Property Name="giaTri" Type="int" />
     <Property Name="ngayDat" Type="smalldatetime" />
     <Property Name="trangThaiDonHang" Type="nvarchar" MaxLength="100" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sdt" Type="nchar" MaxLength="10" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ghiChu" Type="nvarchar" MaxLength="1000" />
+    <Property Name="hoTen" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="HangSanXuat">
     <Key>
@@ -85,6 +90,9 @@
     <Property Name="ngayTaoTaiKhoan" Type="smalldatetime" />
     <Property Name="avatarPath" Type="nvarchar" MaxLength="100" />
     <Property Name="isAdmin" Type="bit" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="500" />
+    <Property Name="dienThoai" Type="varchar" MaxLength="10" />
+    <Property Name="hoTen" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <Association Name="ChiTietDonHang_DonHang">
     <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />

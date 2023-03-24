@@ -59,7 +59,10 @@ namespace testAjax.Controllers
                     UserName = username,
                     PassWord = password,
                     ngayTaoTaiKhoan = DateTime.Now,
-                    avatarPath = "/images/avatars/UnknownAvatar"
+                    avatarPath = "/images/avatars/UnknownAvatar",
+                    diaChi = "",
+                    dienThoai = "",
+                    hoTen = ""
                 };
                 db.WebUsers.Add(newUser);
                 db.SaveChanges();
@@ -80,22 +83,22 @@ namespace testAjax.Controllers
                 var dbUser = db.WebUsers;
                 if(dbUser.Count(item => item.UserName == username) > 0)
                     return Json(new {code = 500, message = $"@{username} đã được sử dụng", type = "error"}, JsonRequestBehavior.AllowGet);
-                /*            var newUser = new WebUser()
-                            {
-                                UserName = username,
-                                PassWord = password,
-                                ngayTaoTaiKhoan = DateTime.Now,
-                                avatarPath = "/images/avatars/UnknownAvatar.jpg"
-                            };
-                            db.WebUsers.Add(newUser);
-                            db.SaveChanges();*/
-                string connectStr = "Data Source=LAPTOP-Q23S0AEG\\MSSQLSERVER01;Initial Catalog=NewApp;Integrated Security=True";
+                var newUser = new WebUser()
+                {
+                    UserName = username,
+                    PassWord = password,
+                    ngayTaoTaiKhoan = DateTime.Now,
+                    avatarPath = "/images/avatars/UnknownAvatar.jpg"
+                };
+                db.WebUsers.Add(newUser);
+                db.SaveChanges();
+                /*string connectStr = "Data Source=LAPTOP-Q23S0AEG\\MSSQLSERVER01;Initial Catalog=NewApp;Integrated Security=True";
                 SqlConnection mysql = new SqlConnection(connectStr);
                 mysql.Open();
-                string command =  $"Insert into WebUser(UserName, PassWord, ngayTaoTaiKhoan, avatarPath) values (N'{username}', N'{password}', '{DateTime.Now}', N'/images/avatars/UnknownAvatar.png')";
+                string command =  $"Insert into WebUser(UserName, PassWord, ngayTaoTaiKhoan, avatarPath) values (N'{username}', N'{password}', '{DateTime.Now.ToString()}', N'/images/avatars/UnknownAvatar.png')";
                 var sqlCommand = new SqlCommand(command,mysql);
                 sqlCommand.ExecuteNonQuery();
-                mysql.Close();
+                mysql.Close();*/
                 return Json(new { code = 200, message = "Đăng ký thành công", type = "success" }, JsonRequestBehavior.AllowGet);
             }
             catch 

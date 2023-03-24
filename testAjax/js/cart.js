@@ -6,6 +6,8 @@
     let subToTalValue = 0
     let purchase_money = document.querySelector(".purchase-money")
     let VNDformat = Intl.NumberFormat("vn-VN")
+    if (cartWrapper == null)
+        return
     if (idList.length > 0) {
         fetch(url, {
             method: 'POST',

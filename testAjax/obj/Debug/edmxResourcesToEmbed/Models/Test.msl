@@ -19,19 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="WebUsers">
-      <EntityTypeMapping TypeName="NewAppModel1.WebUser">
-        <MappingFragment StoreEntitySet="WebUser">
-          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-          <ScalarProperty Name="avatarPath" ColumnName="avatarPath" />
-          <ScalarProperty Name="ngayTaoTaiKhoan" ColumnName="ngayTaoTaiKhoan" />
-          <ScalarProperty Name="gmail" ColumnName="gmail" />
-          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ChiTietDonHangs">
       <EntityTypeMapping TypeName="NewAppModel1.ChiTietDonHang">
         <MappingFragment StoreEntitySet="ChiTietDonHang">
@@ -45,6 +32,11 @@
     <EntitySetMapping Name="DonHangs">
       <EntityTypeMapping TypeName="NewAppModel1.DonHang">
         <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
           <ScalarProperty Name="trangThaiDonHang" ColumnName="trangThaiDonHang" />
           <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
           <ScalarProperty Name="giaTri" ColumnName="giaTri" />
@@ -91,6 +83,22 @@
           <ScalarProperty Name="SanPham_ID" ColumnName="SanPham_ID" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WebUsers">
+      <EntityTypeMapping TypeName="NewAppModel1.WebUser">
+        <MappingFragment StoreEntitySet="WebUser">
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="dienThoai" ColumnName="dienThoai" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="avatarPath" ColumnName="avatarPath" />
+          <ScalarProperty Name="ngayTaoTaiKhoan" ColumnName="ngayTaoTaiKhoan" />
+          <ScalarProperty Name="gmail" ColumnName="gmail" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

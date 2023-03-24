@@ -314,6 +314,7 @@
             height: 100px;
             overflow: hidden;
             margin-right: 10px;
+            flex: 0 0 auto;
         }
 
         .relate-product .relate-product-list .relate-product-item:hover .relate-product-item-img img {
@@ -557,6 +558,19 @@
     getRelateProduct()
     let cart_btn = document.querySelector(".cart-btn")
     cart_btn.addEventListener("click", () => {
-        MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        let mycart = MyCart.get()
+        if (mycart.find(item => item.ID == number_product.getAttribute("data-ID")))
+            MyCart.update(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        else
+            MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+    })
+    let buyBtn = document.querySelector(".product-buying h4:first-child")
+    buyBtn.addEventListener("click", e => {
+        let mycart = MyCart.get()
+        if (mycart.find(item => item.ID == number_product.getAttribute("data-ID")))
+            MyCart.update(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        else
+            MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        window.location.href = "/Checkout"
     })
 </script>

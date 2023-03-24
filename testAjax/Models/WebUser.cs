@@ -28,6 +28,9 @@ namespace testAjax.Models
         public Nullable<System.DateTime> ngayTaoTaiKhoan { get; set; }
         public string avatarPath { get; set; }
         public Nullable<bool> isAdmin { get; set; }
+        public string diaChi { get; set; }
+        public string dienThoai { get; set; }
+        public string hoTen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }

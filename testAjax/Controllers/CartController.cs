@@ -32,9 +32,9 @@ namespace testAjax.Controllers
                                                     select new {
                                                         maSanPham = p.maSanPham,
                                                         tenSanPham = p.tenSanPham,
-                                                        hinhAnhSanPham = p.hinhAnhSanPham,
                                                         giaSanPham = p.giaSanPham,
-                                                        soLuongSanPham = p.soLuongSanPham
+                                                        soLuongSanPham = p.soLuongSanPham,
+                                                        hinhAnhSanPham = p.hinhAnhSanPham
                                                     }
                 }, JsonRequestBehavior.AllowGet);
             }

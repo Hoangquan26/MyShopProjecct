@@ -27,12 +27,12 @@ namespace testAjax.Models
     
         public virtual DbSet<ChucNang> ChucNangs { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
-        public virtual DbSet<WebUser> WebUsers { get; set; }
         public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<HangSanXuat> HangSanXuats { get; set; }
         public virtual DbSet<SanPham_YeuThich> SanPham_YeuThich { get; set; }
+        public virtual DbSet<WebUser> WebUsers { get; set; }
     }
 }

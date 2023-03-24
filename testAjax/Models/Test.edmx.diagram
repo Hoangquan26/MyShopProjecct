@@ -7,9 +7,7 @@
       <Diagram DiagramId="22df9ef7dbbb47e4899d3068d2ef5dd5" Name="Diagram1">
         <EntityTypeShape EntityType="NewAppModel1.ChucNang" Width="1.5" PointX="9" PointY="1.375" />
         <EntityTypeShape EntityType="NewAppModel1.PhanQuyen" Width="1.5" PointX="6.375" PointY="0.75" />
-        <EntityTypeShape EntityType="NewAppModel1.WebUser" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="NewAppModel1.FK_PhanQuyen_ChucNang" />
-        <AssociationConnector Association="NewAppModel1.FK_PhanQuyen_WebUser" />
         <EntityTypeShape EntityType="NewAppModel1.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="7.25" />
         <EntityTypeShape EntityType="NewAppModel1.DonHang" Width="1.5" PointX="8.25" PointY="7.5" />
         <EntityTypeShape EntityType="NewAppModel1.LoaiSanPham" Width="1.5" PointX="0.75" PointY="7.5" />
@@ -21,6 +19,8 @@
         <AssociationConnector Association="NewAppModel1.FK__SanPham__maHangS__5AEE82B9" />
         <EntityTypeShape EntityType="NewAppModel1.SanPham_YeuThich" Width="1.5" PointX="5.25" PointY="3.625" />
         <AssociationConnector Association="NewAppModel1.FK_SanPham_YeuThich_SanPham" />
+        <EntityTypeShape EntityType="NewAppModel1.WebUser" Width="1.5" PointX="2" PointY="0.875" />
+        <AssociationConnector Association="NewAppModel1.FK_PhanQuyen_WebUser" />
         <AssociationConnector Association="NewAppModel1.FK_SanPham_YeuThich_WebUser" />
       </Diagram>
     </edmx:Diagrams>

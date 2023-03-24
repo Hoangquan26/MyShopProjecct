@@ -167,6 +167,7 @@
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Models\DonHang.cs">
       <DependentUpon>Test.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\HangSanXuat.cs">
       <DependentUpon>Test.tt</DependentUpon>
     </Compile>
@@ -1211,6 +1213,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\Checkout.css" />
     <Content Include="css\main.css" />
     <Content Include="css\myProduct.css" />
     <Content Include="css\AllProducts.css" />
@@ -4930,6 +4933,9 @@
     <Content Include="images\LoginBackground.jpg" />
     <Content Include="images\logitechbackground.jpg" />
     <Content Include="images\Logitech\logo.jpg" />
+    <Content Include="images\Logo\GGeerSLogo.jpg" />
+    <Content Include="images\Logo\LogoTransparent.png" />
+    <Content Include="images\Logo\LogoWhite.jpeg" />
     <Content Include="images\pexels-joshua-welch-1624600.jpg" />
     <Content Include="images\razer\demo1.jpg" />
     <Content Include="images\razer\logo.jpg" />
@@ -4943,6 +4949,7 @@
     <Content Include="js\AddToCart.js" />
     <Content Include="js\AllProducts.js" />
     <Content Include="js\cart.js" />
+    <Content Include="js\Checkout.js" />
     <Content Include="js\Home.js" />
     <Content Include="js\LoadProductFuntion.js" />
     <Content Include="js\LoginScript.js" />
@@ -5079,6 +5086,7 @@
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="ckfinder\userfiles\.htaccess" />
+    <Content Include="js\local.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />
@@ -5092,6 +5100,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Templates\OrderConfirmTemplate11.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -5111,6 +5120,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Partial\UserDetail.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

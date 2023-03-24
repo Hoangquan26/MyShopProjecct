@@ -15,21 +15,16 @@ class MyCart {
     static get = () => {
         let name = "myLocalCart";
         let carts = []
-        if (localStorage.getItem(name) != null) {
+        if (localStorage.getItem(name) != null && localStorage.getItem(name).length > 0) {
             carts = JSON.parse(localStorage.getItem(name))
         }
         return carts;
-    }
-    static update = (_productID, _quantity) => {
-
     }
 
     static add = function(_productID, _quantity) {
         let name = "myLocalCart";
         let carts = [];
-        if (localStorage.getItem(name) != null) {
-            carts = JSON.parse(localStorage.getItem(name))
-        }
+        carts = this.get()
         let check = carts.find(item => item.ID == _productID)
         console.log(check)
         if (!check) {
@@ -48,7 +43,7 @@ class MyCart {
     static removeItem = (_productID) => {
         let name = "myLocalCart";
         let carts = []
-        if (localStorage.getItem(name) == null) {
+        if (localStorage.getItem(name) == null || localStorage.getItem(name).length == 0) { 
             return;
         }
         carts = JSON.parse(localStorage.getItem(name))
@@ -63,7 +58,7 @@ class MyCart {
     static update = (_productID, _quantity) => {
         let name = "myLocalCart";
         let carts = []
-        if (localStorage.getItem(name) == null) {
+        if (localStorage.getItem(name) == null || localStorage.getItem(name).length == 0) {
             return;
         }
         carts = JSON.parse(localStorage.getItem(name))

@@ -626,9 +626,12 @@
                 <ul class="list-menu">
                     <li id="cartList_btn" class="has_notify">
                         <a href="/cart"><i class='bx bx-cart'></i><span>Giỏ hàng</span></a>
-                        <span class="notify invisible"></span>
+                        <span class="notify invisible">0</span>
                     </li>
-                    <li id="loveList_btn" class="has_notify"><a><i class='bx bx-heart'></i><span>Yêu thích</span></a></li>
+                    <li id="loveList_btn" class="has_notify">
+                        <a><i class='bx bx-heart'></i><span>Yêu thích</span></a>
+                        <span class="notify invisible">0</span>
+                    </li>
                     <li><a href="/Home/Index"><i class='bx bx-home-alt'></i><span>Trang chủ</span></a></li>
                     <li class="category">
                         <a href="/Product"><i class='bx bx-store'></i><span>Sản phẩm</span><i class='bx bxs-chevron-down'></i></a>
@@ -651,26 +654,26 @@
                 </div>
                 <div class="wishlist-content-wrapper">
                     <div class="wishlist-content">
-                        <div class="wishlist-item">
-                            <div class="wishlist-item-img">
-                                <img src="~/images/5084d865ecd12263cb611f07b3f7c990.jpg" />
-                            </div>
-                            <div class="wishlist-item-info">
-                                <h4>Tên sản phẩm</h4>
-                                <span class="danger">450000</span>
-                                <div class="wishlist-item-action">
-                                    <div class="wishlist-item-quantity">
-                                        <button class="wishlist-plus-btn"><i class='bx bx-plus'></i></button>
-                                        <span>1</span>
-                                        <button class="wishlist-minus-btn"><i class='bx bx-minus'></i></button>
+                        @*<div class="wishlist-item">
+                                <div class="wishlist-item-img">
+                                    <img src="~/images/5084d865ecd12263cb611f07b3f7c990.jpg" />
+                                </div>
+                                <div class="wishlist-item-info">
+                                    <h4>Tên sản phẩm</h4>
+                                    <span class="danger">450000</span>
+                                    <div class="wishlist-item-action">
+                                        <div class="wishlist-item-quantity">
+                                            <button class="wishlist-plus-btn"><i class='bx bx-plus'></i></button>
+                                            <span>1</span>
+                                            <button class="wishlist-minus-btn"><i class='bx bx-minus'></i></button>
+                                        </div>
+                                        <i class='bx bx-trash-alt'></i>
                                     </div>
-                                    <i class='bx bx-trash-alt'></i>
+                                    <div class="wishlist_to_cart">
+                                        <span>Thêm vào giỏ</span>
+                                    </div>
                                 </div>
-                                <div class="wishlist_to_cart">
-                                    <span>Thêm vào giỏ</span>
-                                </div>
-                            </div>
-                        </div>
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -722,6 +725,7 @@
     @Scripts.Render("~/LoadProductFuntion")
     @RenderSection("scripts", required: false)
     @RenderSection("script", false)
+    @Scripts.Render("~/cart.js")
     @Scripts.Render("~/js/main.js")
     <script src="~/Areas/Admin/js/ShowUserInfo.js"></script>
     <script>
