@@ -50,14 +50,14 @@ let getDistricts = () => {
             let tinh = document.querySelector("#tinh")
             data.forEach(item => {
                 let option = document.createElement("option")
-                option.value = item.id
-                option.dataset.index = item.name
+                option.value = `${item.id}$$${item.name}`
                 option.textContent = item.name
                 tinh.append(option)
             })
             tinh.addEventListener("change", e => {
                 if (districtsContraint() == true) {
-                    let currentProvince = data[tinh.value - 1]
+                    const [Tindex, TDBName] = tinh.value.split("$$")
+                    let currentProvince = data[Tindex - 1]
                     let quanHuyen = document.querySelector("#quanHuyen")
                     let phuongXa = document.querySelector("#phuongXa")
                     quanHuyen.innerHTML = `<option selected value="-1">---</option>`
@@ -65,7 +65,7 @@ let getDistricts = () => {
                     let i = 1;
                     currentProvince.districts.forEach(district => {
                         let doption = document.createElement("option")
-                        doption.value = i++
+                        doption.value = `${i++}$$${district.name}`
                         doption.dataset.params = district.id
                         doption.textContent = district.name
                         quanHuyen.append(doption)
@@ -73,12 +73,22 @@ let getDistricts = () => {
                     quanHuyen.addEventListener("change", () => {
                         if (!wardContraint())
                             return
-                        let currentDistrict = currentProvince.districts[quanHuyen.value - 1]
+                        const [QHindex, QHDBName] = quanHuyen.value.split("$$")
+                        let currentDistrict = currentProvince.districts[QHindex - 1]
                         phuongXa.innerHTML = `<option selected value="-1">---</option>`
-                        console.log(currentDistrict)
-                        currentDistrict.wards.forEach(ward => {
+                        phuongXa.addEventListener("change", () => {
+                            let ShipSection = document.querySelector(".shipinfo-section") 
+                            if (phuongXa.value != -1) {
+                                ShipSection.classList.remove("showAlert")
+                            }
+                            else {
+                                if (!ShipSection.classList.contains("showAlert"))
+                                    ShipSection.classList.add("showAlert")
+                            }
+                        })
+                        currentDistrict.wards?.forEach(ward => {
                             let px = document.createElement("option")
-                            px.value = ward.id
+                            px.value = `${ward.id}$$${ward.name}`
                             px.textContent = `${ward.prefix} ${ward.name}`
                             phuongXa.append(px)
                         })
@@ -175,11 +185,11 @@ buyBtn.addEventListener("click", (e) => {
         hoTen: userPofile.get("hoTen"),
         email: userPofile.get("email"),
         sdt: userPofile.get('sdt'),
-        diaChi: `${userPofile.get('diaChi')}, ${userPofile.get('tinhThanh')}, ${userPofile.get('quanHuyen')}, ${userPofile.get('phuongXa')}`,
+        diaChi: `${userPofile.get('diaChi')}, ${userPofile.get('phuongXa')?.split("$$")[1]}, ${userPofile.get('quanHuyen')?.split("$$")[1]}, ${userPofile.get('tinhThanh')?.split("$$")[1]}`,
         ghiChu: userPofile.get('ghiChu')
     }
 
-/*    let url = "/Product/Buy"
+    let url = "/Checkout/Buy"
     let _body = {
         user: object,
         products: MyCart.get()
@@ -194,10 +204,15 @@ buyBtn.addEventListener("click", (e) => {
     })
         .then(data => data.json())
         .then(data => {
-            if (data.code == 500)
+            if (data.code == 500) {
                 alert("Lỗi")
-            else
-                localStorage.setItem("myLocalCart", "")
+                Promise.reject()
+            }
+            object.giaTri = data.thisSubTotal
+            object.maDonHang = data.maDonHang
+            sessionStorage.setItem("product-profile", JSON.stringify(data.thisProducts))
+            sessionStorage.setItem("user-profile", JSON.stringify(object))
+            window.location.href = ("/CheckOut/ThankYou")
         })
-*/
+
 })

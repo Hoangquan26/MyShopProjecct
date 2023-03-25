@@ -76,7 +76,7 @@
 }
 .input-wrapper input,
 .input-wrapper select,
-.ship-section{
+.ship-section, .alert-section{
     width: 100%;
     border: 0;
     outline: 0;
@@ -85,6 +85,20 @@
     padding-bottom: 14px;
     color: #333;
     border-radius: 5px;
+}
+.section-content.showAlert .alert-section{
+    display: block;
+}
+.section-content.showAlert .ship-section {
+    display: none;
+}
+.section-content.showAlert {
+    border : 1px solid #0c5460 !important;
+}
+.alert-section {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    display: none;
 }
 .input-wrapper select.disabled {
     background: #ccc;

@@ -1219,6 +1219,7 @@
     <Content Include="css\AllProducts.css" />
     <Content Include="css\Home.css" />
     <Content Include="css\LoginCss.css" />
+    <Content Include="css\ThankYou.css" />
     <Content Include="css\wishList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\Chivo_Mono\OFL.txt" />
@@ -4934,6 +4935,7 @@
     <Content Include="images\logitechbackground.jpg" />
     <Content Include="images\Logitech\logo.jpg" />
     <Content Include="images\Logo\GGeerSLogo.jpg" />
+    <Content Include="images\Logo\icon-success.jpeg" />
     <Content Include="images\Logo\LogoTransparent.png" />
     <Content Include="images\Logo\LogoWhite.jpeg" />
     <Content Include="images\pexels-joshua-welch-1624600.jpg" />
@@ -4954,6 +4956,7 @@
     <Content Include="js\LoadProductFuntion.js" />
     <Content Include="js\LoginScript.js" />
     <Content Include="js\main.js" />
+    <Content Include="js\Thankyou.js" />
     <Content Include="js\wishlist.js" />
     <Content Include="Models\Test.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -5121,6 +5124,7 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Partial\UserDetail.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Checkout\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

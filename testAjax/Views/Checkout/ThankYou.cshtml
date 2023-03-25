@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ThankYou</title>
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/ThankYou.css" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Thin.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Black.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Bold.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Light.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Regular.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Medium.ttf" />
+    <link rel="stylesheet" href="~/icons/boxicons-2.1.4/css/boxicons.css" />
+</head>
+<body>
+    <div id="ShopLogo">
+        <img src="~/images/Logo/LogoTransparent.png"/>
+    </div>
+    <div id="main">
+        <div class="product-section">
+            <div class="product-section-wrapper">
+                <div class="product-header">
+                    <h5>Đơn hàng #<span class="orderID"></span>(1)</h5>
+                </div>
+                <div class="product-content">
+                    <div class="product-item">
+                        <div class="product-content-img">
+                            <img src="https://bizweb.dktcdn.net/thumb/thumb/100/438/322/products/80e3bf58-c0e9-42d0-b422-c21ff9cf9932.jpg?v=1678539014717" />
+                            <span class="product-quantity">1</span>
+                        </div>
+                        <div class="product-content-name">
+                            <h5>Bàn phím cơ Keydous NJ80 - AP Version</h5>
+                        </div>
+                        <div class="product-content-price">
+                            <span>2.050.000₫</span>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-content-img">
+                            <img src="https://bizweb.dktcdn.net/thumb/thumb/100/438/322/products/80e3bf58-c0e9-42d0-b422-c21ff9cf9932.jpg?v=1678539014717" />
+                            <span class="product-quantity">1</span>
+                        </div>
+                        <div class="product-content-name">
+                            <h5>Bàn phím cơ Keydous NJ80 - AP Version</h5>
+                        </div>
+                        <div class="product-content-price">
+                            <span>2.050.000₫</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="price-content">
+                    <table cellpadding="5" class="price-table">
+                        <tr>
+                            <td><span>Tạm tính</span></td>
+                            <td><span class="total">2.050.000₫</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Phí vận chuyển</span></td>
+                            <td><span>35.000₫</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="subTotal-content">
+                    <table class="subTotal-table">
+                        <tr>
+                            <td><h4>Tổng cộng</h4></td>
+                            <td><h3 class="subTotal">2.085.000</h3></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="user-section">
+            <div class="thanks-section">
+                <img src="~/images/Logo/icon-success.jpeg" />
+                <p>
+                    Một email xác nhận đã được gửi tới <span class="emailAddress">hquan26122003@gmail.com</span>.
+                    Xin vui lòng kiểm tra email của bạn
+                </p>
+            </div>
+            <div class="user-profile">
+                <div class="user-profile-row">
+                    <div class="user-profile-column col2 order-info1">
+                        
+                    </div>
+                    <div class="user-profile-column col2 order-info2">
+                        <div class="up-header"><h4>Địa chỉ nhận hàng</h4></div>
+                        <p>
+                            Thanh Hoa
+
+                            Phường Phú Thịnh, Thị xã Sơn Tây, Hà Nội
+                        <p>
+                    </div>
+                </div>
+                <div class="user-profile-row">
+                    <div class="user-profile-column col2">
+                        <div class="up-header"><h4>Phương Thức Thanh Toán</h4></div>
+                        <p>Thanh toán khi giao hàng (COD)</p>
+                    </div>
+                    <div class="user-profile-column col2">
+                        <div class="up-header"><h4>Phương thức vận chuyển</h4></div>
+                        <p>
+                            Phương thức vận chuyển
+                        <p>
+                    </div>
+                </div>
+            </div>
+            <div class="goHomneBtn">
+                <a class="homebtn" href="/Home">Tiếp tục mua hàng</a>
+                <a class="printbtn" onclick="window.print()"><i class='bx bx-printer'></i>In</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/Thankyou.js"></script>
+</body>
+</html>
