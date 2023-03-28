@@ -1,24 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="NewAppModel1StoreContainer" CdmEntityContainer="MyEntities">
-    <EntitySetMapping Name="ChucNangs">
-      <EntityTypeMapping TypeName="NewAppModel1.ChucNang">
-        <MappingFragment StoreEntitySet="ChucNang">
-          <ScalarProperty Name="NhomChucNang" ColumnName="NhomChucNang" />
-          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
-          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhanQuyens">
-      <EntityTypeMapping TypeName="NewAppModel1.PhanQuyen">
-        <MappingFragment StoreEntitySet="PhanQuyen">
-          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ChiTietDonHangs">
       <EntityTypeMapping TypeName="NewAppModel1.ChiTietDonHang">
         <MappingFragment StoreEntitySet="ChiTietDonHang">
@@ -29,9 +11,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ChucNangs">
+      <EntityTypeMapping TypeName="NewAppModel1.ChucNang">
+        <MappingFragment StoreEntitySet="ChucNang">
+          <ScalarProperty Name="NhomChucNang" ColumnName="NhomChucNang" />
+          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
+          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DonHangs">
       <EntityTypeMapping TypeName="NewAppModel1.DonHang">
         <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="phuongThucThanhToan" ColumnName="phuongThucThanhToan" />
           <ScalarProperty Name="hoTen" ColumnName="hoTen" />
           <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -45,11 +37,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HangSanXuats">
+      <EntityTypeMapping TypeName="NewAppModel1.HangSanXuat">
+        <MappingFragment StoreEntitySet="HangSanXuat">
+          <ScalarProperty Name="logoPath" ColumnName="logoPath" />
+          <ScalarProperty Name="tenHangSanXuat" ColumnName="tenHangSanXuat" />
+          <ScalarProperty Name="maHangSanXuat" ColumnName="maHangSanXuat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LoaiSanPhams">
       <EntityTypeMapping TypeName="NewAppModel1.LoaiSanPham">
         <MappingFragment StoreEntitySet="LoaiSanPham">
           <ScalarProperty Name="tenTheLoai" ColumnName="tenTheLoai" />
           <ScalarProperty Name="maTheLoai" ColumnName="maTheLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhanQuyens">
+      <EntityTypeMapping TypeName="NewAppModel1.PhanQuyen">
+        <MappingFragment StoreEntitySet="PhanQuyen">
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,15 +77,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HangSanXuats">
-      <EntityTypeMapping TypeName="NewAppModel1.HangSanXuat">
-        <MappingFragment StoreEntitySet="HangSanXuat">
-          <ScalarProperty Name="logoPath" ColumnName="logoPath" />
-          <ScalarProperty Name="tenHangSanXuat" ColumnName="tenHangSanXuat" />
-          <ScalarProperty Name="maHangSanXuat" ColumnName="maHangSanXuat" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SanPham_YeuThich">
       <EntityTypeMapping TypeName="NewAppModel1.SanPham_YeuThich">
         <MappingFragment StoreEntitySet="SanPham_YeuThich">
@@ -83,6 +84,14 @@
           <ScalarProperty Name="SanPham_ID" ColumnName="SanPham_ID" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrangThaiDonHangs">
+      <EntityTypeMapping TypeName="NewAppModel1.TrangThaiDonHang">
+        <MappingFragment StoreEntitySet="TrangThaiDonHang">
+          <ScalarProperty Name="tenTranThai" ColumnName="tenTranThai" />
+          <ScalarProperty Name="maTrangThai" ColumnName="maTrangThai" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -99,6 +108,14 @@
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="NewAppModel1.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="tenPhuongThuc" ColumnName="tenPhuongThuc" />
+          <ScalarProperty Name="maPhuongThuc" ColumnName="maPhuongThuc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -95,11 +95,11 @@ let loadWishList = () => {
                     wishlist_content.append(div)
                     addToCartBtn.addEventListener("click", e => {
                         MyCart.add(item.maSanPham, parseInt(quantity.textContent))
-                        LoadMyCart()
+                        loadCartNotify()
                     })
                 })
             })
-            .catch()
+            .catch(() => { })
     }
     else {
         wishlist_content.innerHTML = ""
@@ -120,6 +120,7 @@ let wishListDirection;
 let distance
 console.log(wishlistWidth)
 wishlist_content.addEventListener("mousedown", e => {
+    e.preventDefault()
     isDrag = true;
     startX = e.pageX - wishlist_content.offsetLeft
     scrollLeft = wishlist_content.scrollLeft
@@ -146,6 +147,7 @@ wishlist_content.addEventListener("mousemove", e => {
 })
 
 wishlist_content.addEventListener("mouseup", e => {
+    e.preventDefault()
     isDrag = false
     wishlist_content.classList.remove("active")
     console.log(wishListDirection)

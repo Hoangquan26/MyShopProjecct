@@ -17,6 +17,7 @@ namespace testAjax.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WebUser()
         {
+            this.DonHangs = new HashSet<DonHang>();
             this.PhanQuyens = new HashSet<PhanQuyen>();
             this.SanPham_YeuThich = new HashSet<SanPham_YeuThich>();
         }
@@ -32,6 +33,8 @@ namespace testAjax.Models
         public string dienThoai { get; set; }
         public string hoTen { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonHang> DonHangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

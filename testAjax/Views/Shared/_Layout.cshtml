@@ -53,6 +53,7 @@
             --violet-color: #3a10e5;
             --danger-color: #cd5555;
             --light-black-color: #fafafa;
+            --success-color: #1ca350;
         }
 
         * {
@@ -78,12 +79,18 @@
             color: white;
         }
 
-            a:hover {
-                text-decoration: none;
-                color: white;
-            }
+        a:hover {
+            text-decoration: none;
+            color: white;
+        }
 
-        @@media (max-width : 600px) {
+        @@media (max-width : 700px) {
+            ..toogle-nav img {
+                display: none;
+            }
+            .category > a > i:last-child, .category:hover .category-list {
+                display: none !important;
+            }
             #side-navbar {
                 right: 0 !important;
                 bottom: 0 !important;
@@ -99,61 +106,62 @@
                 flex-direction: initial !important;
             }
 
-                .menu-btn .toogle-nav {
-                    display: none !important;
-                }
+            .menu-btn .toogle-nav {
+                display: none !important;
+            }
 
             .Side-bar-menu {
                 min-width: 100%;
+                box-shadow: 0 0 10px 2px var(--border-color);
             }
 
-                .Side-bar-menu .list-menu {
-                    flex-direction: initial !important;
-                    width: 100%;
-                    justify-content: space-between;
-                    margin: 0 !important;
-                }
+            .Side-bar-menu .list-menu {
+                flex-direction: initial !important;
+                width: 100%;
+                justify-content: space-between;
+                margin: 0 !important;
+            }
 
 
-                    .Side-bar-menu .list-menu .category a {
-                        flex-direction: initial !important;
-                    }
+            .Side-bar-menu .list-menu .category a {
+                flex-direction: initial !important;
+            }
 
-                    .Side-bar-menu .list-menu .category .category-list {
-                        left: -300% !important;
-                        flex-direction: initial !important;
-                        top: calc(-100% - 10px);
-                        min-width: 500%;
-                        border: 0;
-                        border-top: 2px solid var(--border-color);
-                        animation: initial !important;
-                    }
+            .Side-bar-menu .list-menu .category .category-list {
+                left: -300% !important;
+                flex-direction: initial !important;
+                top: calc(-100% - 10px);
+                min-width: 500%;
+                border: 0;
+                border-top: 2px solid var(--border-color);
+                animation: initial !important;
+            }
 
-                        .Side-bar-menu .list-menu .category .category-list > li {
-                            justify-content: center;
-                        }
+            .Side-bar-menu .list-menu .category .category-list > li {
+                justify-content: center;
+            }
 
-                            .Side-bar-menu .list-menu .category .category-list > li > a {
-                                margin: 0 5px;
-                            }
+            .Side-bar-menu .list-menu .category .category-list > li > a {
+                margin: 0 5px;
+            }
 
-                                .Side-bar-menu .list-menu .category .category-list > li > a > span {
-                                    display: none;
-                                }
+            .Side-bar-menu .list-menu .category .category-list > li > a > span {
+                display: none;
+            }
 
-                    .Side-bar-menu .list-menu .category .bx.bxs-chevron-down {
-                        transform: rotate(180deg);
-                    }
+            .Side-bar-menu .list-menu .category .bx.bxs-chevron-down {
+                transform: rotate(180deg);
+            }
 
-                    .Side-bar-menu .list-menu > li {
-                        margin: 0;
-                        padding: 0;
-                    }
+            .Side-bar-menu .list-menu > li {
+                margin: 0;
+                padding: 0;
+            }
 
-                        .Side-bar-menu .list-menu > li > a {
-                            height: 100%;
-                            height: 56px;
-                        }
+            .Side-bar-menu .list-menu > li > a {
+                height: 100%;
+                height: 56px;
+            }
 
             #navbar {
                 left: 0 !important;
@@ -177,7 +185,9 @@
             }
         }
 
-
+        #wishlist {
+            left: 0 !important;
+        }
         #navbar {
             background-color: transparent;
             backdrop-filter: blur(10px);
@@ -325,6 +335,9 @@
             display: inline-block;
             font-size: 16px;
         }
+        .flex-visible {
+            display: flex !important;
+        }
 
         .menu-btn {
             margin: 15px auto;
@@ -334,18 +347,27 @@
             justify-content: space-between;
         }
             /*navbar-css*/
-            .menu-btn .toogle-nav {
-                width: 100%;
-                display: flex;
-                justify-content: flex-end;
-                transition: all ease 0.5s;
-            }
+        .menu-btn .toogle-nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transition: all ease 0.5s;
+            height: 50px;
+            align-items: center;
+        }
+        .toogle-nav img {
+            height: 35px;
+            object-fit: cover;
+            object-position: center;
+            transition: all ease 0.5s;
+            animation: appear ease 0.5s;
+        }
 
-            .menu-btn i {
-                font-size: 22px;
-                transition: all ease 0.5s;
-                cursor: pointer;
-            }
+        .menu-btn i {
+            font-size: 22px;
+            transition: all ease 0.5s;
+            cursor: pointer;
+        }
 
         #side-navbar {
             position: fixed;
@@ -514,6 +536,9 @@
             margin-left: 50px;
             justify-content: flex-start;
         }
+        .list-menu li a span{
+            animation: appear ease .5s;
+        }
 
         @@keyframes categoryslide {
             from {
@@ -526,9 +551,23 @@
                 top: 0;
             }
         }
+        @@keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
         #side-navbar.closeNav {
             width: 75px;
+        }
+        #side-navbar.closeNav .toogle-nav img {
+            display: none;
         }
 
             #side-navbar.closeNav .list-menu {
@@ -620,6 +659,7 @@
     <div id="side-navbar" class="closeNav">
         <div class="menu-btn">
             <div class="toogle-nav">
+                <img src="~/images/Logo/LogoTransparent.png"/>
                 <i class='bx bx-menu'></i>
             </div>
             <div class="Side-bar-menu">
@@ -725,7 +765,7 @@
     @Scripts.Render("~/LoadProductFuntion")
     @RenderSection("scripts", required: false)
     @RenderSection("script", false)
-    @Scripts.Render("~/cart.js")
+@*    @Scripts.Render("~/cart.js")*@
     @Scripts.Render("~/js/main.js")
     <script src="~/Areas/Admin/js/ShowUserInfo.js"></script>
     <script>

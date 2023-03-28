@@ -19,6 +19,7 @@
     --box2-color: #FFE6AC;
     --box3-color: #E7D1FC;
     --danger-color : #cd5555;
+    --success-color: #28a745;
 }
 body {
     min-height: 100vh;

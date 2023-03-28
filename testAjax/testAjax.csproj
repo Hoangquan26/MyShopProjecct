@@ -165,6 +165,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -192,6 +193,9 @@
     <Compile Include="Models\LoaiSanPham.cs">
       <DependentUpon>Test.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>Test.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProductAction.cs" />
     <Compile Include="Models\PhanQuyen.cs">
       <DependentUpon>Test.tt</DependentUpon>
@@ -217,6 +221,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Test.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TrangThaiDonHang.cs">
+      <DependentUpon>Test.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserModeForAdmin.cs" />
     <Compile Include="Models\WebUser.cs">
       <DependentUpon>Test.tt</DependentUpon>
@@ -225,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\css\adminTemplate.css" />
+    <Content Include="Areas\Admin\css\Order.css" />
+    <Content Include="Areas\Admin\js\Order.js" />
+    <Content Include="Areas\Admin\js\pagination.js" />
+    <Content Include="Areas\Admin\js\vanilla.js" />
     <Content Include="css\cart.css" />
     <Content Include="Areas\Admin\css\p.css" />
     <Content Include="Areas\Admin\css\userinfo.css" />
@@ -4924,6 +4935,7 @@
     <Content Include="icons\boxicons-2.1.4\svg\solid\bxs-zoom-in.svg" />
     <Content Include="icons\boxicons-2.1.4\svg\solid\bxs-zoom-out.svg" />
     <Content Include="images\5084d865ecd12263cb611f07b3f7c990.jpg" />
+    <Content Include="images\avatars\UnknownAvatar.jpg" />
     <Content Include="images\avatars\UnknownAvatar.png" />
     <Content Include="images\controller.jpg" />
     <Content Include="images\controller2.jpg" />
@@ -4931,6 +4943,8 @@
     <Content Include="images\FILES\pexels-daniel-absi-952670.jpg" />
     <Content Include="images\FILES\pexels-johannes-plenio-1103970.jpg" />
     <Content Include="images\FILES\pexels-photo-1266808.jpeg" />
+    <Content Include="images\Images\Crystal_Palace_FC_logo.png" />
+    <Content Include="images\Images\Header-Logo1500994616801.png" />
     <Content Include="images\LoginBackground.jpg" />
     <Content Include="images\logitechbackground.jpg" />
     <Content Include="images\Logitech\logo.jpg" />
@@ -4942,6 +4956,7 @@
     <Content Include="images\razer\demo1.jpg" />
     <Content Include="images\razer\logo.jpg" />
     <Content Include="images\setup\keyboardsetup.jpg" />
+    <Content Include="images\setup\pexels-cottonbro-studio-3945683.jpg" />
     <Content Include="images\setup\pexels-fox-2106216.jpg" />
     <Content Include="images\setup\pexels-fox-245252.jpg" />
     <Content Include="images\setup\pexels-lucie-liz-3165335.jpg" />
@@ -5090,6 +5105,7 @@
     <Content Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="ckfinder\userfiles\.htaccess" />
     <Content Include="js\local.json" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />

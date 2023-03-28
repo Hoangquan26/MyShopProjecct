@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Regular.ttf" />
     <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Medium.ttf" />
     <link rel="stylesheet" href="~/icons/boxicons-2.1.4/css/boxicons.css" />
+
 </head>
 <body>
     <div id="main">
@@ -50,7 +51,7 @@
                             <label for="tinh">Tỉnh thành</label>
                         </div>
                         <div class="input-wrapper active">
-                            <select id="quanHuyen" disabled class="disabled" name="quanHuyen">
+                            <select id="quanHuyen" disabled class="disabled " name="quanHuyen">
                                 <option selected value="-1">---</option>
                             </select>
                             <label for="quanHuyen">Quận huyện (tùy chọn)</label>
@@ -88,10 +89,11 @@
                         </div>
                         <div class="alert-section">
                             <span>
-                                Vui lòng nhập thông tin giao hàng
+                                Vui lòng chọn thông tin giao hàng
                             </span>
                         </div>
                     </div>
+                    <span class="ship-alert">Bạn chưa nhập thông tin giao hàng</span>
                 </div>
                 <div class="section">
                     <div class="section-header">
@@ -100,7 +102,7 @@
                     <div class="section-content">
                         <div class="ship-section">
                             <div class="radio-wrapper">
-                                <input type="radio" name="payment" value="ship_1" />
+                                <input type="radio" name="payment" value="2" />
                                 <span class="radio-checkmark"></span>
                                 <span>
                                     Chuyển khoản qua ngân hàng
@@ -122,7 +124,7 @@
                     <div class="section-content">
                         <div class="ship-section">
                             <div class="radio-wrapper">
-                                <input type="radio" name="payment" value="ship_1" />
+                                <input type="radio" name="payment" value="1" />
                                 <span class="radio-checkmark"></span>
                                 <span>
                                     Thanh toán khi giao hàng (COD)
@@ -138,6 +140,7 @@
                         </div>
                     </div>
                 </div>
+                <span class="payment-alert">Bạn chưa chọn thông tin thanh toán</span>
             </div>
         </div>
         <div class="product-info">
@@ -154,7 +157,7 @@
                 <div class="total-amount">
                     <div class="price-total">
                         <span>Tạm tính</span>
-                        <span id="price">12.500.000₫</span>
+                        <span id="price"></span>
                     </div>
                     <div class="ship-total">
                         <span>Phí vận chuyển</span>
@@ -164,7 +167,7 @@
                 <div class="total-amount">
                     <div class="finalCost">
                         <h4>Tổng cộng</h4>
-                        <h4 id="finalcost">12.500.000₫</h4>
+                        <h4 id="finalcost"></h4>
                     </div>
                     <div class="user-option">
                         <a href="/Home"><i class='bx bx-chevron-left'></i>Quay về giỏ hàng</a>

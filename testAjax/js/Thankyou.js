@@ -16,10 +16,8 @@
                                 ${thisUser.diaChi}
                             <p>`;
     document.querySelector(".emailAddress").textContent = thisUser.email
-    document.querySelector(".total").textContent = VNDformat.format(thisUser.giaTri - 35000) +  "đ"
-    document.querySelector(".subTotal").textContent = VNDformat.format(thisUser.giaTri) +"đ"
-
-
+    document.querySelector(".total").textContent = VNDformat.format(thisUser.giaTri) +  "đ"
+    document.querySelector(".subTotal").textContent = VNDformat.format(thisUser.giaTri + 35000) +"đ"
 
     let thisProduct = JSON.parse(sessionStorage.getItem(nameproduct))
     let productWrapper = document.querySelector(".product-section-wrapper .product-content")
@@ -40,7 +38,7 @@
         productWrapper.append(div)
     })
     sessionStorage.clear()
-    localStorage.setItem("myLocalCart", "")
+    MyCart.get().filter(item => item.quantity > 0).forEach(p => MyCart.removeItem(p.ID))
 }
 
 loadSession( nameuser = "user-profile",nameproduct= "product-profile")

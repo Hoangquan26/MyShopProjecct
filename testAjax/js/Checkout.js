@@ -1,13 +1,89 @@
-﻿let inputs = document.querySelectorAll(".input-wrapper input")
+﻿let purchaseProduct = MyCart.get().filter(item => item.quantity > 0)
+if (purchaseProduct.length == 0)
+    window.location.href = "/Cart"
+let inputs = document.querySelectorAll(".input-wrapper input[type='text']")
 inputs.forEach(input => {
+    let parent = input.parentElement
     input.addEventListener("input", e => {
-        let parent = input.parentElement
         if (input.value.trim().length > 0)
             parent.classList.add("active")
         else
             parent.classList.remove("active")
     })
+    if (input.name != 'ghiChu') {
+        input.addEventListener("blur", () => {
+            if (input.value.trim() == "") {
+                parent.classList.add("active")
+                parent.classList.add("danger")
+                bool = false
+            }
+            else {
+                parent.classList.remove("danger")
+            }
+        })
+    }
 })
+let validateInput = () => { 
+    let bool = true
+    let selects = document.querySelectorAll("select")
+    for (let select of selects) {
+        if (select.value == -1) {
+            select.parentElement.classList.add("danger")
+        }
+        else {
+            select.parentElement.classList.remove("danger")
+        }
+    }
+    for(let input of inputs){
+        if (input.name == 'ghiChu')
+            continue
+        let inputsParent = input.parentElement
+        if (input.value.trim() == "") {
+            inputsParent.classList.add("active")
+            inputsParent.classList.add("danger")
+            bool = false
+        }
+        else {
+            inputsParent.classList.remove("danger")
+        }
+    }
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    let mail = document.querySelector("input[id='gmail']")
+    if (!emailRegex.test(mail.value)) {
+        mail.parentElement.classList.add("active")
+        mail.parentElement.classList.add("danger")
+        bool = false
+    }
+    else {
+        mail.parentElement.classList.remove("danger")
+    }
+    let shipRadio = document.querySelector("input[type='radio'][name ='ship']")
+    let shipAlert=document.querySelector(".ship-alert")
+    if (!shipRadio.checked) {
+        shipAlert.classList.add("text-danger")
+        bool = false
+    }
+    else {
+        shipAlert.classList.remove("text-danger")
+    }
+    let paymentRadio = document.querySelectorAll("input[type='radio'][name ='payment']")
+    let paymentAlert = document.querySelector(".payment-alert")
+    let paymentCheck = false;
+    for(let radio of paymentRadio) {
+        if (radio.checked) {
+            paymentCheck = true
+            break;
+        }
+    }
+    if (!paymentCheck) {
+        paymentAlert.classList.add("text-danger")
+        bool = false
+    }
+    else {
+        paymentAlert.classList.remove("text-danger")
+    }
+    return bool;
+}
 let districtsContraint = () => {
     let tinh = document.querySelector("#tinh")
     let quanHuyen = document.querySelector("#quanHuyen")
@@ -99,7 +175,8 @@ let getDistricts = () => {
 }
 getDistricts()
 
-let paymentBtn = document.querySelectorAll(".section:last-child .radio-wrapper input")
+let paymentBtn = document.querySelectorAll("input[type='radio'][name='payment']")
+
 paymentBtn.forEach(btn => {
     btn.addEventListener("click", () => {
         let btnParent = btn.parentElement.parentElement.parentElement
@@ -116,6 +193,10 @@ paymentBtn.forEach(btn => {
 let loadProduct = () => {
     let url = '/Cart/LoadCart'
     let mycart = MyCart.get()
+    let filter = mycart.filter(item => item.quantity == 0)
+    filter.forEach(item => {
+        MyCart.update(item.ID, 0)
+    })
     let idList = mycart.map(item => item.ID)
     let subToTalValue = 0
     let VNDformat = Intl.NumberFormat("vn-VN")
@@ -150,11 +231,16 @@ let loadProduct = () => {
                                         </div>
                                         <div class="product-name">
                                             <h4>${item.tenSanPham}</h4>
+                                            <span class="text-danger"></span>
                                         </div>
                                         <div class="product-price">
                                             <span>${VNDformat.format(item.giaSanPham)}đ</span>
                                         </div>
                                     </div>`
+                    if (mycart[i].quantity == 0) {
+                        div.querySelector("span.text-danger").textContent = "Hết hàng"
+                        div.classList.add("disable")
+                    }
                     subToTalValue += (mycart[i++].quantity * item.giaSanPham)
                     wrapper.append(div)
                 })
@@ -175,6 +261,17 @@ loadProduct()
 let buyBtn = document.getElementById("buyBtn")
 buyBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    let value = function () {
+        for (let item of paymentBtn) {
+            if (item.checked == true)
+                return item.value
+        }
+        return 0
+    }
+    console.log(validateInput())
+    if (!validateInput())
+        return
+
     let userPofile = new FormData(document.getElementById("user-table"))
     let object = {
         maDonHang: null,
@@ -186,15 +283,15 @@ buyBtn.addEventListener("click", (e) => {
         email: userPofile.get("email"),
         sdt: userPofile.get('sdt'),
         diaChi: `${userPofile.get('diaChi')}, ${userPofile.get('phuongXa')?.split("$$")[1]}, ${userPofile.get('quanHuyen')?.split("$$")[1]}, ${userPofile.get('tinhThanh')?.split("$$")[1]}`,
-        ghiChu: userPofile.get('ghiChu')
+        ghiChu: userPofile.get('ghiChu'),
+        phuongThucThanhToan: value()
     }
 
     let url = "/Checkout/Buy"
     let _body = {
         user: object,
-        products: MyCart.get()
+        products: purchaseProduct
     }
-    console.log(_body)
     fetch(url, {
         method: 'POST',
         headers: {
@@ -210,9 +307,11 @@ buyBtn.addEventListener("click", (e) => {
             }
             object.giaTri = data.thisSubTotal
             object.maDonHang = data.maDonHang
+            object.phuongThucThanhToan = data.payment
             sessionStorage.setItem("product-profile", JSON.stringify(data.thisProducts))
             sessionStorage.setItem("user-profile", JSON.stringify(object))
             window.location.href = ("/CheckOut/ThankYou")
         })
+        .catch(() => { }) 
 
 })

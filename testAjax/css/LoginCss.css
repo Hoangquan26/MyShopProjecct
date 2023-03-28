@@ -10,7 +10,7 @@
     top: 0;
     width: 100%;
     height: 100vh;
-    background: url(/images/pexels-joshua-welch-1624600.jpg) no-repeat;
+    background: url(/images/setup/pexels-cottonbro-studio-3945683.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -28,7 +28,7 @@
     border-radius: 10px;
     color: white;
     padding: 40px 40px;
-    border: 1px white solid;
+    border: 1px #000 solid;
     transition: all ease-in-out 0.4s;
     overflow: hidden;
 }
@@ -47,7 +47,6 @@
     outline: 0px;
     font-size: 16px;
     background-color: transparent;
-    color: white;
 }
 
 .inputArea label {
@@ -55,7 +54,6 @@
     top: 50%;
     transform: translateY(-50%);
     left: 5px;
-    color: white;
     transition: all ease 0.4s;
 }
 

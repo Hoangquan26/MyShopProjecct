@@ -1,5 +1,7 @@
 ﻿let loadCartNotify = () => {
     let cart_notify = document.querySelector("#cartList_btn .notify")
+    if (cart_notify == null)
+        return
     let array = MyCart.get();
     if (array.length == 0) {
         if (!cart_notify.classList.contains("invisible"))
@@ -34,7 +36,7 @@ class MyCart {
             })
         }
         else {
-            check.quantity += _quantity;
+            check.quantity = _quantity;
         }
         localStorage.setItem(name, JSON.stringify(carts))
         loadCartNotify()
@@ -64,10 +66,7 @@ class MyCart {
         carts = JSON.parse(localStorage.getItem(name))
         let index = carts.find(item => item.ID == _productID)
         if (index) {
-            if (_quantity != 0)
                 index.quantity = _quantity
-            else
-                carts.splice(carts.indexOf(index), 1)
         }
         localStorage.setItem(name, JSON.stringify(carts))
     }

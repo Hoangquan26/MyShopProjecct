@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "paginationjs": "^2.6.0",
+    "scrollreveal": "^4.0.9"
+  }
+}

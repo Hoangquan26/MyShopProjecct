@@ -24,14 +24,18 @@ namespace testAjax.Models
         public Nullable<int> maKhachHang { get; set; }
         public Nullable<int> giaTri { get; set; }
         public Nullable<System.DateTime> ngayDat { get; set; }
-        public string trangThaiDonHang { get; set; }
+        public Nullable<int> trangThaiDonHang { get; set; }
         public string diaChi { get; set; }
         public string sdt { get; set; }
         public string email { get; set; }
         public string ghiChu { get; set; }
         public string hoTen { get; set; }
+        public Nullable<int> phuongThucThanhToan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
+        public virtual TrangThaiDonHang TrangThaiDonHang1 { get; set; }
+        public virtual WebUser WebUser { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }

@@ -59,7 +59,7 @@ namespace testAjax.Controllers
                     UserName = username,
                     PassWord = password,
                     ngayTaoTaiKhoan = DateTime.Now,
-                    avatarPath = "/images/avatars/UnknownAvatar",
+                    avatarPath = "/images/avatars/UnknownAvatar.png",
                     diaChi = "",
                     dienThoai = "",
                     hoTen = ""
