@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+}
+
+@section link {
+    @Styles.Render("~/css/Homecss")
+    @Styles.Render("~/myProduct.css")
+}
+<div id="slider">
+    <div class="slide-btn prev-btn">
+        <i class='bx bxs-chevron-left'></i>
+    </div>
+    <div class="wrapper grabbing">
+        <div class="slider-item">
+            <img src="~/images/setup/pexels-pew-nguyen-15372897.jpg" draggable="false" />
+        </div>
+        <div class="slider-item">
+            <img src="~/images/setup/pexels-fox-2106216.jpg" draggable="false" />
+        </div>
+        <div class="slider-item">
+            <img src="~/images/setup/pexels-fox-245252.jpg" draggable="false" />
+        </div>
+    </div>
+    <div class="slide-btn next-btn">
+        <i class='bx bxs-chevron-right'></i>
+    </div>
+</div>
+<div id="keyboard-sesion">
+    <div class="kb-sesion-header">
+        <h2>BÀN PHÍM CƠ</h2>
+        <a>Xem thêm</a>
+    </div>
+    <div class="kb-wrapper">
+
+    </div>
+</div>
+
+<div id="keyboard-sesion">
+    <div class="kb-sesion-header">
+        <h2>CHUỘT MÁY TÍNH</h2>
+        <a>Xem thêm</a>
+    </div>
+    <div class="mouse-wrapper">
+
+    </div>
+</div>
+
+<div id="keyboard-sesion">
+    <div class="kb-sesion-header">
+        <h2>TAI NGHE</h2>
+        <a>Xem thêm</a>
+    </div>
+    <div class="hp-wrapper">
+
+    </div>
+</div>
+
+@section scripts {  
+    @Scripts.Render("~/js/Home")
+}

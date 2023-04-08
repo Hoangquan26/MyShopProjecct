@@ -1,0 +1,118 @@
+﻿@media (max-width: 1366px) {
+    .col4 {
+        width: calc(99.9% / 2) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .col4 {
+        width: calc(99.9% ) !important;
+    }
+    #keyboard-sesion {
+        left: 0 !important;
+        min-width: 100%;
+    }
+
+    #slider .slide-btn.prev-btn {
+        left: 5px;
+    }
+}
+
+#slider {
+    z-index: 2;
+    height: 100vh;
+    position: relative;
+    cursor: grab;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: hidden;
+}
+.wrapper.grabbing {
+    scroll-behavior: smooth;
+}
+.slider-item {
+    flex: 1 1 100%;
+    min-width: 100vw;
+    overflow: hidden;
+}
+.slider-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    height: 100vh;
+}
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all ease 0.5s;
+}
+.slide-btn i {
+    font-size : 32px;
+    color: white;
+}
+.slide-btn:last-child {
+    right: 5px;
+}
+.slide-btn:first-child {
+    left: 75px;
+}
+.container.closeNav #slider .slide-btn:first-child {
+    left: 255px;
+}
+
+#keyboard-sesion {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    left: 70px;
+    width: calc(100% - 70px);
+    transition: all ease 0.5s;
+}
+.body-content.closeNav #keyboard-sesion {
+    width: calc(100% - 250px);
+    left: 250px;
+}
+#keyboard-sesion .kb-sesion-header {
+    display: flex;
+    flex-direction: column;
+}
+
+#keyboard-sesion .kb-sesion-header a, h2 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+#keyboard-sesion .kb-sesion-header a {
+    font-size: 15px;
+}
+#keyboard-sesion .kb-sesion-header a:hover {
+    color: var(--box2-color);
+    cursor: pointer;
+}
+
+.body-content.closeNav #keyboard-sesion .kb-wrapper,
+.body-content.closeNav #keyboard-sesion .hp-wrapper
+{
+      width: 80%;
+}
+.body-content.closeNav #keyboard-sesion .mouse-wrapper {
+      width: 80%;
+}
+#keyboard-sesion .kb-wrapper,
+#keyboard-sesion .mouse-wrapper,
+#keyboard-sesion .hp-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: all ease 0.5s;
+    width: 75%;
+}

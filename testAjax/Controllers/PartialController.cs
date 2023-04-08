@@ -13,5 +13,9 @@ namespace testAjax.Areas.Admin.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult Toast()
+        {
+            return PartialView();
+        }
     }
 }

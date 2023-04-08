@@ -1,0 +1,578 @@
+﻿@model testAjax.Models.SanPham
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sp = Model;
+    ViewBag.HomeLink = "Trang chủ";
+    ViewBag.Name = sp.tenSanPham;
+    ViewBag.CategoryID = sp.theLoaiSanPham;
+}
+@section link {
+    <style>
+
+        @@media (max-width : 1366px) {
+            .product-information {
+                flex-direction: column;
+            }
+            .product-detail {
+                flex-wrap: nowrap !important;
+            }
+
+            .product-information .product-images {
+                margin-bottom: 40px;
+                display:flex;
+                justify-content: flex-start;
+            }
+            .product-information .product-images img {
+                max-width: 100% !important;
+                height:auto !important;
+            }
+            .product-service-info {
+                margin-top: 20px;
+            }
+            .product-service-info {
+                width: 100% !important;
+            }
+            .product-description-content {
+                width : 100% !important;
+            }
+            .product-information .product-ui {
+                min-width: auto !important;
+            }
+            .product-ui, .product-service {
+                margin-left: 0 !important;
+            }
+            .product-description .product-description-more {
+                width : 100% !important;
+            }
+        }
+
+        @@media (max-width : 600px) {
+            .product-buying {
+                flex-direction: column;
+            }
+
+            .product-buying h4{
+                width: 100%;
+                margin: 0;
+                margin-top: 10px;
+            }
+            .product-buying h4 + h4 {
+                margin-left: 0 !important;
+            }
+            .product-service {
+                min-width: initial !important;
+            }
+            .product-information .product-ui .product_cate {
+                flex-direction: column;
+                align-items: flex-start !important;
+            }
+
+            .product-information .product-ui .product_cate a {
+                text-decoration: none;
+                color: var(--text-color) !important;
+            }
+
+            .product-information .product-ui .product_cate div + div {
+                margin-left : 0 !important;
+            }
+            .product-detail {
+                left : 0px !important;
+                min-width: 100%;
+            }
+
+        }
+
+        .body-content.closeNav .product-detail {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+        .product-detail {
+            top: 70px;
+            left: 70px;
+            width: calc(100% - 70px);
+            position: relative;
+            color: var(--text-color);
+            transition: all ease 0.5s;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            flex-wrap: wrap;
+            align-content: center;
+            overflow: hidden;
+        }
+
+        .product-information {
+            display: flex;
+            flex: 0 1 1;
+        }
+        .product-information h5 {
+            margin: 0;
+        }
+        .product-information .product-images img {
+            max-width: 700px;
+            height: 386px;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .product-information .product-ui {
+            min-width: 350px;
+            margin-left: 40px;
+            padding : 5px 0;
+        }
+
+
+        .product-information .product-ui-name,
+        .product-information .product_cate {
+            margin: 15px 0;
+        }
+        .product-information .product-ui .product-ui-name {
+            margin: 0;
+        }
+        .product-information .product-ui .product_cate {
+            display: flex;
+            align-items: center;
+        }
+        .product_cate span ~ h5 {
+            margin-left: 5px;
+        }
+        .product-information .product-ui .product_cate div + div {
+            margin-left: 40px;
+        }
+
+        .product-information .product-ui .product_cate div {
+            display: flex;
+            align-items : center;
+        }
+        .produc-ui-number {
+            display: flex;
+            align-items: center;
+            height: 35px;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .produc-ui-number > i {
+            position: absolute;
+            right: 0;
+            color: var(--danger-color);
+            font-size : 18px;
+        }
+        .produc-ui-number .number-product-selection {
+            width: 35px;
+            height: 100%;
+            font-size: 16px;
+            border-radius: 0;
+            border: 0;
+            background-color: transparent;
+        }
+
+        .produc-ui-number .number-product-selection:hover {
+            background-color: var(--box2-color)
+        }
+
+        .produc-ui-number .number-product-selection.sub {
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .produc-ui-number .number-product-selection.sum {
+            border-right: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .produc-ui-number .number-product {
+            width: 70px;
+            height: 100%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 35px;
+            border : 1px solid #ccc;
+        }
+        .product-buying {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .product-buying h4 {
+            font-weight: 300;
+            padding: 9px 40px;
+            display: block;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+
+        .product-buying h4 + h4 {
+            margin-left: 10px;
+        }
+        .product-buying i {
+            font-size: 22px;
+            color: white;
+        }
+
+        .product-ui-slider {
+            margin-top: 20px;
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+        .product-ui-slider-item {
+            width: calc(99.9% / 4);
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        }
+        .product-ui-slider-item img {
+            height: 63px;
+            max-width: 60px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 5px;
+        }
+        .product-service  {
+            margin-left: 40px;
+            flex-direction: column;
+            align-items: center;
+            min-width: 250px;
+        }
+
+        .product-service .product-service-info {
+            background-color: var(--light-black-color);
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            border-radius: 4px;
+        }
+
+        .product-service .product-service-info span { 
+            width: 100%;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+            padding-left: 10px;
+        }
+
+        .product-service .product-service-info span + span {
+            border-top : 1px solid var(--border-color);
+            margin-top: 5px;
+            padding-top: 10px;
+        }
+
+        .product-service .product-service-info i {
+            padding-right: 5px;
+            font-weight: 300;
+        }
+
+        .relate-product {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .relate-product .relate-product-header {
+            color: white;
+            background-color: var(--secondary-color);
+            padding: 10px 10px;
+            border-radius: 5px 5px 0 0;
+            display: inline-block;
+            width: 200px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .relate-product .relate-product-list {
+            border-top: 2px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .relate-product .relate-product-list .relate-product-wrapper {
+            margin-top: 12px;
+            text-decoration: none;
+        }
+
+        .relate-product .relate-product-list .relate-product-item {
+            cursor: pointer;
+            display: flex;
+        }
+
+        .relate-product .relate-product-list .relate-product-item-img {
+            width : 100px;
+            height: 100px;
+            overflow: hidden;
+            margin-right: 10px;
+            flex: 0 0 auto;
+        }
+
+        .relate-product .relate-product-list .relate-product-item:hover .relate-product-item-img img {
+            transform: scale(1.05, 1.05);
+        }
+
+        .relate-product .relate-product-list .relate-product-item-img img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all ease 0.5s;
+            border-radius: 5px;
+        }
+        .product-description {
+            flex: 0 1 1;
+        }
+
+        .product-description .product-description-header {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            padding-right: 30px;
+            border-radius: 5px 5px 0 0;
+            color: white;
+            display: inline-block;
+            margin : 0;
+            max-width: 260px;
+        }
+
+        .product-description .product-description-content {
+            height: auto;
+        }
+
+        .product-description.more .product-description-more span:active {
+            background: none;
+        }
+
+        .product-description .product-description-content.hidee {
+            height: 600px;
+        }
+
+        .product-description .product-description-content {
+            border-top: 2px solid var(--secondary-color);
+            overflow: hidden;
+            padding: 30px 0;
+            padding-right: 70px;
+            transition: all ease 0.5s;
+            width: 1000px;
+        }
+
+        .product-description .product-description-more {
+            width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .product-description .product-description-more span {
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .product-description .product-description-more span i {
+            padding-left: 5px;
+            font-size: 16px;
+        }
+
+        .product-description .product-description-more::after {
+            content: "";
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(180deg, transparent, white);
+            opacity: 0.8;
+            top: -70px;
+            position: absolute;
+        }
+</style>
+}
+<div class="product-detail">
+    <div class="product-information" id="@sp.maSanPham">
+        <div class="product-images">
+            <img src="@sp.hinhAnhSanPham"/>
+        </div>
+        <div class="product-ui">
+            <h4 class="product-ui-name">@sp.tenSanPham</h4>
+            <div class="product_cate">
+                <div>
+                    <span>Thương hiệu: </span>
+                    <h5>Sói Gear</h5>
+                </div>
+                <div>
+                    <span>Mã sản phẩm: </span>
+                    <h5>@sp.maSanPham</h5>
+                </div>
+            </div>
+            <h3 class="product-ui-price danger">
+                @String.Format("{0:C0}", sp.giaSanPham)
+            </h3>
+            <div class="produc-ui-number">
+                <button class="number-product-selection sub">-</button>
+                <span data-ID="@sp.maSanPham" class="number-product">1</span>
+                <button class="number-product-selection sum">+</button>
+                <i class='bx bx-heart'></i>
+            </div>
+            <div class="product-buying">
+                <h4>Mua Ngay</h4>
+                <h4 class="cart-btn">Thêm Vào Giỏ Hàng</h4>
+            </div>
+            <div class="product-ui-slider">
+                <div class="product-ui-slider-item">
+                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
+                </div>
+                <div class="product-ui-slider-item">
+                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
+                </div>
+                <div class="product-ui-slider-item">
+                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
+                </div>
+                <div class="product-ui-slider-item">
+                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
+                </div>
+            </div>
+        </div>
+        <div class="product-service">
+            <div class="product-service-info">
+                <span><i class='bx bx-pin'></i>Chế độ bảo hành</span>
+                <span><i class='bx bxs-truck'></i>Ship COD toàn quốc</span>
+                <span><i class='bx bx-check-shield'></i>100% Chính hãng</span>
+            </div>
+            <div class="relate-product">
+                <h4 class="relate-product-header">Sản Phẩm Tương tự</h4>
+                <div class="relate-product-list">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-description">
+        <h4 class="product-description-header">Mô Tả Sản Phẩm</h4>
+        <div class="product-description-content">
+            @Html.Raw(sp.moTaSanPham)
+        </div>
+        <div class="product-description-more">
+            <span>Xem thêm<i class='bx bx-chevron-down'></i></span>
+        </div>
+    </div>
+</div>
+
+<script>
+@*    console.log(@sp.moTaSanPham)
+    let mota = document.createElement("div")
+    mota.innerHTML = `${@sp.moTaSanPham}`
+    document.querySelector("div").append(mota)*@
+    let number_product = document.querySelector(".number-product")
+    let sumBtn = document.querySelector(".number-product-selection.sum")
+    let subBtn = document.querySelector(".number-product-selection.sub")
+    sumBtn.addEventListener("click", e => {
+        ++number_product.textContent
+    })
+    subBtn.addEventListener("click", e => {
+        (number_product.textContent > 1 ? (--number_product.textContent) : e.preventDefault )
+    })
+
+    //viewMore
+    let product_description_content = document.querySelector(".product-description-content")
+    let MoreBtn = document.querySelector(".product-description-more span")
+    if (product_description_content.clientHeight > 598) {
+        product_description_content.classList.add("hidee")
+    }
+    else {
+        MoreBtn.style.display = "none"
+    }
+    MoreBtn.addEventListener("click", e => {
+        product_description_content.classList.toggle("hidee")
+        let wrapper = document.querySelector(".product-description")
+        wrapper.classList.toggle("more")
+        MoreBtn.innerHTML = (wrapper.classList.contains("more") ? "Thu Gọn<i class='bx bx-chevron-up' ></i>" : "Xem thêm<i class='bx bx-chevron-down'></i>")
+    })
+
+    //getRelateProduct
+    let getRelateProduct = () => {
+        let wrapper = document.querySelector(".relate-product .relate-product-list")
+        let url = "/Product/getRelateProduct"
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                id: document.querySelector(".product-information").id
+                })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.code == 500)
+                {
+                    alert(data.errorMessage)
+                    return;
+                }
+                data = data.relateProduct
+                var relateProducts = []
+                let check = ""
+                while (relateProducts.length < 3) {
+                    let randomIndex = Math.floor(Math.random() * data.length)
+                    if(check.includes(randomIndex))
+                        continue
+                    check += randomIndex.toString()
+                    relateProducts.push(data[randomIndex])
+                }
+                relateProducts.forEach(item => {
+                    let current = new Intl.NumberFormat('vn-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                        })
+                    let div = document.createElement('a')
+                    div.classList.add("relate-product-wrapper")
+                    let link = "/hquan261203"
+                    div.href = link + item.maSanPham
+                    div.innerHTML = `
+                         <div class="relate-product-item">
+                            <div class="relate-product-item-img">
+                                <img src="${item.hinhAnhSanPham}" />
+                            </div>
+                            <div class="relate-product-item-info">
+                                <h5>${item.tenSanPham}</h5>
+                                <h4 class="danger">
+                                    ${current.format(item.giaSanPham)}
+                                </h4>
+                            </div>
+                    `
+                    wrapper.appendChild(div)
+                })
+            })
+    }
+    getRelateProduct()
+    let cart_btn = document.querySelector(".cart-btn")
+    cart_btn.addEventListener("click", () => {
+        let mycart = MyCart.get()
+        if (mycart.find(item => item.ID == number_product.getAttribute("data-ID")))
+            callToast('Sản phẩm đã có trong giỏ hàng', 'warning')
+        else {
+            MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+            callToast('Thêm sản phẩm vào giỏ hàng thành công', 'success')
+        }
+    })
+    let buyBtn = document.querySelector(".product-buying h4:first-child")
+    buyBtn.addEventListener("click", e => {
+        let mycart = MyCart.get()
+        if (mycart.find(item => item.ID == number_product.getAttribute("data-ID")))
+            MyCart.update(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        else
+            MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
+        window.location.href = "/Checkout"
+    })
+</script>

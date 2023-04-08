@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/Admin/css/adminTemplate.css" rel="stylesheet" />
+    <link href="~/icons/boxicons-2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;300;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="~/fonts/fontawesome-free-6.3.0-web/css/all.min.css" rel="stylesheet" />
+    @RenderSection("style", false)
+</head>
+<body>
+    <nav>
+        <!--<div class="logo-img">-->
+        @*            <img src=" />*@
+        <!--<span class="logo-name">MyShop</span>
+        </div>-->
+        <div class="menu-item">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="~/Admin/Admin">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="link-name">Thống kê</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="~/Admin/Order">
+                        <i class='bx bxs-pin'></i>
+                        <span class="link-name">Đơn hàng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="~/Admin/Admin/ListUser">
+                        <i class='bx bxs-user-account'></i>
+                        <span class="link-name">Người Dùng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="~/Admin/Brand">
+                        <i class='bx bx-package'></i>
+
+                        <span class="link-name">Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="">
+                        <i class='bx bx-purchase-tag'></i>
+                        <span class="link-name">Danh mục</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="">
+                        <i class='bx bxl-bitcoin'></i>
+                        <span class="link-name">Hãng sản xuất</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="~/Home/Index">
+                        <i class='bx bx-home'></i>
+                        <span class="link-name">Trang chủ</span>
+                    </a>
+                </li>
+                <li class="nav-item night-mode">
+                    <a>
+                        <i class='bx bx-moon'></i>
+                        @*<i class='bx bxs-moon'></i>*@
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+                    <div class="mode-box">
+                        <span class="toggle"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="sidebar">
+        <div class="site-title">
+            <i class='bx bx-menu toogle-nav'></i>
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+    <div id="body">
+        @RenderBody()
+    </div>
+    <script src="~/Areas/Admin/js/AdminScript.js"></script>
+</body>
+</html>

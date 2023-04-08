@@ -77,7 +77,12 @@ namespace testAjax.Controllers
                 }
                 var returnValue = from o in cookieOrder
                                   join tt in status on o.trangThaiDonHang equals tt.maTrangThai
-                                  select new { o.maDonHang, ngayDat = o.ngayDat, o.giaTri,status = tt.tenTranThai };
+                                  select new { 
+                                      o.maDonHang, 
+                                      ngayDat = o.ngayDat, 
+                                      o.giaTri,
+                                      status = tt.tenTranThai 
+                                  };
                 var ChiTiet_SanPham = (from ct in ChiTietDonHang
                                        join sp in SanPham on ct.maSanPham equals sp.maSanPham
                                        where (OrderCookie.Contains(ct.maDonHang) || maDHs.Contains(ct.maDonHang)) 

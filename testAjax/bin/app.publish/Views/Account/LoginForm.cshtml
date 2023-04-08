@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "LoginForm";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+@section link {
+    <link href="~/icons/boxicons-2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100;300;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    @Styles.Render("~/css/LoginCss")
+}
+<div id="LoginPage">
+    <div class="LoginMain">
+        <form class="LoginForm" action="/Account/Login">
+            <h2>Đăng Nhập</h2>
+            <div class="inputArea">
+                <input name="username" required type="text" />
+                <label for="">Tài khoản</label>
+                <i class='bx bx-user absoluteIcon'></i>
+            </div>
+            <div class="inputArea">
+                <input name="password" required type="password" />
+                <label for="">Mật khẩu</label>
+                <i class='bx bx-lock-alt absoluteIcon'></i>
+            </div>
+            <button class="submitLogin-btn" type="submit">Đăng nhập</button>
+            <span id="notify" class="@TempData["notifyType"]">@ViewBag.error</span>
+            <p>Không có tài khoản? <a class="Register-btn"><b>Đăng ký</b></a></p>
+        </form>
+        <form class="RegisterForm" action="/Account/SignUp">
+            <h2>Đăng Ký</h2>
+            <div class="inputArea">
+                <input class="new-Username" name="username" required type="text" />
+                <label for="">Tài khoản</label>
+            </div>
+            <div class="inputArea">
+                <input class="new-Password" name="password" required type="password" />
+                <label for="">Mật khẩu</label>
+            </div>
+            <div class="inputArea">
+                <input class="checkPass" name="username" required type="password" />
+                <label for="">Nhập lại mật khẩu</label>
+            </div>
+            <button type="submit" class="submitRegister-btn">Tạo tài khoản</button>
+            <p class="Turnback-btn"><b>Quay lại</b></p>
+        </form>
+    </div>
+</div>
+
+@section script {
+    @Scripts.Render("~/bundles/loginscript")
+ }
+
+

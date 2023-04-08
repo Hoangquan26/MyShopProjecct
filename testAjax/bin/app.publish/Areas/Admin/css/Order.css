@@ -1,0 +1,174 @@
+﻿#body {
+    background: url(/images/FILES/pexels-daniel-absi-952670.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    top: 0 !important;
+    padding-top: 100px;
+    padding-right : 40px;
+}
+/*OrderWrapper*/
+.order-wrapper {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+}
+/*Order-Header*/
+.order-wrapper .order-header
+{
+    display: inline-flex;
+    background: #868686;
+    color: black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+
+.order-header-item {
+    cursor: pointer;
+    position: relative;
+    padding: 0 10px;
+}
+
+.order-header-item.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.order-header-item::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    border-radius: 4px;
+    background: black;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    transition: all ease .5s;
+}
+
+.order-header-item h4 {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.order-header-item:hover h4 {
+    color: var(--box1-color);
+}
+
+/*Order-content*/
+.order-content {
+    margin-top: 20px;
+    display: flex;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #868686;
+    flex-direction: column;
+    min-height: 450px;
+    transition: all ease .2s;
+    font-size: 14px;
+}
+.order-content-header,
+.order-list{
+    width: 100%;
+    display: flex;
+}
+
+.order-content-header {
+    padding-bottom: 5px;
+}
+
+.order-content-header span {
+    font-weight: 500;
+    font-size: 16px;
+}
+.order-list { 
+    flex-direction: column;
+}
+
+.order-list .order-item {
+    display: flex;
+    padding: 5px 0;
+    margin: 5px 0;
+    align-items: center;
+    border-top: 1px solid #868686;
+}
+
+.order-content-header span,
+.order-list .order-item>div{
+    flex: 1 1 100%;
+}
+/*Order-status*/
+.confirm-order {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-order div {
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all ease .2s;
+    margin: 0 5px;
+}
+.confirm-order div.accept-order{
+    border-color: var(--success-color);
+    background: var(--success-color)
+}
+
+.confirm-order div.reject-order{
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+}
+.confirm-order div.accept-order:hover {
+    color: var(--success-color);
+    background-color: transparent;
+}
+
+
+.confirm-order div.reject-order:hover {
+    color: var(--danger-color);
+    background-color: transparent;
+}
+
+.delivery-status {
+    display: flex;
+}
+
+.delivery-select {
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px;
+    width: 100%;
+    margin: 0 5px;
+}
+
+/*pagination*/
+.paginationjs-pages ul li{
+    list-style: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;    
+    justify-content: center;    
+}
+
+.paginationjs-pages ul li.active {
+    background: #fff;
+    color: #000;
+}
+
+.paginationjs-pages ul {
+    display: flex;
+}
+
+.noneDisplay {
+    display: none;
+}
+

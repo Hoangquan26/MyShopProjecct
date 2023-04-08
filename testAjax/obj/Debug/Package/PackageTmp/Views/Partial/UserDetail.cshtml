@@ -1,0 +1,801 @@
+﻿@{
+    var user = (testAjax.Models.WebUser)Session["user"];
+}
+<link rel="stylesheet" href="~/icons/boxicons-2.1.4/css/boxicons.min.css" />
+<style>
+    /*    #user-info {
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+    }
+
+    #user-info
+
+
+    .background-filter {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+    }
+
+    .info-section {
+        padding: 10px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .info-section-wrapper {
+        border-radius: 10px;
+        z-index: 2;
+        background-color: var(--panel--color);
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        animation: showUp ease 0.3s;
+    }
+
+    .user-avatar {
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: var(--toggle-color);
+        position: relative;
+    }
+
+    .user-avatar img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        transition: all ease 2s;
+    }
+    .user-avatar .img-file {
+
+    }
+    .imgbackground-filter {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--text-color);
+        z-index: 7;
+        transition: all ease 0.5s;
+    }
+
+    .user-avatar:hover img {
+        transform: scale(1.1);
+    }
+    .user-avatar:hover .imgbackground-filter {
+        opacity: 0.4;
+    }
+    .user-infomation {
+        width: 60%;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .user-infomation-item {
+        margin-top: 12px;
+        display: flex;
+        justify-items: center;
+        justify-content: flex-start;
+        height: 30px;
+    }
+
+    .user-infomation-item span {
+        color: var(--black-light-color);
+        margin-left: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        flex: 1 1 70%;
+    }
+    .user-infomation-item span:first-child {
+        flex: 0 1 35%;
+    }
+
+    .update-input {
+        width: 200px;
+        font-size: 16px;
+        border: 0;
+        border-bottom: 1px solid var(--black-light-color);
+        background-color: transparent;
+        outline: 0;
+        padding: 0 4px;
+        flex: 1 1 70%;
+        color: var(--text-color);
+        margin-right: 5px;
+    }
+    .priority-zone {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .user-setup {
+        margin-left: 6px;
+        padding-left: 6px;
+        width: 20%;
+    }
+
+    .user-setup h2 {
+        text-align: center;
+    }
+    .user-setup h2 i {
+        color: var(--black-light-color);
+        font-size: 32px;
+    }
+
+    .priority-zone span {
+        color: var(--black-light-color);
+    }
+
+    @@keyframes showUp {
+        from
+        {
+            opacity: 0;
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    .edit-section{
+        margin-top : 10px;
+    }
+    .edit-section i{
+        color: var(--text-color);
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .submit-section{
+        margin-bottom: 10px;
+    }
+    .submit-section a {
+        color: var(--text-color);
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0 10px;
+        cursor: pointer;
+    }*/
+    /*new c ss*/
+
+    .invisible {
+        display: none !important;
+    }
+
+    .flex-visible {
+        display: flex !important;
+    }
+
+    body {
+        font-size: 16px;
+        font-family: Montserrat, sans-serif;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .card.flex-visible {
+        right: 40px !important;
+        opacity: 1;
+    }
+
+    .card {
+        z-index: 1001;
+        background-color: #fff;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 2rem;
+        position: relative;
+        box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -400px;
+        opacity: 0;
+        transition: all ease .5s;
+    }
+
+        .card .banner {
+            background-image: url("/images/setup/pexels-fox-2106216.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 9rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 2rem 2rem 0 0;
+        }
+
+            .card .banner svg {
+                background-color: #fff;
+                width: 8rem;
+                height: 8rem;
+                box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+                border-radius: 50%;
+                transform: translateY(50%);
+                transition: transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            }
+
+                .card .banner svg:hover {
+                    transform: translateY(50%) scale(1.3);
+                }
+
+        .card .menu {
+            width: 100%;
+            height: 5.5rem;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            position: relative;
+            box-sizing: border-box;
+            margin-bottom: 40px;
+        }
+
+            .card .menu .opener {
+                width: 2.5rem;
+                height: 2.5rem;
+                position: relative;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 100ms ease-in-out;
+            }
+
+                .card .menu .opener:hover {
+                    background-color: #f2f2f2;
+                }
+
+                .card .menu .opener span {
+                    background-color: #404040;
+                    width: 0.4rem;
+                    height: 0.4rem;
+                    position: absolute;
+                    top: 0;
+                    left: calc(50% - 0.2rem);
+                    border-radius: 50%;
+                }
+
+                    .card .menu .opener span:nth-child(1) {
+                        top: 0.45rem;
+                    }
+
+                    .card .menu .opener span:nth-child(2) {
+                        top: 1.05rem;
+                    }
+
+                    .card .menu .opener span:nth-child(3) {
+                        top: 1.65rem;
+                    }
+
+        .card h2.name {
+            text-align: center;
+            padding: 0 2rem 0.5rem;
+            margin: 0;
+        }
+
+        .card .title {
+            color: #a0a0a0;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 0 2rem 1.2rem;
+        }
+
+        .card .actions {
+            padding: 0 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            order: 99;
+        }
+
+            .card .actions .follow-info {
+                padding: 0 0 1rem;
+                display: flex;
+            }
+
+                .card .actions .follow-info h2 {
+                    text-align: center;
+                    width: 50%;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+
+                    .card .actions .follow-info h2 a {
+                        text-decoration: none;
+                        padding: 0.8rem;
+                        display: flex;
+                        flex-direction: column;
+                        border-radius: 0.8rem;
+                        transition: background-color 100ms ease-in-out;
+                    }
+
+                        .card .actions .follow-info h2 a span {
+                            color: #1c9eff;
+                            font-weight: bold;
+                            transform-origin: bottom;
+                            transform: scaleY(1.3);
+                            transition: color 100ms ease-in-out;
+                        }
+
+                        .card .actions .follow-info h2 a small {
+                            color: #afafaf;
+                            font-size: 0.85rem;
+                            font-weight: normal;
+                        }
+
+                        .card .actions .follow-info h2 a:hover {
+                            background-color: #f2f2f2;
+                        }
+
+                            .card .actions .follow-info h2 a:hover span {
+                                color: #007ad6;
+                            }
+
+            .card .actions .follow-btn button {
+                color: inherit;
+                font: inherit;
+                font-weight: bold;
+                background-color: #ffd01a;
+                width: 100%;
+                border: none;
+                padding: 1rem;
+                outline: none;
+                box-sizing: border-box;
+                border-radius: 1.5rem/50%;
+                transition: background-color 100ms ease-in-out, transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            }
+
+                .card .actions .follow-btn button:hover {
+                    background-color: #efb10a;
+                    transform: scale(1.1);
+                }
+
+                .card .actions .follow-btn button:active {
+                    background-color: #e8a200;
+                    transform: scale(1);
+                }
+
+        .card .banner img {
+            overflow: hidden;
+            height: 120px;
+            width: 120px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -60px;
+            box-shadow: 0 5px 10px -5px black;
+            border: 2px solid white;
+            transition: all ease .4s;
+        }
+
+            .card .banner img:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+
+    .closeCard {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        top: 50px;
+        right: calc(50% - calc(40px / 2) );
+        height: 40px;
+        background: #d9534f;
+        border-radius: 50%;
+        border: 1px solid silver;
+        transition: all ease .3s;
+        cursor: pointer;
+    }
+
+        .closeCard:hover {
+            transform: scale(1.1)
+        }
+
+        .closeCard::after {
+            position: absolute;
+            content: "";
+            top: 100%;
+            height: 20px;
+            width: 350px;
+        }
+
+    .card:hover .closeCard {
+        top: -50px !important;
+    }
+
+    .closeCard i {
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .userOption {
+        position: absolute;
+        right: 0;
+        min-width: 120px;
+        padding: 10px;
+        box-shadow: 0 5px 10px -5px black;
+        background: white;
+        top: 100%;
+        border-radius: 5px;
+        display: none;
+        z-index: 5;
+    }
+
+        .userOption ul {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .userOption li {
+            color: #a0a0a0;
+            padding: 5px 0;
+            cursor: pointer;
+            list-style: none;
+        }
+
+            .userOption li + li {
+                border-top: 1px solid #999;
+            }
+
+            .userOption li:hover {
+                color: #d9534f;
+            }
+
+    .main-user {
+        display: none;
+        flex-direction: column;
+    }
+
+    .section-pass form, .inputP {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 5px;
+    }
+
+    .section-pass {
+        display: none;
+    }
+
+        .section-pass.open, .main-user.open {
+            display: flex;
+        }
+
+        .section-pass form input {
+            width: 100%;
+            margin: 5px;
+            font-size: 16px;
+            outline: 0;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            position: relative;
+        }
+
+    .inputP {
+        position: relative;
+    }
+
+        .inputP label.focus {
+            top: 25%;
+            font-size: 12px;
+        }
+
+    .section-pass form input:focus + label {
+        top: 25%;
+        font-size: 12px;
+    }
+
+    .inputP label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #535353;
+        font-size: 13px;
+        left: 10px;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        transition: all ease .4s;
+        pointer-events: none;
+    }
+
+    .section-pass form input[type="submit"] {
+        background: #d9534f;
+        color: white;
+        width: 120px;
+        border-radius: 12px;
+        border: 1px solid #d9534f;
+        cursor: pointer;
+    }
+
+        .section-pass form input[type="submit"]:hover {
+            background: white;
+            color: #d9534f;
+        }
+</style>
+
+@*<div id="user-info">
+    <div class="background-filter">
+    </div>
+    <div class="info-section-wrapper">
+        <div class="edit-section">
+            <i class='bx bx-edit-alt'></i>
+        </div>
+        <div class="info-section">
+            <div class="user-avatar">
+                <img src="~/images/avatars/UnknownAvatar.png" />
+                <div class="imgbackground-filter">
+                    <input type="file" class="img-file" />
+                </div>
+            </div>
+            <div class="user-infomation">
+                <div class="user-infomation-item">
+                    <span class="span-content">ID:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Tài Khoản:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Mật Khẩu:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Gmail:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Ngày Tạo:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="date" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Vai Trò:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+            </div>
+            <div class="user-setup">
+                <h2><i class='bx bx-universal-access'></i></h2>
+            </div>
+        </div>
+
+    </div>
+*@
+<div class="card">
+    <div class="closeCard">
+        <i class='bx bx-x'></i>
+    </div>
+    <div class="banner">
+        <img src="~/images/setup/pexels-cottonbro-studio-3945683.jpg" />
+    </div>
+    <div class="menu">
+        <div class="opener">
+            <span></span><span></span><span></span>
+            <div class="userOption">
+                <ul>
+                    <li class="openPassChange">Đổi mật khẩu</li>
+                    <li class="openInfomation">Thông tin</li>
+                    @Html.Raw(user?.isAdmin == true ? "<li>Phân Quyền</li>" : "")
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-user open">
+        <h2 class="name">Morgan Sweeney</h2>
+        <div class="title">Ant Collector</div>
+        <div class="actions">
+            <div class="follow-info">
+                <h2><a href="#"><span>12</span><small>Ngày tham gia</small></a></h2>
+                <h2><a href="#"><span>1000</span><small>Đã mua</small></a></h2>
+            </div>
+        </div>
+    </div>
+    <div class="section-pass">
+        <form>
+            <div class="inputP">
+                <input type="password" required min="5"/>
+                <label for="">Mật khẩu cũ</label>
+            </div>
+            <div class="inputP">
+                <input type="password" name="newPass" required min="5"/>
+                <label for="">Mật khẩu mới</label>
+            </div>
+            <div class="inputP">
+                <input type="password" name="newPass" required min="5"/>
+                <label for="">Nhập lại mật khẩu mới</label>
+            </div>
+            <input type="submit" value="Lưu" />
+        </form>
+    </div>
+</div>
+@*</div>*@
+
+<script src="~/ckfinder/ckfinder.js"></script>
+<script>
+    let userAvatar = document.querySelector(".banner img")
+    userAvatar.addEventListener("click", () => {
+        var finder = new CKFinder();
+        finder.selectActionFunction = (fileUrl) => {
+            updateAvatarAJAX(fileUrl, parseInt(userAvatar.getAttribute("data-userid"), 10))
+        }
+        finder.popup()
+    })
+    let homeMenu = document.querySelector(".openInfomation")
+    let changePassMenu = document.querySelector(".openPassChange")
+    let opener = document.querySelector(".opener")
+    let wrapper = document.querySelector(".card")
+    let edit_btn = document.querySelector(".edit-section")
+    let turnback_btn = document.querySelector(".closeCard")
+    let save_btn = document.querySelector(".save-btn")
+    let toggle_user_info = () => {
+        let name = document.querySelectorAll(".user-detail")
+        let input = document.querySelectorAll(".update-input")
+        let i = 0;
+        let n = input.length - 1;
+        for (i; i < n; i++) {
+            input[i].value = name[i].textContent;
+            name[i].classList.toggle("invisible")
+            if (i == 0 || i == n)
+                continue
+            input[i].classList.toggle("invisible")
+        }
+        turnback_btn.classList.toggle("invisible")
+        save_btn.classList.toggle("invisible")
+    }
+    let passInputs = document.querySelectorAll("input[type='password']");
+    passInputs.forEach(input => {
+        input.addEventListener("input", e => {
+            if (input.value.trim() != "")
+                input.nextElementSibling.classList.add("focus")
+            else 
+                input.nextElementSibling.classList.remove("focus")
+        })
+    })
+    let passForm = document.querySelector(".section-pass form")
+    passForm.addEventListener("submit", e => {
+        e.preventDefault();
+        let oldPass = passInputs[0]
+        if (passInputs[1].value != passInputs[2].value) {
+            callToast("Mật khẩu mới không trùng nhau", "failed")
+            return;
+        }
+        let url = "/Account/ChangePass"
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                _newPass: passInputs[1].value,
+                _oldPass: oldPass.value,
+                _ID: parseInt(document.querySelector(".banner img").getAttribute("data-userid"), 10)
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 200)
+                    callToast(data.successMessage, "success")
+                else
+                    callToast(data.errorMessage, "failed")
+            })
+    })
+    opener.addEventListener("click", () => {
+        document.querySelector('.userOption').classList.toggle("flex-visible")
+    })
+    //close
+    turnback_btn.addEventListener("click", () => {
+        wrapper.classList.remove("flex-visible")
+    })
+    let list_user_info = document.querySelector(".background-filter")
+    list_user_info?.addEventListener("click", () => {
+        document.getElementById("user-info").classList.remove("flex-visible")
+    })
+
+    homeMenu.addEventListener("click", () => {
+        document.querySelector(".open").classList.remove("open")
+        document.querySelector(".main-user").classList.add("open")
+    })
+    changePassMenu.addEventListener("click", () => {
+        document.querySelector(".open").classList.remove("open")
+        document.querySelector(".section-pass").classList.add("open")
+    })
+    //updateAjax
+    /*    save_btn.addEventListener("click", () => {
+            let input = document.querySelectorAll(".update-input")
+            let array = {
+                _id : null,
+                _username: "",
+                _password: "",
+                _gmail: "",
+                _ngaytao: null
+            }
+            let i = 0;
+            for (let item in array) {
+                array[item] = input[i++].value.trim();
+            }
+            console.log(array)
+            let url = "/Admin/Admin/UpdateAjax"
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(array)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code == 500) {
+                        alert(data.errorMessage)
+                        return;
+                    }
+                    let name = document.querySelectorAll(".user-detail")
+                    let j = 1;
+                    for (; j < name.length; j++)
+                    {
+                        name[j].textContent = input[j].value;
+                    }
+                    toggle_user_info()
+                })
+                .then(() => getListUser())
+        })
+         */
+        //updateAvatarByAdmin
+        let updateAvatarAJAX = (fileUrl, id) => {
+            let url = "/Admin/Admin/UpdateUserAvatar"
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _filePath: fileUrl,
+                    _id: id
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code == 200) {
+                        callToast(data.successMessage, "success")
+                    }
+                    else
+                        callToast(data.errorMessage, "failed")
+                    getUserData(id)
+                })
+        }
+</script>

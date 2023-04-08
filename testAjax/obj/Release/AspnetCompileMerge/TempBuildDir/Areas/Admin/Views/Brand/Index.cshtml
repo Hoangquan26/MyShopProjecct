@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Hãng sản xuất";
+    Layout = "~/Areas/Admin/Views/Shared/AdminTemplate.cshtml";
+}
+@section style {
+    @Styles.Render("~/bundles/p_css")
+}
+<div id="p_body">
+    <div class="chart-session"></div>
+    <div class="content-session">
+        <div class="product-session">
+            <div class="product-option">
+                <i class='bx bx-cog'></i>
+                <h2 class="">Danh sách sản phẩm</h2>
+                <div class="product-options slideOut invisible">
+                    <div class="add-product-option">
+                        <i class='bx bx-layer-plus'></i>
+                        <span>Thêm mới</span>
+                    </div>
+                    <form class="product-search">
+                        <input id="search-product-input" placeholder="Tìm kiếm theo tên" type="text" />
+                        <i class='bx bx-search-alt'></i>
+                    </form>
+                    <div class="search-product-option"></div>
+                </div>
+            </div>
+            <div class="p_rows">
+                <div class="p_columns"><span>Tên sản phẩm</span></div>
+                <div class="p_columns"><span>Giá</span></div>
+                <div class="p_columns"><span>Số lượng</span></div>
+                <div class="p_columns"><span>Thể loại</span></div>
+                <div class="p_columns"><span>Hình ảnh</span></div>
+                <div class="p_columns"><span>Hãng sx</span></div>
+            </div>
+        </div>
+        <div class="anothor-session">
+            <div class="brand_cate-session">
+                <div class="brands-content">
+                    <canvas id="brands_graph"></canvas>
+                </div>
+                <div class="cate-content">
+                    <canvas id="cate_graph"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="addProduct-session" class="invisible">
+    <div class="session-background"></div>
+    <div class="addProduct-main">
+            <table>
+                <tr>
+                    <td><label>Mã SP: </label></td>
+                    <td><input type="text" name="_maSanPham" id="add_masp" /></td>
+                </tr>
+                <tr>
+                    <td><label>Tên SP: </label></td>
+                    <td><input type="text" name="_tenSanPham" id="add_tensp" /></td>
+                </tr>
+                <tr>
+                    <td><label>Mô tả: </label></td>
+                    <td><textarea name="_moTaSanPham" id="myMoTa"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label>Giá: </label></td>
+                    <td><input type="number" name="_giaSanPham" id="add_gia" /></td>
+                </tr>
+                <tr>
+                    <td><label>Số lượng: </label></td>
+                    <td><input type="number" name="_soLuongSanPham" id="add_soluong" /></td>
+                </tr>
+                <tr>
+                    <td><label>Thể loại: </label></td>
+                    <td>
+                        <select name="_theLoaiSanPham" id="theLoaiSanPham">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Thumbnail: </label></td>
+                    <td>
+                        <input type="file" name="_hinhAnhSanPham" id="add_hinhanh" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Hãng SX: </label></td>
+                    <td>
+                        <select name="_maHangSanXuat" id="maHangSanXuat">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="add-submit" type="submit" value="Thêm" /></td>
+                    <td><span class="add_message"></span></td>
+                </tr>
+            </table>
+    </div>
+</div>
+<script src="~/Scripts/chart.js"></script>
+<script src="~/ckfinder/ckfinder.js"></script>
+<script src="~/ckeditor/ckeditor.js"></script>
+@Scripts.Render("~/bundles/product")

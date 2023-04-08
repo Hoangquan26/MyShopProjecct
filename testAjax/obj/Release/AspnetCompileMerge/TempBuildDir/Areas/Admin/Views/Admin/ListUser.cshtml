@@ -1,0 +1,498 @@
+﻿
+@{
+    ViewBag.Title = "Quản Lý Tài Khoản";
+    Layout = "~/Areas/Admin/Views/Shared/AdminTemplate.cshtml";
+}
+
+@section style {
+    <style>
+        :root {
+            --primary-color: #0E4BF1;
+            --panel--color: #fff;
+            --text-color: #000;
+            --black-light-color: #707070;
+            --border-color: #e6e5e5;
+            --toggle-color: #DDD;
+            --box1-color: #4DA3FF;
+            --box2-color: #FFE6AC;
+            --box3-color: #E7D1FC;
+        }
+
+        .list-user-info, .list-user-content {
+            color: var(--text-color);
+        }
+        .list-user-content {
+            padding-top: 40px;
+        }
+
+        .list-user-header {
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .list-user-header i {
+            color: var(--toggle-color);
+            font-size: 28px;
+            margin-right: 10px;
+            background-color: var(--primary-color);
+            padding: 5px;
+            border-radius: 7px;
+        }
+
+        .info-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .info-item {
+            border-radius: 15px;
+            padding: 30px 0;
+            width: calc(80% / 3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 500;
+            background-color: var(--box1-color);
+            transition: all ease 0.5s;
+            color: var(--text-color);
+        }
+
+        .info-list .info-item:nth-child(2) {
+            background-color: var(--box2-color);
+        }
+
+        .info-list .info-item:last-child {
+            background-color: var(--box3-color);
+        }
+
+        .info-item span {
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        .info-item i {
+            font-size: 28px;
+        }
+
+        .info-item h1 {
+            font-size: 42px;
+        }
+
+        .list-rows {
+            display: flex;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .list-rows:first-child .list-column {
+            font-weight: 600
+        }
+
+        .list-rows .list-column {
+            font-size: 18px;
+            text-align: center;
+            width: calc(99%/ 5);
+        }
+
+        .list-rows .list-column span {
+            line-height: 18px;
+        }
+
+        .list-rows .list-column i {
+            line-height: 18px;
+            padding-left: 5px;
+            cursor: pointer;
+        }
+
+        .list-content {
+            margin-bottom: 40px;
+            overflow-y: scroll;
+            height: 400px;
+        }
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background: silver;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--box2-color);
+            border-radius: 12px;
+        }
+
+
+        .list-content::-webkit-scrollbar {
+            width: 8px;
+        }
+                /* Track */
+        .list-content::-webkit-scrollbar-track {
+            background: silver;
+            border-radius: 12px;
+        }
+
+        /* Handle */
+        .list-content::-webkit-scrollbar-thumb {
+            background-color: var(--box2-color);
+            border-radius: 12px;
+        }
+
+        /* Handle on hover */
+        .list-content::-webkit-scrollbar-thumb:hover {
+            background: orange;
+        }
+
+        .listAction {
+            font-size: 18px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .filter-session {
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            top: 100%;
+        }
+
+        .filter-name {
+            height: 54px;
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            margin-left: 120px;
+            animation: slidein ease 0.5s;
+        }
+        .filter-name form {
+            position: relative;
+        }
+
+        .filter-name input {
+            min-width: 300px;
+            height: 25px;
+            font-size: 16px;
+            padding: 25px 20px;
+            border: 0;
+            border: 1px solid var(--black-light-color);
+            border-radius: 10px;
+            outline: 0;
+            color: var(--text-color);
+            background-color: var(--panel--color);
+        }
+
+        .filter-name label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5%;
+            padding: 0 5px;
+            background-color: var(--panel--color);
+            transition: all ease-in-out 0.3s;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .param:focus, .param:valid {
+            border: 2px solid var(--black-light-color);
+        }
+
+            .param:focus ~ label, .param:valid ~ label {
+                top: 0;
+                font-weight: 500;
+            }
+        /*        .filter-name input:valid~label{
+            top: -30%;
+        }*/
+        .filter-name i {
+            font-size: 22px;
+            margin-left: 10px;
+            color: var(--text-color);
+        }
+
+        .filter-name button {
+            background-color: var(--panel--color);
+            outline: 0;
+            border: 0;
+        }
+
+        @@keyframes slidein {
+            from {
+                transform: translateY(-30%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @@keyframes slideout {
+            from {
+                transform: translateY(30%);
+            }
+
+            to {
+                transform: translateY(0%);
+            }
+        }
+        /*userinfo*/
+    </style>
+    }
+    <div class="list-user-info">
+        <div class="list-user-header">
+            <i class='bx bx-bar-chart-alt-2'></i>
+            <h2>Thống Kê Tài Khoản</h2>
+        </div>
+        <div class="info-list">
+            <div class="info-item">
+                <i class='bx bxs-group'></i>
+                <span>Số Tài Khoản</span>
+                <h1>100</h1>
+            </div>
+            <div class="info-item">
+                <i class='bx bx-sitemap'></i>
+                <span>Quản Trị Viên</span>
+                <h1>5</h1>
+            </div>
+            <div class="info-item">
+                <i class='bx bxs-baby-carriage'></i>
+                <span>Tài Khoản Mới</span>
+                <h1>20</h1>
+            </div>
+        </div>
+    </div>
+    <div class="list-user-content">
+        <div class="list-user-header">
+            <i class='bx bx-list-ul filter-btn'></i>
+            <h2>Danh Sách Tài Khoản Đã Đăng Ký</h2>
+        </div>
+        <div class="filter-session">
+            <div class="filter-name invisible">
+                <form>
+                    <input class="param" required type="text" />
+                    <label for="">Tìm kiếm theo tên</label>
+                    <button type="submit">
+                        <i name="par" class='bx bx-search'></i>
+                    </button>
+                </form>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="list-content">
+            <div class="list-rows">
+                <span class="list-column">ID<i class='bx bx-sort'></i></span>
+                <span class="list-column">Username<i class='bx bx-sort'></i></span>
+                <span class="list-column">Ngày Tạo<i class='bx bx-sort'></i></span>
+                <span class="list-column">Vai Trò<i class='bx bx-sort'></i></span>
+                <span class="list-column"><i class='bx bx-cog'></i></span>
+            </div>
+        </div>
+    </div>
+@Html.Action("UserDetail", "Partial")
+<script>
+    let getListUser = (_params) => {
+        let url = "/Admin/Admin/GetList"
+        let body = document.getElementById("body")
+        let listContent = body.querySelector(".list-content")
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ _param : _params })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 200) {
+                    let list_rf = document.querySelectorAll(".list-refresh")
+                    list_rf.forEach(item => item.remove());
+                    return data.listUser;
+                }
+                else {
+                    alert(data.errorMessage)
+                    return
+                }
+            })
+            .then(dataa => {
+                dataa.forEach(data => {
+                    let listRow = document.createElement("div")
+                    listRow.classList.add("list-rows", "list-refresh")
+                    for (let item in data) {
+                        let listColumn = document.createElement("span")
+                        listColumn.classList.add("list-column")
+                        if (item == "isAdmin") {
+                            let text = "Khách"
+                            if (data[item] == true)
+                                text = "Quản trị viên"
+                            listColumn.textContent = text;
+                            listRow.appendChild(listColumn)
+                            break;
+                        }
+                        listColumn.textContent = data[item];
+                        listRow.appendChild(listColumn)
+                    }
+                    let listColumn = document.createElement("span")
+                    listColumn.classList.add("list-column")
+                    let a = document.createElement("a")
+                    a.innerHTML = "<i class='bx bx-info-circle'></i>"
+                    a.classList.add("listAction")
+                    listColumn.appendChild(a);
+                    listRow.appendChild(listColumn)
+                    listContent.appendChild(listRow)
+                })
+
+            })
+                    .then(() => {
+                    let showUserData = document.querySelectorAll(".listAction");
+                    showUserData.forEach(btn => {
+                        btn.addEventListener("click", e => {
+                            let id = btn.parentElement.parentElement.firstChild.textContent
+                            getUserData(id)
+                        })
+                    })
+                })
+    }
+    getListUser();
+    //getUserData
+    function getUserData(id){
+        let url = "/Admin/Admin/getUserInfomation";
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({_id : id})
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 500) {
+                    alert(data.errorMessage)
+                    return
+                }
+                return data;
+            })
+            .then(data => {
+                let priority = data.priority;
+                data = data.userInfo
+                document.getElementById("user-info").classList.add("flex-visible")
+                let user_content = document.querySelectorAll(".user-infomation-item")
+                let avatar = document.querySelector(".user-avatar img")
+                    console.log(data[0].avatarPath)
+                if (data[0].avatarPath.length > 0)
+                    avatar.src = data[0].avatarPath;
+                else {
+                    avatar.src ="/images/avatars/UnknownAvatar.png";
+                }
+                data.splice(data.length - 2, data.length - 1)
+                let span = document.querySelectorAll(".user-detail")
+                let i = 0;
+                for (var item in data[0]) {
+                    if (item == "id")
+                        span[i].id = "idUser"
+                    if (item == "isAdmin") {
+                        let context = (data[0][item] == true) ? "Admin" : "Khách";
+                        span[i].textContent = context
+                        break;
+                    }
+                    span[i].textContent = data[0][item]
+                    i++;
+                }
+                return priority;
+            })
+            .then(data => {
+                let deleteCheck = document.querySelectorAll(".checkbox")
+                deleteCheck.forEach(item => {
+                    item.checked = false;
+                })
+                data.forEach(item => {
+                    document.querySelector(`#${item["MaChucNang"]}`).checked = true;
+                })
+            })
+    }
+
+    //getlistchucnang
+    let getListChucNang = () => {
+        let url = "/Admin/Admin/getListChucNang"
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 500) {
+                    alert(data.errorMessage)
+                    return;
+                }
+                return data.listChucNang
+            })
+            .then(data => {
+                let array = [];
+                let wrapper = document.querySelector(".user-setup")
+                data.forEach(object => {
+                    let div = document.createElement("div")
+                    div.classList.add("priority-zone")
+                    let span = document.createElement("span")
+                    let input = document.createElement("input")
+                    input.classList.add("checkbox")
+                    input.id = object["MaChucNang"]
+                    input.type = "checkbox"
+                    span.textContent = object["TenChucNang"]
+                    div.append(span, input)
+                    wrapper.appendChild(div)
+                    array.push(input)
+                })
+                return array;
+            })
+            //addEventForHandleCheckbox
+            .then((data) => {
+                data.forEach(item => {
+                    item.addEventListener("change", (e) => {
+                        //Buoc chuan bi: lay MaChucNang 
+                        let MaChucNang = e.target.id;
+                        let _id = document.getElementById("idUser").textContent;
+                        let url = "/Admin/Admin/UpdatePriority"
+                        fetch(url, {
+                            method : 'POST',
+                            headers: {
+                                'Content-Type' : 'application/json'
+                            },
+                            body: JSON.stringify({
+                                _idUser: _id,
+                                _maChucNang: MaChucNang
+                                })
+                        })
+                            .then(respons => {
+                                respons.json()
+                            })
+                    })
+                })
+            })
+    }
+    getListChucNang();
+    let filterForm = document.querySelector(".filter-name form")
+    filterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let _param = document.querySelector(".param").value.trim();
+        getListUser(_param)
+    })
+    let filter_btn = document.querySelector(".filter-btn")
+    filter_btn.addEventListener("click", () => {
+        let filter_input = document.querySelector(".filter-name");
+        let list = document.querySelector(".list-content")
+        if (filter_input.classList.contains("invisible")) {
+            filter_input.classList.remove("invisible")
+            list.style.animation = "slidein ease 0.5s"
+        }
+        else {
+            filter_input.classList.add("invisible")
+            list.style.animation = "slideout ease 0.5s"
+        }
+    })
+</script>

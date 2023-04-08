@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 using testAjax.App_Start;
 using testAjax.Models;
@@ -64,6 +65,7 @@ namespace testAjax.Areas.Admin.Controllers
             {
                 var rs = myUser.Users.ToList();
                 var pq = new MyEntities().PhanQuyens.ToList();
+                var od = new MyEntities().DonHangs.ToList();
                 if (rs != null)
                 {
                     var returnValue = from l in rs
@@ -78,13 +80,14 @@ namespace testAjax.Areas.Admin.Controllers
                                           l.isAdmin,
                                           l.avatarPath
                                       };
+                    var numberOrders = od.Where(item => item.maKhachHang == _id).Count();
                     var getPriotiry = from l in pq
                                       where l.UserId == _id
                                       select new
                                       {
                                           l.MaChucNang
                                       };
-                    return Json(new { code = 200, userInfo = returnValue, priority = getPriotiry }, JsonRequestBehavior.AllowGet);
+                    return Json(new { code = 200, userInfo = returnValue, priority = getPriotiry, numberOrder = numberOrders }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -182,38 +185,31 @@ namespace testAjax.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult UpdateUserAvatar(int id,HttpPostedFileBase avatarPath)
+        public JsonResult UpdateUserAvatar(string _filePath, int _id)
         {
             try
             {
-                if(avatarPath != null && avatarPath.ContentLength > 0) {
-                    var fileName = Path.GetFileName(avatarPath.FileName);
-                    var path = Path.Combine(Server.MapPath("~/images/avatars/") + fileName);
-                    var myPath = Path.Combine("/images/avatars/" + fileName);
-                    avatarPath.SaveAs(path);
-/*                    MyEntities mydb = new MyEntities();
-                    var fileLocation = mydb.WebUsers.SingleOrDefault(item => item.id == 14);*//*
-                    fileLocation.avatarPath = myPath.ToString();*//*
-                    mydb.SaveChanges();         */           
-                    string connectStr = "Data Source=LAPTOP-Q23S0AEG\\MSSQLSERVER01;Initial Catalog=NewApp;Integrated Security=True";
-                    var mysql = new SqlConnection(connectStr);
-                    mysql.Open();
-                    string command = "Update WebUser set avatarPath = N\'" + myPath + "\' where id = " + id;
-                    var myCommand = new SqlCommand(command, mysql);
-                    myCommand.Parameters.Clear();
-                    myCommand.CommandType = System.Data.CommandType.Text;
-                    myCommand.ExecuteNonQuery();
-                    mysql.Close();
-                    return Json(new { code = 200, SuccessMessage = "Thành Công", newPath = myPath}, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(new { code = 500, ErrorMessage = "Thất bại" }, JsonRequestBehavior.AllowGet);
-                }
+                MyEntities mydb = new MyEntities();
+                mydb.WebUsers.SingleOrDefault(item => item.id == _id).avatarPath = _filePath;
+                mydb.SaveChanges();
+                /*                    MyEntities mydb = new MyEntities();
+                                    var fileLocation = mydb.WebUsers.SingleOrDefault(item => item.id == 14);*//*
+                                    fileLocation.avatarPath = myPath.ToString();*//*
+                                    mydb.SaveChanges();         *//*           
+                                    string connectStr = "Data Source=LAPTOP-Q23S0AEG\\MSSQLSERVER01;Initial Catalog=NewApp;Integrated Security=True";
+                                    var mysql = new SqlConnection(connectStr);
+                                    mysql.Open();
+                                    string command = "Update WebUser set avatarPath = N\'" + myPath + "\' where id = " + id;
+                                    var myCommand = new SqlCommand(command, mysql);
+                                    myCommand.Parameters.Clear();
+                                    myCommand.CommandType = System.Data.CommandType.Text;
+                                    myCommand.ExecuteNonQuery();
+                                    mysql.Close();*/
+                return Json(new { code = 200, successMessage = "Cập nhật ảnh đại diện thành công"}, JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                return Json(new { code = 500, ErrorMessage = "Thất bại" }, JsonRequestBehavior.AllowGet);
+                return Json(new { code = 500, errorMessage = "Cập nhật ảnh đại diện thất bại" }, JsonRequestBehavior.AllowGet);
             }
         }
     }

@@ -51,7 +51,7 @@ namespace testAjax.Areas.Admin.Controllers
                                   select new
                                   {
                                       p.tenSanPham,
-                                      p.soLuongSanPham
+                                      soLuongSanPham = ct.soLuong
                                   }).ToList();
                     var passData = new
                     {

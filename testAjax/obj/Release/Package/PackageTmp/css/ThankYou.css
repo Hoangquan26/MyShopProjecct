@@ -1,0 +1,245 @@
+﻿*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+
+    color: #46484a;
+}
+
+body{
+    background-color: #e6e8ea;
+}
+
+#main, #ShopLogo {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+#ShopLogo {
+    height: 50px;
+    flex-direction: row;
+    margin: 70px auto;
+}
+
+#ShopLogo img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.product-section-wrapper {
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+.product-content, .product-header, .price-content {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.subTotal-content {
+    padding: 10px 15px;
+}
+.product-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.product-content-img {
+    display: flex;
+    align-items: center;
+    width: 55px;
+
+    position: relative;
+}
+product-content-img,.product-content-price {
+    flex: 0 0 20%;
+}
+.product-content-name {
+    flex: 1 1 60%;
+}
+.product-content-img img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.product-content-img  .product-quantity {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    color: white;
+    background-color: #2a9dcc;
+    display: block;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.product-content .product-content-name {
+    padding: 0 20px;
+}
+
+.product-content .product-content-name  h5 {
+    font-weight: 400;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    height: 78px;
+}
+.price-table, .subTotal-table {
+    width: 100%;
+}
+
+.price-table tr td:last-child {
+    text-align: right;
+}
+.price-table tr td {
+    padding: 8px 0;
+}
+
+.subTotal-content .subTotal-table h4{   
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.subTotal-table h3{
+    font-size: 20px;
+    color: #2a9dcc;
+    font-weight: 400;
+}
+
+.subTotal-content .subTotal-table td {
+    padding: 10px 0;
+}
+
+.subTotal-content .subTotal-table tr td:last-child{
+    text-align: right;
+}
+.user-section{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+.thanks-section {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.thanks-section img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding-right: 10px;
+}
+
+.user-profile{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e1e1e1;
+    flex: 1 1 auto;
+}
+
+.user-profile-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.user-profile-row .user-profile-column {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.col2{
+    width: calc(99.9%/2);
+}
+
+.up-header,.user-profile-row .user-profile-column p {
+    padding: 10px 0;
+}
+.up-header h4 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.goHomneBtn {
+    align-self: flex-end;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.goHomneBtn .homebtn {
+    padding: 20px 20px;
+    background:#357ebd;
+    border-radius: 5px;
+}
+
+.goHomneBtn .homebtn:hover {
+    opacity: 0.9;
+}
+.goHomneBtn a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+.goHomneBtn a.homebtn {
+    color: white;
+}
+
+.goHomneBtn a.printbtn {
+    color: #357ebd;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+.goHomneBtn a.printbtn i {
+    font-size: 22px;
+    color : #357ebd;
+    padding: 0 5px;
+}
+
+@media (max-width: 1200px){
+    #main {
+        flex-direction: column;
+    }
+    #main, #ShopLogo {
+        width: 90%;
+    }
+    .goHomneBtn{
+        align-self: center; 
+    }
+}
+@media (max-width: 770px){
+
+    #main, #ShopLogo {
+        width: 99%;
+    }
+    .col2{
+        min-width: 100%;
+    }
+}

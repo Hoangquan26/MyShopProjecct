@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/AdminTemplate.cshtml";
+}
+
+
+@section style {
+        <link rel="stylesheet" href="~/Areas/Admin/css/Order.css" />
+    }
+
+<div class="order-wrapper">
+    <div class="order-header">
+        <div data-status="0" class="order-header-item active"><h4>Tất cả</h4></div>
+        <div data-status="1" class="order-header-item"><h4>Chờ xác nhận</h4></div>
+        <div data-status="2" class="order-header-item"><h4>Chuẩn bị hàng</h4></div>
+        <div data-status="3" class="order-header-item"><h4>Đang giao hàng</h4></div>
+        <div data-status="4" class="order-header-item"><h4>Đã giao hàng</h4></div>
+        <div data-status="5" class="order-header-item"><h4>Đã hủy</h4></div>
+    </div>
+    <div class="order-content">
+        <div class="order-content-header">
+            <span>Mã đơn hàng</span>
+            <span >Ngày đặt</span>
+            <span>Phương thức thanh toán</span>
+            <span>Sản phẩm</span>
+            <span>Giá trị</span>
+            <span>Trạng thái đơn hàng</span>
+        </div>
+        <div class="order-list">
+            <div class="order-item">
+                <div>#213213</div>
+                <div>25/23/23</div>
+                <div>Hoàng QUân</div>
+                <div>
+                    <p>ádasdasd</p>
+                    <p>ádasdasd</p>
+                </div>
+                <div>12312312312</div>
+                <div class="order-status">
+                    <div class="confirm-order">
+                        <div class="accept-order"><i class='bx bx-check'></i><span>Xác nhận</span></div>
+                        <div class="reject-order"><i class='bx bx-x'></i><span>Từ chối</span></div>
+                    </div>
+                    <div class="delivery-status">
+                        <select class="delivery-select">
+                            <option>Đang vận chuyển</option>
+                            <option>Đang chuẩn bị</option>
+                            <option>Hủy đơn</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pagination"></div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Areas/Admin/js/pagination.js"></script>
+<script src="~/Areas/Admin/js/Order.js"></script>

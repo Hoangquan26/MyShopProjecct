@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NewAppModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="maDonHang" />
+      <PropertyRef Name="maSanPham" />
+    </Key>
+    <Property Name="maDonHang" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="maSanPham" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="soLuong" Type="int" />
+    <Property Name="giaBan" Type="int" />
+  </EntityType>
+  <EntityType Name="ChucNang">
+    <Key>
+      <PropertyRef Name="MaChucNang" />
+    </Key>
+    <Property Name="MaChucNang" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenChucNang" Type="nvarchar" MaxLength="50" />
+    <Property Name="NhomChucNang" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="maDonHang" />
+    </Key>
+    <Property Name="maDonHang" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="maKhachHang" Type="int" />
+    <Property Name="giaTri" Type="int" />
+    <Property Name="ngayDat" Type="smalldatetime" />
+    <Property Name="trangThaiDonHang" Type="int" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="2000" />
+    <Property Name="sdt" Type="nchar" MaxLength="10" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ghiChu" Type="nvarchar" MaxLength="1000" />
+    <Property Name="hoTen" Type="nvarchar" MaxLength="1000" />
+    <Property Name="phuongThucThanhToan" Type="int" />
+  </EntityType>
+  <EntityType Name="HangSanXuat">
+    <Key>
+      <PropertyRef Name="maHangSanXuat" />
+    </Key>
+    <Property Name="maHangSanXuat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenHangSanXuat" Type="nvarchar" MaxLength="100" />
+    <Property Name="logoPath" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="maTheLoai" />
+    </Key>
+    <Property Name="maTheLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenTheLoai" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="maPhuongThuc" />
+    </Key>
+    <Property Name="maPhuongThuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenPhuongThuc" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="MaChucNang" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="MaChucNang" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="maSanPham" />
+    </Key>
+    <Property Name="maSanPham" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="tenSanPham" Type="nvarchar" MaxLength="200" />
+    <Property Name="moTaSanPham" Type="nvarchar" MaxLength="3999" />
+    <Property Name="giaSanPham" Type="int" />
+    <Property Name="soLuongSanPham" Type="int" />
+    <Property Name="theLoaiSanPham" Type="int" />
+    <Property Name="hinhAnhSanPham" Type="nvarchar" MaxLength="100" />
+    <Property Name="maHangSanXuat" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPham_YeuThich">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="SanPham_ID" Type="varchar" MaxLength="100" />
+    <Property Name="Time" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="TrangThaiDonHang">
+    <Key>
+      <PropertyRef Name="maTrangThai" />
+    </Key>
+    <Property Name="maTrangThai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenTranThai" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="WebUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="30" />
+    <Property Name="gmail" Type="nvarchar" MaxLength="30" />
+    <Property Name="ngayTaoTaiKhoan" Type="smalldatetime" />
+    <Property Name="avatarPath" Type="nvarchar" MaxLength="100" />
+    <Property Name="isAdmin" Type="bit" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="500" />
+    <Property Name="dienThoai" Type="varchar" MaxLength="10" />
+    <Property Name="hoTen" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <Association Name="ChiTietDonHang_DonHang">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="maDonHang" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="maDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChiTietDonHang_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="maSanPham" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="maSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DonHang_TrangThai">
+    <End Role="TrangThaiDonHang" Type="Self.TrangThaiDonHang" Multiplicity="0..1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrangThaiDonHang">
+        <PropertyRef Name="maTrangThai" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="trangThaiDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__maHangS__5AEE82B9">
+    <End Role="HangSanXuat" Type="Self.HangSanXuat" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HangSanXuat">
+        <PropertyRef Name="maHangSanXuat" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="maHangSanXuat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__theLoai__4BAC3F29">
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="maTheLoai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="theLoaiSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonHang_Payment">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="maPhuongThuc" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="phuongThucThanhToan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonHang_WebUser">
+    <End Role="WebUser" Type="Self.WebUser" Multiplicity="0..1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WebUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="maKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhanQuyen_ChucNang">
+    <End Role="ChucNang" Type="Self.ChucNang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChucNang">
+        <PropertyRef Name="MaChucNang" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="MaChucNang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhanQuyen_WebUser">
+    <End Role="WebUser" Type="Self.WebUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WebUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_YeuThich_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SanPham_YeuThich" Type="Self.SanPham_YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="maSanPham" />
+      </Principal>
+      <Dependent Role="SanPham_YeuThich">
+        <PropertyRef Name="SanPham_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_YeuThich_WebUser">
+    <End Role="WebUser" Type="Self.WebUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SanPham_YeuThich" Type="Self.SanPham_YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WebUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SanPham_YeuThich">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NewAppModel1StoreContainer">
+    <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham_YeuThich" EntityType="Self.SanPham_YeuThich" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrangThaiDonHang" EntityType="Self.TrangThaiDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ChiTietDonHang_DonHang" Association="Self.ChiTietDonHang_DonHang">
+      <End Role="DonHang" EntitySet="DonHang" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="ChiTietDonHang_SanPham" Association="Self.ChiTietDonHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="DonHang_TrangThai" Association="Self.DonHang_TrangThai">
+      <End Role="TrangThaiDonHang" EntitySet="TrangThaiDonHang" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__maHangS__5AEE82B9" Association="Self.FK__SanPham__maHangS__5AEE82B9">
+      <End Role="HangSanXuat" EntitySet="HangSanXuat" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__theLoai__4BAC3F29" Association="Self.FK__SanPham__theLoai__4BAC3F29">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonHang_Payment" Association="Self.FK_DonHang_Payment">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonHang_WebUser" Association="Self.FK_DonHang_WebUser">
+      <End Role="WebUser" EntitySet="WebUser" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
+      <End Role="ChucNang" EntitySet="ChucNang" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhanQuyen_WebUser" Association="Self.FK_PhanQuyen_WebUser">
+      <End Role="WebUser" EntitySet="WebUser" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_YeuThich_SanPham" Association="Self.FK_SanPham_YeuThich_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_YeuThich_WebUser" Association="Self.FK_SanPham_YeuThich_WebUser">
+      <End Role="WebUser" EntitySet="WebUser" />
+      <End Role="SanPham_YeuThich" EntitySet="SanPham_YeuThich" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

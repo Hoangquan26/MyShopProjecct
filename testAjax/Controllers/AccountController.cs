@@ -7,6 +7,7 @@ using System.Web.Routing;
 using testAjax.Models;
 using System.IO;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace testAjax.Controllers
 {
@@ -107,10 +108,25 @@ namespace testAjax.Controllers
             }
         }
 
-        public JsonResult LogoutAjax()
+        public ActionResult LogoutAjax()
         {
             Session["user"] = null;
-            return Json(new { code = 200, da = "Đăng xuất thành công"}, JsonRequestBehavior.AllowGet);   
+            return RedirectToAction("Index", "Home");
+        }
+        public JsonResult ChangePass(string _newPass, int _ID, string _oldPass)
+        {
+            try{
+                bool updateStatus = UserModeForAdmin.UpdatePassword(_newPass, _ID, _oldPass);
+                if(!updateStatus)
+                {
+                    return Json(new { code = 500, errorMessage = "Mật khẩu cũ không đúng" }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { code = 200, successMessage = "Bạn đã đổi mật khẩu thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { code = 500, errorMessage = "Có lỗi xảy ra trong quá trình đổi mật khẩu" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

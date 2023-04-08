@@ -1,0 +1,330 @@
+﻿<style>
+    #user-info {
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+    }
+
+    #user-info.flex-visible {
+        display: flex;
+    }
+
+    .background-filter {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+    }
+
+    .info-section {
+        padding: 10px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .info-section-wrapper {
+        border-radius: 10px;
+        z-index: 2;
+        background-color: var(--panel--color);
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        animation: showUp ease 0.3s;
+    }
+
+    .user-avatar {
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: var(--toggle-color);
+        position: relative;
+    }
+
+    .user-avatar img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        transition: all ease 2s;
+    }
+    .user-avatar .img-file {
+
+    }
+    .imgbackground-filter {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--text-color);
+        z-index: 7;
+        transition: all ease 0.5s;
+    }
+
+    .user-avatar:hover img {
+        transform: scale(1.1);
+    }
+    .user-avatar:hover .imgbackground-filter {
+        opacity: 0.4;
+    }
+    .user-infomation {
+        width: 60%;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .user-infomation-item {
+        margin-top: 12px;
+        display: flex;
+        justify-items: center;
+        justify-content: flex-start;
+        height: 30px;
+    }
+
+    .user-infomation-item span {
+        color: var(--black-light-color);
+        margin-left: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        flex: 1 1 70%;
+    }
+    .user-infomation-item span:first-child {
+        flex: 0 1 35%;
+    }
+
+    .update-input {
+        width: 200px;
+        font-size: 16px;
+        border: 0;
+        border-bottom: 1px solid var(--black-light-color);
+        background-color: transparent;
+        outline: 0;
+        padding: 0 4px;
+        flex: 1 1 70%;
+        color: var(--text-color);
+        margin-right: 5px;
+    }
+    .priority-zone {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .user-setup {
+        margin-left: 6px;
+        padding-left: 6px;
+        width: 20%;
+    }
+
+    .user-setup h2 {
+        text-align: center;
+    }
+    .user-setup h2 i {
+        color: var(--black-light-color);
+        font-size: 32px;
+    }
+
+    .priority-zone span {
+        color: var(--black-light-color);
+    }
+    .invisible {
+        display: none;
+    }
+
+    @@keyframes showUp {
+        from 
+        {
+            opacity: 0;
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    .edit-section{
+        margin-top : 10px;
+    }
+    .edit-section i{
+        color: var(--text-color);
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .submit-section{
+        margin-bottom: 10px;
+    }
+    .submit-section a {
+        color: var(--text-color);
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+</style>
+
+<div id="user-info">
+    <div class="background-filter">
+    </div>
+    <div class="info-section-wrapper">
+        <div class="edit-section">
+            <i class='bx bx-edit-alt'></i>
+        </div>
+        <div class="info-section">
+            <div class="user-avatar">
+                <img src="~/images/avatars/UnknownAvatar.png" />
+                <div class="imgbackground-filter">
+                    <input type="file" class="img-file"/>
+                </div>
+            </div>
+            <div class="user-infomation">
+                <div class="user-infomation-item">
+                    <span class="span-content">ID:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Tài Khoản:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Mật Khẩu:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Gmail:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Ngày Tạo:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="date" />
+                </div>
+                <div class="user-infomation-item">
+                    <span class="span-content">Vai Trò:</span>
+                    <span class="user-detail"></span>
+                    <input class="update-input  invisible" type="text" />
+                </div>
+            </div>
+            <div class="user-setup">
+                <h2><i class='bx bx-universal-access'></i></h2>
+            </div>
+        </div>
+        <div class="submit-section">
+            <a class="save-btn invisible">Lưu</a>
+            <a class="turnback-btn">Quay lại</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let wrapper = document.getElementById("user-info")
+    let edit_btn = document.querySelector(".edit-section")
+    let turnback_btn = document.querySelector(".turnback-btn")
+    let save_btn = document.querySelector(".save-btn")
+    let toggle_user_info = () => {
+        let name = document.querySelectorAll(".user-detail")
+        let input = document.querySelectorAll(".update-input")
+        let i = 0;
+        let n = input.length - 1;
+        for (i; i < n; i++) {
+            input[i].value = name[i].textContent;
+            name[i].classList.toggle("invisible")
+            if (i == 0 || i == n)
+                continue
+            input[i].classList.toggle("invisible")
+        }
+        turnback_btn.classList.toggle("invisible")
+        save_btn.classList.toggle("invisible")
+    }
+    edit_btn.addEventListener("click", () => {
+       toggle_user_info()
+    })
+    //close
+    turnback_btn.addEventListener("click", () => { 
+        wrapper.classList.remove("flex-visible")
+    })
+    let list_user_info = document.querySelector(".background-filter")
+    list_user_info.addEventListener("click", () => {
+        document.getElementById("user-info").classList.remove("flex-visible")
+    })
+    //updateAjax
+    save_btn.addEventListener("click", () => {
+        let input = document.querySelectorAll(".update-input")
+        let array = {
+            _id : null,
+            _username: "",
+            _password: "",
+            _gmail: "",
+            _ngaytao: null
+        }
+        let i = 0;
+        for (let item in array) {
+            array[item] = input[i++].value.trim();
+        }
+        console.log(array)
+        let url = "/Admin/Admin/UpdateAjax"
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(array)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 500) {
+                    alert(data.errorMessage)
+                    return;
+                }
+                let name = document.querySelectorAll(".user-detail")
+                let j = 1;
+                for (; j < name.length; j++)
+                {
+                    name[j].textContent = input[j].value;
+                }
+                toggle_user_info()
+            })
+            .then(() => getListUser())
+    })
+
+    //updateAvatarByAdmin
+    let img_input = document.querySelector(".img-file")
+    img_input.addEventListener("change", e => {
+        let url = "/Admin/Admin/UpdateUserAvatar"
+        const myAvatar = new FormData();
+        myAvatar.set("id", document.getElementById("idUser").textContent)
+        myAvatar.set("avatarPath", img_input.files[0])
+        fetch(url, {
+            method: "POST",
+            body: myAvatar
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 200) {
+                    document.querySelector(".user-avatar img").src = data.newPath;
+                }
+            })
+            .catch(response => {
+                alert(response.json().errorMessage)
+            })
+    })
+</script>

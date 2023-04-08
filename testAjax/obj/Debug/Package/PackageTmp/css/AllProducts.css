@@ -1,0 +1,386 @@
+﻿@media (max-width: 1200px) {
+    .col4 {
+        width: calc(99.9%/2) !important;
+    }
+    .product-filter-content {
+        min-width: 50%!important;
+    }
+}
+
+@media (max-width: 700px) {
+    .filter-wrapper, .listproducts-wrapper {
+        width: initial!important;
+    }
+    .sort-session .sort-option {
+        right: -1px;
+        left: initial !important;
+        min-width: 160px
+    }
+    .sort-session .sort-option::after {
+        left: initial !important;
+        right: -1px;
+        max-width: 36px;
+    }
+    .products-wrapper {
+        left: 0 !important;
+        min-width: 100%;
+    }
+    .product-categories {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .product-categories .sort-session {
+        margin: 5px 0;
+    }
+    .product-filter-content {
+        min-width: 100%!important;
+
+    }
+    .filter-btn span, .sort-session span {
+        display: none;
+    }
+    .product-categories {
+        flex-direction: initial; 
+        flex: 1 1 auto;
+    }
+    .filter-input input, .filter-input{
+        flex: 1 1 auto;
+        max-width: initial !important;
+    }
+    .products-wrapper .filter-wrapper {
+        flex-wrap: nowrap !important;
+        min-width: 90%;
+    }
+}
+
+.container .products-wrapper{
+    position: relative;
+    left: 75px;
+    width: calc(100% - 75px);
+    top: 75px;
+    transition: all ease 0.5s;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.product-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 0.5s;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-filter-content {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    position: fixed;
+    right: -20%;
+    width: 15%;
+    z-index: 5;
+    transition : all ease 0.5s;
+    opacity: 0;
+    top: 300px;
+    bottom: 0;
+}
+.products-wrapper.filter-on .product-filter-content {
+    right: 0;
+    opacity: 1;
+    min-width: 20%;
+}
+
+.product-filter-wrapper {
+    overflow-y: scroll;
+    padding-left: 10px;
+}
+.product-filter-content .product-filter-content-header
+{
+    background-color : var(--secondary-color);
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-filter-content-header i {
+    color: white;
+    font-size: 22px;
+}
+.product-filter-content-header div:last-child {
+    align-self: start;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    cursor: pointer;
+}
+.product-filter-content-header div:last-child:hover i{
+    color: var(--danger-color);
+}
+.product-filter-content .product-filter-content-header h4, .product-filter-content .product-filter-content-header p {
+    color: var(--panel--color);
+    font-weight: 300;
+}
+
+.product-filter-session {
+    margin-top: 20px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-items  {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-items.filter-toogle span:last-child {
+    color: var(--box3-color);
+}
+.filter-items.filter-toogle .filter-item-toggle:before {
+    color: var(--box3-color);
+    left: calc(100% - 15px - 2px);
+}
+
+.filter-items.filter-toogle .filter-item-toggle {
+    background-color : var(--box3-color);
+}
+
+.filter-items:hover span:last-child{
+    color: var(--box3-color);
+}
+.filter-items span {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+    padding: 10px 0;
+}
+.filter-items .filter-item-toggle {
+    width: 35px;
+    height: 20px;
+    background: var(--border-color);
+    border-radius: 15px;
+    position: relative;
+    transition: all ease 0.3s;
+}
+
+.filter-items .filter-item-toggle:before {
+    content: "";
+    position: absolute;
+    height: calc(100% - 5px);
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2px;
+    transition: all ease 0.3s;
+}
+
+.container.closeNav .products-wrapper {
+    left: 255px;
+    width: calc(100% - 255px);
+}
+
+.products-wrapper .filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 20px;
+    z-index: 5;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+    width: 75%;
+    display: flex;
+    transition: all ease 0.5s;
+    box-shadow: 0px 0px 10px 1px var(--border-color);
+}
+
+.product-categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-session {
+    margin-left: 10px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sort-session:hover {
+    border: 1px solid #000;
+}
+
+.sort-session.active {
+    border: 1px solid #000;
+}
+
+.sort-session.active .sort-option {
+    display: flex;
+}
+
+.sort-session .sort-option {
+    padding-top: 10px;
+    position: absolute;
+    top: calc(100% - 5px);
+    display: none;
+    background-color: white;
+    flex-direction: column;
+    left: -1px;
+    width: 200%;
+    border: 1px solid #000;
+    z-index: 1;
+}
+
+.sort-session .sort-option::after {
+    content : "";
+    background-color: #fff;
+    width: calc(50% + 1px);
+    height: 1px;
+    position: absolute;
+    top: -1px;
+}
+
+
+.sort-session .sort-option span {
+    margin: 5px 0;
+    padding: 5px 15px;
+    font-size: 16px;
+    display: block;
+    position: relative;
+}
+
+.sort-session .sort-option span.activeOption::after{
+    content: "";
+    position: absolute;
+    height: 65%;
+    width: 4px;
+    background-color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+}
+
+.products-wrapper .filter-wrapper i,
+.sort-session i{
+    font-size: 25px;
+    font-weight: 500;
+    color : #000;
+}
+
+
+.products-wrapper .filter-wrapper .filter-btn,
+.sort-session{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.products-wrapper .filter-wrapper .filter-btn:active span,
+.products-wrapper .filter-wrapper .filter-btn:active i,
+.sort-session:active>span,
+.sort-session:active>i
+{
+    color : var(--box3-color);
+}
+.products-wrapper .filter-wrapper .filter-btn span,
+.sort-session span{
+    font-size: 16px;
+    margin-left: 5px;
+    padding: 0 5px;
+}
+.filter-input {
+    display: flex;
+    align-items: center;
+    background: #eceff1;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.filter-input i {
+    font-size: 10px;
+    padding: 0 5px;
+}
+.filter-input input{
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: transparent;
+}
+
+.container.closeNav .products-wrapper .filter-wrapper,
+.container.closeNav .products-wrapper .listproducts-wrapper {
+    width: 85%;
+}
+.products-wrapper .listproducts-wrapper {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    transition: all ease 0.5s;
+    padding-bottom: 40px;
+}
+.col4 {
+    padding: 20px!important;
+}
+
+
+.page-list-wrapper {
+    display: flex;
+
+}
+.page-list-wrapper .page-list {
+    display: flex;
+    padding: 0;
+}
+.page-list-wrapper .page-list li, .next,.prev {
+    list-style: none;
+    display: inline-block;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: #000;
+    border: 1px solid var(--border-color);
+    margin: 5px;
+    cursor: pointer;
+    flex: 0 1 1;
+    border-radius: 4px;
+}
+
+.page-list-wrapper .page-list li.current-page {
+    border: 2px solid var(--box2-color);
+}
+
+.page-list-wrapper .page-list li.current-page a {
+    color: var(--box2-color);
+    font-weight: 500;
+}
+
+.page-list-wrapper .page-list a {
+    display: block;
+    width: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: var(--black-light-color);
+}
+
+.page-list-wrapper .page-list li:hover {
+    background-color: var(--border-color);
+    color: var(--panel--color);
+}
+

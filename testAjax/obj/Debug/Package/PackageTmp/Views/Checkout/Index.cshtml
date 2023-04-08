@@ -1,0 +1,183 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/Checkout.css" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Thin.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Black.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Bold.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Light.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Regular.ttf" />
+    <link rel="stylesheet" href="~/fonts/Roboto/Roboto-Medium.ttf" />
+    <link rel="stylesheet" href="~/icons/boxicons-2.1.4/css/boxicons.css" />
+
+</head>
+<body>
+    <div id="main">
+        <div class="user-info">
+            <div class="col-two">
+                <div class="section-header">
+                    <h2 class="section-title">Thông tin nhận hàng</h2>
+                </div>
+                <div class="section-content">
+                    <form id="user-table">
+                        <div class="input-wrapper">
+                            <input id="hoTen" name="hoTen" type="text" />
+                            <label for="name">Họ và tên</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <input id="gmail" name="email" type="text" />
+                            <label for="gmail">Email</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <input id="dienThoai" name="sdt" type="text" />
+                            <label for="dienThoai">Số điện thoại</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <input id="diaChi" name="diaChi" type="text" />
+                            <label for="diaChi">Địa chỉ</label>
+                        </div>
+                        <div class="input-wrapper active">
+                            <select id="tinh" placeholder="Chọn tỉnh thành" name="tinhThanh">
+                                <option selected value="-1">---</option>
+                            </select>
+                            <label for="tinh">Tỉnh thành</label>
+                        </div>
+                        <div class="input-wrapper active">
+                            <select id="quanHuyen" disabled class="disabled " name="quanHuyen">
+                                <option selected value="-1">---</option>
+                            </select>
+                            <label for="quanHuyen">Quận huyện (tùy chọn)</label>
+                        </div>
+                        <div class="input-wrapper active">
+                            <select id="phuongXa" disabled class="disabled" name="phuongXa">
+                                <option selected value="-1">---</option>
+                            </select>
+                            <label for="phuongXa">Phường xã (tùy chọn)</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <input id="ghiChu" name="ghiChu" type="text" />
+                            <label for="ghiChu">Ghi chú</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-two">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Vận chuyển</h2>
+                    </div>
+                    <div class="section-content shipinfo-section showAlert">
+                        <div class="ship-section">
+                            <div class="radio-wrapper">
+                                <input type="radio" name="ship" value="ship_1" />
+                                <span class="radio-checkmark"></span>
+                                <span>
+                                    Giao hàng tận nơi
+                                </span>
+                            </div>
+                            <span>
+                                35.000đ
+                            </span>
+                        </div>
+                        <div class="alert-section">
+                            <span>
+                                Vui lòng chọn thông tin giao hàng
+                            </span>
+                        </div>
+                    </div>
+                    <span class="ship-alert">Bạn chưa nhập thông tin giao hàng</span>
+                </div>
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Thanh toán</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="ship-section">
+                            <div class="radio-wrapper">
+                                <input type="radio" name="payment" value="2" />
+                                <span class="radio-checkmark"></span>
+                                <span>
+                                    Chuyển khoản qua ngân hàng
+                                </span>
+                            </div>
+                            <span>
+                                <i class='bx bx-credit-card'></i>
+                            </span>
+                        </div>
+                        <div class="section-content-info">
+                            <p>Quý khách vui lòng chuyển khoản toàn bộ vào tài khoản sau:</p>
+                            <p>- STK: 0882428484444</p>
+                            <p>- Ngân hàng: Mb Bank</p>
+                            <p>- Chủ tài khoản: Trần Hoàng Quân</p>
+                            <p>- Nội dung chuyển khoản: Mã đơn hàng + SĐT. Ví dụ: 1026 0334898666</p>
+                            <p>Xin chân thành cảm ơn</p>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="ship-section">
+                            <div class="radio-wrapper">
+                                <input type="radio" name="payment" value="1" />
+                                <span class="radio-checkmark"></span>
+                                <span>
+                                    Thanh toán khi giao hàng (COD)
+                                </span>
+                            </div>
+                            <span>
+                                <i class='bx bx-money'></i>
+                            </span>
+                        </div>
+                        <div class="section-content-info">
+                            <p>Bạn chỉ phải thanh toán khi nhận được hàng.</p>
+                            <p>Với những sản phẩm yêu cầu bắt buộc đặt cọc, vui lòng không chọn tùy chọn này.</p>
+                        </div>
+                    </div>
+                </div>
+                <span class="payment-alert">Bạn chưa chọn thông tin thanh toán</span>
+            </div>
+        </div>
+        <div class="product-info">
+            <div class="product-wrapper">
+                <div class="section-header">
+                    <h2 class="section-title">Đơn hàng</h2>
+                </div>
+                <div class="product-main">
+
+                </div>
+
+
+
+                <div class="total-amount">
+                    <div class="price-total">
+                        <span>Tạm tính</span>
+                        <span id="price"></span>
+                    </div>
+                    <div class="ship-total">
+                        <span>Phí vận chuyển</span>
+                        <span>35.000₫</span>
+                    </div>
+                </div>
+                <div class="total-amount">
+                    <div class="finalCost">
+                        <h4>Tổng cộng</h4>
+                        <h4 id="finalcost"></h4>
+                    </div>
+                    <div class="user-option">
+                        <a href="/Home"><i class='bx bx-chevron-left'></i>Quay về giỏ hàng</a>
+                        <button type="submit" id="buyBtn">Đặt hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/AddToCart.js"></script>
+    <script src="~/js/Checkout.js"></script>
+</body>
+</html>
