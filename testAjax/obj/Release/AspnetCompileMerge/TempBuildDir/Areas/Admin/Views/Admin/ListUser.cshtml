@@ -298,7 +298,8 @@
             </div>
         </div>
     </div>
-@Html.Action("UserDetail", "Partial")
+@Html.Action("UserDetail", "Partial", new {area = ""})
+<script src="~/Areas/Admin/js/ShowUserInfo.js"></script>
 <script>
     let getListUser = (_params) => {
         let url = "/Admin/Admin/GetList"
@@ -357,6 +358,7 @@
                     showUserData.forEach(btn => {
                         btn.addEventListener("click", e => {
                             let id = btn.parentElement.parentElement.firstChild.textContent
+                            document.querySelector(".card").classList.add("flex-visible")
                             getUserData(id)
                         })
                     })
@@ -364,7 +366,7 @@
     }
     getListUser();
     //getUserData
-    function getUserData(id){
+/*    function getUserData(id){
         let url = "/Admin/Admin/getUserInfomation";
         fetch(url, {
             method: "POST",
@@ -418,10 +420,10 @@
                     document.querySelector(`#${item["MaChucNang"]}`).checked = true;
                 })
             })
-    }
+    }*/
 
     //getlistchucnang
-    let getListChucNang = () => {
+/*    let getListChucNang = () => {
         let url = "/Admin/Admin/getListChucNang"
         fetch(url)
             .then(response => response.json())
@@ -454,7 +456,7 @@
             .then((data) => {
                 data.forEach(item => {
                     item.addEventListener("change", (e) => {
-                        //Buoc chuan bi: lay MaChucNang 
+                        //Buoc chuan bi: lay MaChucNang
                         let MaChucNang = e.target.id;
                         let _id = document.getElementById("idUser").textContent;
                         let url = "/Admin/Admin/UpdatePriority"
@@ -474,8 +476,8 @@
                     })
                 })
             })
-    }
-    getListChucNang();
+    }*/
+/*    getListChucNang();*/
     let filterForm = document.querySelector(".filter-name form")
     filterForm.addEventListener("submit", (e) => {
         e.preventDefault();

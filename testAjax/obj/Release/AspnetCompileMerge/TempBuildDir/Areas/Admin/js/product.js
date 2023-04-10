@@ -1,4 +1,5 @@
-﻿function loadProduct(Param) {
+﻿let importSession = document.querySelector(".importSection")
+function loadProduct(Param) {
     let products = document.querySelector(".product-session")
     let url = "/Admin/Brand/loadProduct"
     fetch(url, {
@@ -24,6 +25,8 @@
                 let row = document.createElement("div")
                 row.classList.add("p_rows")
                 for (let key in product) {
+                    if (key == "maSanPham")
+                        continue
                     let column = document.createElement("div")
                     column.classList.add("p_columns")
                     if (key == 'hinhAnhSanPham' && product[key] != null) {
@@ -38,10 +41,47 @@
                     column.appendChild(span)
                     row.appendChild(column)
                 }
+                let div = document.createElement("div")
+                div.classList.add("p_columns")
+                div.innerHTML = `<i class='bx bx-dots-vertical-rounded'></i>
+                                <div class="product-option">
+                                    <div class="editBtn"><span>Sửa</span></div>
+                                    <div class="deleteBtn"><span>Xóa</span></div>
+                                    <div class="importBtn"><span>Nhập hàng</span></div>
+                                </div>`
+                let i = div.querySelector("i")
+                let option = div.querySelector(".product-option")
+                i.addEventListener("click", () => {
+                    option.classList.toggle("onOption")
+                })
+                option.addEventListener("click", () => {
+                    option.classList.toggle("onOption")
+                })
+                let deleteBtn = div.querySelector(".deleteBtn")
+                let importBtn = div.querySelector(".importBtn")
+                importBtn.addEventListener("click", e => {
+                    importSession.classList.remove("invisible")
+                    importSession.classList.add("flex-visible")
+                    importSession.querySelector("input[name='maSanPham']").value = product.maSanPham
+                    importSession.querySelector(".import-price input[type='number']").value = product.giaSanPham
+                })
+                deleteBtn.addEventListener("click", () => {
+                    row.remove();
+                    fetch("/Admin/Brand/DeleteProduct", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id : product.maSanPham
+                            })
+                    })
+                })
+                row.appendChild(div)
                 products.appendChild(row)
             })
         })
-    url = "/Admin/Brand/loadBrand"
+    /*url = "/Admin/Brand/loadBrand"
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -71,7 +111,7 @@
                     select.appendChild(option)
                 })
             }
-        })
+        })*/
 }
 loadProduct()
 
@@ -185,16 +225,16 @@ let getCategorysCount = () => {
 getCategorysCount();
 getBrands();
 //ckEditorSetup
-CKEDITOR.replace("myMoTa", {
+/*CKEDITOR.replace("myMoTa", {
     filebrowserBrowseUrl : "/ckfinder/ckfinder.html",
     filebrowserImageUrl : "/ckfinder/ckfinder.html?type=Images",
     filebrowserFlashUrl : "/ckfinder/ckfinder.html?type=Flash",
     filebrowserUploadUrl : "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files",
     filebrowserImageUploadUrl : "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images",
    filebrowserFlashUploadUrl : "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash"
-})
+})*/
 //addProductAjax
-var addProductVisible = () => {
+/*var addProductVisible = () => {
     let addSession = document.getElementById("addProduct-session")
     addSession.classList.remove("flex-visible")
     addSession.classList.add("invisible")
@@ -204,17 +244,11 @@ var addProductInvisible = () => {
     addSession.classList.add("flex-visible")
     addSession.classList.remove("invisible")
     document.querySelector("span.add_message").textContent = ""
-}
+}*/
 
 let addProductBtn = document.querySelector(".add-product-option")
 addProductBtn.addEventListener("click", () => {
-    let addSession = document.getElementById("addProduct-session")
-    if (addSession.classList.contains("invisible")) {
-        addProductInvisible();
-    }
-    else {
-        addProductVisible()
-    }
+    window.location.href = "/Admin/Order/addProductView"
 })
 
 let addProduct_background = document.querySelector("#addProduct-session .session-background")
@@ -295,4 +329,37 @@ product_search.querySelector("i").addEventListener("click", e => {
     }
     product_search_input.value = "";
     loadProduct()
+})
+
+//optionMenu
+
+let closeImportBtn = importSession.querySelector(".bx.bx-x")
+let submitImportBtn = importSession.querySelector(".import-submit button")
+closeImportBtn.addEventListener("click", e => {
+    importSession.classList.remove("flex-visible")
+    importSession.classList.add("invisible")
+    importSession.querySelector("input[name='maSanPham']").value = ''
+})
+submitImportBtn.addEventListener("click", e => {
+    let _id = importSession.querySelector(".import-submit input[name='maSanPham']").value
+    let _quantity = parseInt(importSession.querySelector(".import-quantity input[type='number']").value, 10)
+    let _price = parseInt(importSession.querySelector(".import-price input[type='number']").value, 10)
+    fetch("/Admin/Brand/ImportProduct", {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+            id: _id,
+            quantity: _quantity,
+            price: _price
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            importSession.classList.remove("flex-visible")
+            importSession.classList.add("invisible")
+            importSession.querySelector("input[name='maSanPham']").value = ''
+            loadProduct();
+        })
 })

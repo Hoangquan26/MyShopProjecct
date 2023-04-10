@@ -303,8 +303,9 @@ buyBtn.addEventListener("click", (e) => {
         .then(data => {
             if (data.code == 500) {
                 alert("Lỗi")
-                Promise.reject()
+                return;
             }
+            callToast("Đặt hàng thành công!Gmail xác nhận sẽ được gửi đến bạn","success")
             object.giaTri = data.thisSubTotal
             object.maDonHang = data.maDonHang
             object.phuongThucThanhToan = data.payment

@@ -28,6 +28,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/images/Logo/LogoWhite.jpeg">
     <link href="~/icons/boxicons-2.1.4/css/boxicons.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +36,6 @@
     <link href="~/fonts/fontawesome-free-6.3.0-web/css/all.min.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/site.css"> 
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("link", false)
     <style>
@@ -86,6 +86,15 @@
         }
 
         @@media (max-width : 700px) {
+
+            #footer-wrapper {
+                margin-left: initial !important;
+                min-width: calc(100%);
+            }
+            #footer-main {
+                flex-direction: column;
+                margin-bottom: 70px;
+            }
             .toogle-nav img {
                 display: none;
             }
@@ -184,8 +193,21 @@
             #navbar .navbar-controller span {
                 font-size: 14px !important;
             }
-        }
 
+            .navbar-list-help .userIcon a .user-name {
+                display: none;
+            }
+        }
+        @@media (max-width: 1200px) {
+            .nav-notify {
+                display: none !important;
+            }
+
+            #navbar i {
+                line-height: 30px !important;
+                padding: 5px 0;
+            }
+        }
         #wishlist {
             left: 0 !important;
         }
@@ -252,45 +274,77 @@
             }
 
         #footer-wrapper {
-            width: 100%;
+            width: calc(100% - 70px);
             margin-top: 100px;
-            background-color: var(--box2-color);
+            background-color: var(--secondary-color);
             padding: 40px 0;
             display: flex;
             justify-content: center;
+            color: white;
+            font-size: 14px;
+            margin-left: 70px;
+            transition: all ease .5s;
         }
 
-            #footer-wrapper.closeNav #footer-main {
-                margin: 0 auto;
-            }
 
         #footer-main {
             display: flex;
             justify-content: space-between;
-            width: 1200px;
-            margin-left: 500px;
+            width: 75%;
+            transition: all ease .5s;
         }
 
+        #footer-wrapper.closeNav {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
         .footer-section {
-            flex: 1 1 auto;
+            flex: 1 1 100%;
         }
-
+        .footer-section h4 {
+            color: white;
+        }
+        .footer-section p {
+            color: #8b8e96;
+        }
         #footer-main .footer-list {
             text-decoration: none;
             color: var(--black-light-color);
             padding: 10px 0;
         }
 
-            #footer-main .footer-list li {
-                list-style: none;
-                margin: 5px 0;
-            }
+        #footer-main .footer-list.social-list {
+            display: flex;   
+            flex-wrap: wrap;
+        }
 
-            #footer-main .footer-list a {
-                text-decoration: none;
-                font-size: 14px;
-                color: var(--black-light-color);
-            }
+        #footer-main .footer-list.social-list div {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;  
+            align-items: center;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        #footer-main .footer-list.social-list div i {
+            font-size: 16px;
+        }
+        #footer-main .social-list li + li{
+            margin-left: 10px;
+        }
+
+        #footer-main .footer-list li {
+            list-style: none;
+            margin: 5px 0;
+        }
+
+        #footer-main .footer-list a {
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--black-light-color);
+        }
 
         .navbar-help .navbar-list-help {
             padding: 0;
@@ -316,11 +370,11 @@
             flex-wrap: wrap;
         }
 
-            .navbar-controller h2 {
-                margin: 0;
-                text-align: center;
-                font-weight: 400;
-            }
+        .navbar-controller h2 {
+            margin: 0;
+            text-align: center;
+            font-weight: 400;
+        }
 
         .navbar-help {
             align-items: center;
@@ -642,11 +696,11 @@
         </div>
         <div class="navbar-help">
             <ul class="navbar-list-help">
-                <li class="has_notify"><i class='bx bx-bell'></i></li>
+                <li class="nav-notify"><i class='bx bx-bell'></i></li>
                 <li class="userIcon">
                     <a href="/Account/LoginForm">
                         <i class='bx bx-user'></i>
-                        <span>@myName</span>
+                        <span class="user-name">@myName</span>
                     </a>
                     <ul class="userIcon-option">
                         <li @Html.Raw(Session["user"] != null ? "onclick= \"userInformation()\"><i class='bx bx-cog'></i><span>Thông tin tài khoản</span>" : "class = \"user-option-login\"><i class='bx bx-user' ></i><span><a href = \"/Account/LoginForm\">Đăng nhập</a></span>")</li>
@@ -730,11 +784,10 @@
         @RenderBody()
     </div>
     <footer id="footer-wrapper">
-        @*          <div id="footer-main">
+                  <div id="footer-main">
                 <div class="footer-section">
                     <h4>Thông tin</h4>
                     <ul class="footer-list">
-                        <li><p>22-02-2023 - ASP.NET Application</p></li>
                         <li><p>Hoàng Quân</p></li>
                         <li><p>Liên hệ: 0778549065</p></li>
                         <li><p>Gmail: hquan26122003@gmail.com</p></li>
@@ -753,14 +806,14 @@
                 </div>
                 <div class="footer-section">
                     <h4>Social</h4>
-                    <ul class="footer-list">
-                        <li><p>22-02-2023 - ASP.NET Application</p></li>
-                        <li><p>Hoàng Quân</p></li>
-                        <li><p>Liên hệ: 0778549065</p></li>
-                        <li><p>Gmail: hquan26122003@gmail.com</p></li>
+                    <ul class="footer-list social-list">
+                        <li><div class="footer-social-item"><i class='bx bxl-instagram'></i></div></li>
+                        <li><div class="footer-social-item"><i class='bx bxl-facebook'></i></div></li>
+                        <li><div class="footer-social-item"><i class='bx bxl-discord-alt'></i></div></li>
+                        <li><div class="footer-social-item"><i class='bx bxl-google'></i></div></li>
                     </ul>
                 </div>
-            </div> *@
+            </div> 
     </footer>
     @Html.Action("Toast", "Partial")
     <script src="~/js/Toast.js"></script>

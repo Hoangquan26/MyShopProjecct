@@ -178,68 +178,34 @@
     </Compile>
     <Compile Include="Models\Brands.cs" />
     <Compile Include="Models\CategoryAction.cs" />
-    <Compile Include="Models\ChiTietDonHang.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChucNang.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DonHang.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ChiTietDonHang.cs" />
+    <Compile Include="Models\ChucNang.cs" />
+    <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\HangSanXuat.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiSanPham.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\HangSanXuat.cs" />
+    <Compile Include="Models\HinhAnhSanPham.cs" />
+    <Compile Include="Models\LoaiSanPham.cs" />
+    <Compile Include="Models\MyEntities.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Payment.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PhanQuyen.cs" />
     <Compile Include="Models\ProductAction.cs" />
-    <Compile Include="Models\PhanQuyen.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SanPham.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SanPham_YeuThich.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Test.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Test.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Test.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Test.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Test.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrangThaiDonHang.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\SanPham_YeuThich.cs" />
+    <Compile Include="Models\TrangThaiDonHang.cs" />
     <Compile Include="Models\UserModeForAdmin.cs" />
-    <Compile Include="Models\WebUser.cs">
-      <DependentUpon>Test.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\WebUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\css\addProduct.css" />
     <Content Include="Areas\Admin\css\adminIndex.css" />
     <Content Include="Areas\Admin\css\adminTemplate.css" />
     <Content Include="Areas\Admin\css\Order.css" />
+    <Content Include="Areas\Admin\js\addProduct.js" />
     <Content Include="Areas\Admin\js\adminIndex.js" />
     <Content Include="Areas\Admin\js\Order.js" />
     <Content Include="Areas\Admin\js\pagination.js" />
-    <Content Include="Areas\Admin\js\vanilla.js" />
     <Content Include="css\cart.css" />
     <Content Include="Areas\Admin\css\p.css" />
     <Content Include="Areas\Admin\css\userinfo.css" />
@@ -1380,26 +1346,9 @@
     <Content Include="js\Thankyou.js" />
     <Content Include="js\Toast.js" />
     <Content Include="js\wishlist.js" />
-    <Content Include="Models\Test.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Test.edmx</DependentUpon>
-      <LastGenOutput>Test.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Test.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Test.edmx</DependentUpon>
-      <LastGenOutput>Test.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <EntityDeploy Include="Models\Test.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Test.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Test.edmx.diagram">
-      <DependentUpon>Test.edmx</DependentUpon>
-    </Content>
     <Content Include="icons\boxicons-2.1.4\fonts\boxicons.eot" />
     <Content Include="icons\boxicons-2.1.4\fonts\boxicons.ttf" />
     <Content Include="icons\boxicons-2.1.4\fonts\boxicons.woff" />
@@ -1515,12 +1464,17 @@
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="images\avatars\scholes.webp" />
     <Content Include="images\setup\setup2.webp" />
+    <Content Include="Areas\Admin\Views\Order\addProductView.cshtml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - FTP2.pubxml" />
+    <None Include="Properties\PublishProfiles\hquan2612-001-site1 - FTP3.pubxml" />
+    <None Include="Properties\PublishProfiles\hquan2612-001-site1 - FTP4.pubxml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\hquan2612-001-site1 - Web Deploy2.pubxml" />
+    <None Include="Properties\PublishProfiles\hquan2612-001-site1 - Web Deploy3.pubxml" />
+    <None Include="Properties\PublishProfiles\hquan2612-001-site1 - Web Deploy4.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />

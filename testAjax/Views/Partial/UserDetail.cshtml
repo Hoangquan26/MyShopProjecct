@@ -505,10 +505,10 @@
         position: relative;
     }
 
-        .inputP label.focus {
-            top: 25%;
-            font-size: 12px;
-        }
+    .inputP label.focus {
+        top: 25%;
+        font-size: 12px;
+    }
 
     .section-pass form input:focus + label {
         top: 25%;
@@ -528,7 +528,7 @@
         transition: all ease .4s;
         pointer-events: none;
     }
-
+    .power-pass input[type="submit"],
     .section-pass form input[type="submit"] {
         background: #d9534f;
         color: white;
@@ -538,10 +538,31 @@
         cursor: pointer;
     }
 
-        .section-pass form input[type="submit"]:hover {
-            background: white;
-            color: #d9534f;
-        }
+    .section-pass form input[type="submit"]:hover {
+        background: white;
+        color: #d9534f;
+    }
+    .power-pass input[type="submit"] {
+        padding: 10px 0;
+    }
+    .power-pass.open {
+        display: flex !important;
+    }
+    .power-pass {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding : 0 5px;
+    }
+    .power-pass div:first-child {
+        min-width: 90%;
+    }
+    .power-pass div {
+        width: 250px;
+        text-align: left;
+        margin: 5px 0;
+    }
 </style>
 
 @*<div id="user-info">
@@ -611,7 +632,7 @@
                 <ul>
                     <li class="openPassChange">Đổi mật khẩu</li>
                     <li class="openInfomation">Thông tin</li>
-                    @Html.Raw(user?.isAdmin == true ? "<li>Phân Quyền</li>" : "")
+                    @Html.Raw(user?.isAdmin == true ? "<li class='openPower'>Phân Quyền</li>" : "")
                 </ul>
             </div>
         </div>
@@ -629,19 +650,29 @@
     <div class="section-pass">
         <form>
             <div class="inputP">
-                <input type="password" required min="5"/>
+                <input type="password" required min="5" />
                 <label for="">Mật khẩu cũ</label>
             </div>
             <div class="inputP">
-                <input type="password" name="newPass" required min="5"/>
+                <input type="password" name="newPass" required min="5" />
                 <label for="">Mật khẩu mới</label>
             </div>
             <div class="inputP">
-                <input type="password" name="newPass" required min="5"/>
+                <input type="password" name="newPass" required min="5" />
                 <label for="">Nhập lại mật khẩu mới</label>
             </div>
             <input type="submit" value="Lưu" />
         </form>
+    </div>
+    <div class="power-pass">
+        <div><h4>Phân Quyền</h4></div>
+        <div>
+            <input type="radio" name="power" value="1" /> <span>Quản trị viên</span>
+        </div>
+        <div>
+            <input type="radio" name="power" value="0" /> <span>Khách</span>
+        </div>
+        <input type="submit" value="Lưu" />
     </div>
 </div>
 @*</div>*@
@@ -726,7 +757,7 @@
     list_user_info?.addEventListener("click", () => {
         document.getElementById("user-info").classList.remove("flex-visible")
     })
-
+    //option
     homeMenu.addEventListener("click", () => {
         document.querySelector(".open").classList.remove("open")
         document.querySelector(".main-user").classList.add("open")
@@ -734,6 +765,27 @@
     changePassMenu.addEventListener("click", () => {
         document.querySelector(".open").classList.remove("open")
         document.querySelector(".section-pass").classList.add("open")
+    })
+    let openPowerBtn = document.querySelector(".openPower")
+    openPowerBtn?.addEventListener("click", () => {
+        document.querySelector(".open").classList.remove("open")
+        document.querySelector(".power-pass").classList.add("open")
+    })
+    let powerSession = document.querySelector(".power-pass")
+    let submitPower = powerSession.querySelector("input[type='submit']")
+    submitPower.addEventListener("click", () => {
+        let powerRadio = powerSession.querySelectorAll("input[type='radio'][name='power']")
+        let checkValue = powerRadio[0].checked ? powerRadio[0] : powerRadio[1];
+        fetch("/Admin/Admin/UpdateAdmin", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                _id: parseInt(userAvatar.getAttribute("data-userid"), 10),
+                _isAdmin: parseInt(checkValue.value, 10)
+            })
+        })
     })
     //updateAjax
     /*    save_btn.addEventListener("click", () => {

@@ -76,6 +76,46 @@
     margin-bottom: 20px;
     font-size: 18px;
 }
+
+.p_rows .p_columns:last-child i {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all ease .4s;
+    cursor: pointer;
+}
+.p_rows .p_columns:last-child {
+    position: relative;
+}
+.p_rows .p_columns:last-child .product-option {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    font-size: 14px;
+    flex-direction: column;
+    border-left: 2px solid var(--box3-color);
+    background: #333;
+    width: 100%;
+    display: none;
+}
+.p_rows .p_columns:last-child .product-option.onOption {
+    display: flex;
+}
+.product-option div {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    cursor: pointer;
+}
+
+.product-option div span {
+    text-align: left
+}
+
+.p_rows .p_columns:last-child i:hover {
+    background-color: var(--danger-color);
+}
 .content-session .product-session .p_rows{
     width: 100%;
     display: flex;
@@ -83,6 +123,11 @@
     max-height: 150px;
     padding-bottom: 10px;
     margin-bottom: 20px;
+}
+
+.p_rows .p_columns:first-child:hover {
+    color: var(--box2-color);
+    cursor: pointer;
 }
 
 .content-session .product-session .p_rows .p_columns:nth-child(3)::-webkit-scrollbar {
@@ -182,7 +227,7 @@
     border-bottom: 1px solid var(--box1-color);
     color : var(--box1-color)
 }
-/*addProduct-session css*/
+/*addProduct-session css*//*
 #addProduct-session {
     position: fixed;
     top: 0;
@@ -305,4 +350,91 @@ span.add_message {
 }
 .cate-content {
     margin-top: 15px;
+}*/
+
+/*import Sestion*/
+
+.importSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.import-background {
+    position: absolute;
+    background: black;
+    opacity: .4;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.import-main {
+    z-index: 5;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+}
+.import-main h4 {
+    font-size: 18px;
+    font-weight: 300;
+    padding: 5px; 
+}
+.import-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5px;
+}
+.import-header i {
+    font-size: 16px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    color: var(--danger-color);
+    transition: all ease .4s;
+    cursor: pointer;
+}
+.import-header i:hover {
+    background: var(--danger-color);
+    color: white;
+}
+
+.import-main input {
+    padding: 5px;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+}
+
+.import-main div {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+}
+.import-submit {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    padding: 5px 0;
+
+}
+.import-submit button{
+    border: 0;
+    outline: 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: var(--panel--color);
+    cursor: pointer;
 }

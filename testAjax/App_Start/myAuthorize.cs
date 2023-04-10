@@ -26,7 +26,7 @@ namespace testAjax.App_Start
                 return;
             }
             MyEntities db = new MyEntities();
-            if (db.PhanQuyens.Count(item => item.UserId == user.id && item.MaChucNang == Roles) == 0)
+            /*if (db.PhanQuyens.Count(item => item.UserId == user.id && item.MaChucNang == Roles) == 0)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
@@ -34,6 +34,16 @@ namespace testAjax.App_Start
                     action = "Index",
                     area ="Admin"
                 }));
+            }*/
+            if (user.isAdmin == false || user.isAdmin == null)
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+                {
+                    controller = "Error",
+                    action = "Index",
+                    area = "Admin"
+                }));
+                return;
             }
         }
     }

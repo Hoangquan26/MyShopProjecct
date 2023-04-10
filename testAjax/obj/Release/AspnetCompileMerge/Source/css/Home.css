@@ -2,6 +2,9 @@
     .col4 {
         width: calc(99.9% / 2) !important;
     }
+    #slider {
+        height: 60vh !important;
+    }
 }
 
 @media (max-width: 700px) {
@@ -15,6 +18,10 @@
 
     #slider .slide-btn.prev-btn {
         left: 5px;
+    }
+    
+    #category-session {
+        display: block !important;
     }
 }
 
@@ -30,21 +37,23 @@
     flex-wrap: nowrap;
     align-items: center;
     overflow-x: hidden;
+    height: 100%;
 }
 .wrapper.grabbing {
     scroll-behavior: smooth;
 }
 .slider-item {
     flex: 1 1 100%;
-    min-width: 100vw;
+    min-width: 100%;
     overflow: hidden;
+    height: 100%;
 }
 .slider-item img {
     width: 100%;
     height: auto;
     object-fit: cover;
     object-position: center;
-    height: 100vh;
+    height: 100%;
 }
 .slide-btn {
     position: absolute;
@@ -115,4 +124,82 @@
     justify-content: center;
     transition: all ease 0.5s;
     width: 75%;
+}
+
+#category-session {
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 10px;
+    display: none;
+}
+
+.category-direction {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+.category-direction.unactive {
+    opacity: .4;
+}
+.category-direction {
+    background : #fff;
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 0px 12px 0px #888;
+}
+
+.category-direction i {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.left-direction {
+    left: 10px;
+}
+.right-direction{
+    right: 10px;
+}
+
+.category-wrapper {
+    display:flex;
+    align-items: center;
+    padding-top: 15px;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+}
+.category-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    align-items: center;    
+    cursor: pointer;
+}
+.category-item span {
+    font-size: 12px;
+    color: #545454;
+}
+.category-item img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 50%;
+    padding: 5px;
+    transition: all ease .4s;
+}
+
+.category-item:hover img{
+    transform: rotate(45deg);
 }

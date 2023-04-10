@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Thêm sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/AdminTemplate.cshtml";
+}
+@section style {
+        <link rel="stylesheet" href="~/Areas/Admin/css/addProduct.css" />
+    }
+<div id="addProduct-session">
+    <div class="addProduct-main">
+            <table>
+                <tr>
+                    <td><label>Tên SP: </label></td>
+                    <td><input type="text" name="_tenSanPham" id="add_tensp" /></td>
+                </tr>
+                <tr>
+                    <td><label>Mô tả: </label></td>
+                    <td><textarea name="_moTaSanPham" id="myMoTa"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label>Giá: </label></td>
+                    <td><input type="number" name="_giaSanPham" id="add_gia" /></td>
+                </tr>
+                <tr>
+                    <td><label>Số lượng: </label></td>
+                    <td><input type="number" name="_soLuongSanPham" id="add_soluong" /></td>
+                </tr>
+                <tr>
+                    <td><label>Thể loại: </label></td>
+                    <td>
+                        <select name="_theLoaiSanPham" id="theLoaiSanPham">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Thumbnail: </label></td>
+                    <td>
+                        <input type="file" name="_hinhAnhSanPham" id="add_hinhanh" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Hình ảnh:  </label></td>
+                    <td class="productImagesWrapper">
+                        <div class="productImages">
+                            <div><i class='bx bxs-camera-plus'></i></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Hãng SX: </label></td>
+                    <td>
+                        <select name="_maHangSanXuat" id="maHangSanXuat">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="add-submit" type="submit" value="Thêm" /></td>
+                    <td><span class="add_message"></span></td>
+                </tr>
+            </table>
+    </div>
+</div>
+
+<script src="~/ckfinder/ckfinder.js"> </script>
+<script src="~/ckeditor/ckeditor.js"> </script>
+<script src="~/Areas/Admin/js/addProduct.js"></script>

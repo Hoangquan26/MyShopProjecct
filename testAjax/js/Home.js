@@ -63,3 +63,35 @@ let hp_wrapper = document.querySelector("#keyboard-sesion .hp-wrapper")
 loadPreviewProduct(1, kb_wrapper, "/Home/loadPreviewProduct", 8)
 loadPreviewProduct(2, mouse_wrapper, "/Home/loadPreviewProduct", 8)
 loadPreviewProduct(5, hp_wrapper, "/Home/loadPreviewProduct", 8)
+
+let leftDrcBtn = document.querySelector(".left-direction")
+let rightDrcBtn = document.querySelector(".right-direction")
+let ctgSession = document.querySelector(".category-wrapper")
+let ctgItem = document.querySelector(".category-item")
+leftDrcBtn.addEventListener("click", (e) => {
+    console.log(ctgSession.scrollLeft)
+    if (ctgSession.scrollLeft == 0) 
+        return;
+    ctgSession.scrollLeft -= (ctgSession.scrollLeft % ctgItem.clientWidth + 100 || ctgItem.clientWidth * 2) 
+})
+
+rightDrcBtn.addEventListener("click", (e) => {
+    if (ctgSession.scrollLeft == (scrollWidth - ctgSession.clientWidth)) {
+        return;
+    }
+    ctgSession.scrollLeft += (ctgSession.scrollLeft % ctgItem.clientWidth + 100 || ctgItem.clientWidth * 2)
+})
+
+ctgSession.addEventListener("scroll", e => {
+    if (!leftDrcBtn.classList.contains("unactive") && ctgSession.scrollLeft == 0) {
+        leftDrcBtn.classList.add("unactive")
+    }
+    else {
+        leftDrcBtn.classList.remove("unactive")
+    }
+    if (!rightDrcBtn.classList.contains("unactive") && ctgSession.scrollLeft == ctgSession.scrollWidth - ctgSession.clientWidth) {
+        rightDrcBtn.classList.add("unactive")
+    }
+    else 
+        rightDrcBtn.classList.remove("unactive")
+})

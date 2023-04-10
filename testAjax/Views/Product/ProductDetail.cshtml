@@ -6,11 +6,16 @@
     ViewBag.HomeLink = "Trang chủ";
     ViewBag.Name = sp.tenSanPham;
     ViewBag.CategoryID = sp.theLoaiSanPham;
+    List<string> listImages = !String.IsNullOrEmpty(sp.hinhAnhSanPhamPath) ? sp.hinhAnhSanPhamPath.Split(new string[] { "@@" }, StringSplitOptions.None).ToList() : new List<string>() { "" };
+    listImages.Add(sp.hinhAnhSanPham);
 }
 @section link {
     <style>
 
         @@media (max-width : 1200px) {
+            .product-ui-slider-item img {
+                min-height: 80px;
+            }
             .product-information {
                 flex-direction: column;
             }
@@ -110,15 +115,18 @@
         .product-information h5 {
             margin: 0;
         }
+        .product-information .product-images {
+            flex: 1 1 50%;
+        }
         .product-information .product-images img {
-            max-width: 700px;
-            height: 386px;
+            width: 100%;
+            max-height: 500px;
             border-radius: 5px;
             object-fit: cover;
             object-position: center;
         }
         .product-information .product-ui {
-            min-width: 350px;
+            /*min-width: 350px;*/
             margin-left: 40px;
             padding : 5px 0;
         }
@@ -227,15 +235,25 @@
         }
         .product-ui-slider-item {
             width: calc(99.9% / 4);
-            padding: 0 5px;
             display: flex;
             align-items: center;
-            justify-content:center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all ease .4s;
+            cursor: pointer;
         }
+
+        .product-ui-slider-item:hover,
+        .product-ui-slider-item.onWatch {
+            border: 1px solid var(--black-light-color);
+        }
+
         .product-ui-slider-item img {
-            height: 63px;
-            max-width: 60px;
-            object-fit: cover;
+            height: 65px;
+            width: 100%;
+            object-fit: contain;
             object-position: center;
             border-radius: 5px;
         }
@@ -243,7 +261,7 @@
             margin-left: 40px;
             flex-direction: column;
             align-items: center;
-            min-width: 250px;
+           /* min-width: 250px;*/
         }
 
         .product-service .product-service-info {
@@ -447,18 +465,17 @@
                 <h4 class="cart-btn">Thêm Vào Giỏ Hàng</h4>
             </div>
             <div class="product-ui-slider">
-                <div class="product-ui-slider-item">
-                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
-                </div>
-                <div class="product-ui-slider-item">
-                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
-                </div>
-                <div class="product-ui-slider-item">
-                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
-                </div>
-                <div class="product-ui-slider-item">
-                    <img src="https://bizweb.dktcdn.net/100/438/322/products/1-1678515909680.jpg?v=1678515980147" />
-                </div>
+                @{
+                    foreach (var imagePath in listImages)
+                    {
+                        if (imagePath.Length > 0)
+                        {
+                            <div class="product-ui-slider-item">
+                                <img src="@imagePath" />
+                            </div>
+                        }
+                    }
+                }
             </div>
         </div>
         <div class="product-service">
@@ -587,5 +604,16 @@
         else
             MyCart.add(number_product.getAttribute("data-ID"), parseInt(number_product.textContent, 10))
         window.location.href = "/Checkout"
+    })
+
+    //watchProductImage
+    let listImageProducts = document.querySelectorAll(".product-ui-slider-item")
+    let displayedImage = document.querySelector(".product-images img")
+    listImageProducts.forEach(image => {
+        image.addEventListener("click", (e) => {
+            document.querySelector(".onWatch")?.classList.remove("onWatch")
+            image.classList.add("onWatch")
+            displayedImage.src = image.firstElementChild.src
+        })
     })
 </script>

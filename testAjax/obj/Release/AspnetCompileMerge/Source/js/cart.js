@@ -73,7 +73,6 @@ let LoadMyCart = () => {
                     let deleteBtn = div.querySelector(".delete-item-btn")
                     deleteBtn.addEventListener("click", () => {
                         MyCart.removeItem(item.maSanPham)
-                        callToast('Đã xóa sản phẩm thành công', 'success')
                         LoadMyCart()
                     })
                     plusBtn.addEventListener("click", () => {
@@ -98,7 +97,6 @@ let LoadMyCart = () => {
                         }
                         else {
                             MyCart.removeItem(item.maSanPham)
-                            callToast('Đã xóa sản phẩm thành công', 'success')
                             LoadMyCart()
                         }
                     })

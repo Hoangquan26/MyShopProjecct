@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Xml.Linq;
+using testAjax.App_Start;
 using testAjax.Models;
 
 namespace testAjax.Areas.Admin.Controllers
@@ -11,6 +13,7 @@ namespace testAjax.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         // GET: Admin/Order
+        [LoginAuthorize(Roles = "admin_priority")]
         public ActionResult Index()
         {
             return View();
@@ -104,6 +107,11 @@ namespace testAjax.Areas.Admin.Controllers
                     JsonRequestBehavior.AllowGet
                 });
             }
+        }
+
+        public ActionResult addProductView()
+        {
+            return View();
         }
     }
 }

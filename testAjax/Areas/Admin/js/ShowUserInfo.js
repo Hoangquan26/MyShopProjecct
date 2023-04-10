@@ -38,6 +38,14 @@
             mainUser.querySelector(".title").textContent = data[0].isAdmin ? "Quản trị viên" : "Khách"
             mainUser.querySelector(".follow-info h2:first-child span").textContent = diffDays
             mainUser.querySelector(".follow-info h2:last-child span").textContent = numberOrder
+            let powerPass = document.querySelector(".card .power-pass")
+            let powerInput = powerPass.querySelectorAll("input[name='power']")
+            if (data[0].isAdmin == true) {
+                powerInput[0].checked = true;
+            }
+            else {
+                powerInput[1].checked = true;
+            }
             return priority;
         })
         .then(data => {

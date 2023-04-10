@@ -1,4 +1,12 @@
-﻿html {
+﻿@media (max-width: 1200px) {
+    .LoginMain {
+        top: 45% !important;
+        padding: 10px !important;
+    }
+    
+}
+
+html {
     font-family: 'Chivo Mono', monospace;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
@@ -55,6 +63,7 @@
     transform: translateY(-50%);
     left: 5px;
     transition: all ease 0.4s;
+    pointer-events: none;
 }
 
 .absoluteIcon {

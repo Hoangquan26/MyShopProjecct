@@ -32,6 +32,8 @@
                 <div class="p_columns"><span>Thể loại</span></div>
                 <div class="p_columns"><span>Hình ảnh</span></div>
                 <div class="p_columns"><span>Hãng sx</span></div>
+                <div class="p_columns">
+                </div>
             </div>
         </div>
         <div class="anothor-session">
@@ -99,7 +101,26 @@
             </table>
     </div>
 </div>
+<div class="importSection invisible">
+    <div class="import-background"></div>
+    <div class="import-main">
+        <div class="import-header">
+            <h4>Nhập hàng</h4>
+            <i class='bx bx-x'></i>
+        </div>
+        <div class="import-quantity">
+            <span>Số lượng</span>
+            <input required type="number" />
+        </div>
+        <div class="import-price">
+            <span>Giá bán</span>
+            <input type="number" />
+        </div>
+        <div class="import-submit">
+            <input required type="hidden" name="maSanPham" />
+            <button>Nhập</button>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/chart.js"></script>
-<script src="~/ckfinder/ckfinder.js"></script>
-<script src="~/ckeditor/ckeditor.js"></script>
 @Scripts.Render("~/bundles/product")

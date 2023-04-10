@@ -21,6 +21,7 @@ namespace testAjax.Areas.Admin.Controllers
         {
             return View();
         }
+        [LoginAuthorize(Roles = "admin_priority")]
         public ActionResult ListUser()
         {
             return View();
@@ -211,6 +212,17 @@ namespace testAjax.Areas.Admin.Controllers
             {
                 return Json(new { code = 500, errorMessage = "Cập nhật ảnh đại diện thất bại" }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateAdmin(int _id, bool _isAdmin)
+        {
+            MyEntities db = new MyEntities();
+            var users = db.WebUsers;
+            var user = users.SingleOrDefault(item => item.id == _id);
+            user.isAdmin = _isAdmin;
+            db.SaveChanges();
+            return Json(new { code = 200}, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -4,12 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using testAjax.App_Start;
 using testAjax.Models;
 namespace testAjax.Areas.Admin.Controllers
 {
     public class BrandController : Controller
     {
         // GET: Admin/Brand
+        [LoginAuthorize(Roles = "admin_priority")]
         public ActionResult Index()
         {
             return View();
@@ -30,6 +33,7 @@ namespace testAjax.Areas.Admin.Controllers
                                   join c in categorys on p.theLoaiSanPham equals c.maTheLoai
                                   select new
                                   {
+                                      p.maSanPham,
                                       p.tenSanPham,
                                       p.giaSanPham,
                                       p.soLuongSanPham,
@@ -75,7 +79,7 @@ namespace testAjax.Areas.Admin.Controllers
         [ValidateInput(false)]
         public JsonResult AddProduct(FormCollection collection, HttpPostedFileBase _hinhAnhSanPham)
         {
-            var _maSanPham = collection["_maSanPham"];
+            var _listImagesPath = collection["_listImagesPath"];
             var _tenSanPham = collection["_tenSanPham"];
             var _moTaSanPham = collection["_moTaSanPham"];
             int _giaSanPham =int.Parse(collection["_giaSanPham"]);
@@ -90,7 +94,7 @@ namespace testAjax.Areas.Admin.Controllers
                 myPath = Path.Combine("/images/" + pathName);
                 _hinhAnhSanPham.SaveAs(savePath);
             }
-            if (ProductAction.addProduct(_maSanPham, _tenSanPham, _moTaSanPham, _giaSanPham, _soLuongSanPham, _theLoaiSanPham, myPath, _maHangSanXuat) == true)
+            if (ProductAction.addProduct(_tenSanPham, _moTaSanPham, _giaSanPham, _soLuongSanPham, _theLoaiSanPham, myPath, _maHangSanXuat, _listImagesPath) == true)
                 return Json(new { code = 200, successMessage = "Thêm mới thành công" }, JsonRequestBehavior.AllowGet);
             else
                 return Json(new { code = 500, successMessage = "Thêm mới thất bại" }, JsonRequestBehavior.AllowGet);
@@ -137,6 +141,22 @@ namespace testAjax.Areas.Admin.Controllers
             {
                 return Json(new { code = 500, errorMessage = "Lỗi" }, JsonRequestBehavior.AllowGet);
             }
+        }
+        [HttpPost]
+        public JsonResult DeleteProduct(string id)
+        { 
+            if(ProductAction.deleteProduct(id))
+                return Json(new {code = 200, successMessage = "Đã xóa sản phẩm thành công"}, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { code = 500, errorMessage = "Có lỗi khi xóa sản phẩm" }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult ImportProduct(string id, int quantity, int price)
+        {
+            if (ProductAction.importProduct(id, quantity, price))
+                return Json(new { code = 200, successMessage = "Nhập sản phẩm thành công" }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { code = 500, errorMessage = "Có lỗi khi nhập sản phẩm" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
